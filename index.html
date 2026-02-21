@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tristan Alderson — Embedded Systems &amp; Avionics Engineer</title>
+    <meta name="description"
+        content="Portfolio of Tristan Alderson — Embedded Systems & Avionics Engineer. Queen's University ECE, QRET Avionics Lead, FPGA & hardware design." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- AOS Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#hero" class="nav-logo">T<span>.</span>A</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#gallery">Field Work</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Connect</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">Dual US &amp; Canadian Citizen</div>
+            <h1 class="hero-name">Tristan Alderson</h1>
+            <p class="hero-title">Embedded Systems &amp; Avionics Engineer</p>
+            <p class="hero-desc">
+                Building the bridge between firmware, FPGAs, and flight hardware — from rocket avionics networks to
+                on-device LLM inference.
+            </p>
+            <div class="hero-cta">
+                <a href="#expertise" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1" />
+                    </svg>
+                    View My Work
+                </a>
+                <a href="assets/TristanAlderson_Resume(02-19-26).pdf" class="btn btn-outline" target="_blank"
+                    rel="noopener">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                    </svg>
+                    Resume
+                </a>
+                <a href="https://github.com/t-alderson" class="btn btn-outline" target="_blank" rel="noopener">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/trist-alderson" class="btn btn-outline" target="_blank" rel="noopener">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.47 2H3.53A1.45 1.45 0 0 0 2 3.47v17.06A1.45 1.45 0 0 0 3.47 22h17.06A1.45 1.45 0 0 0 22 20.53V3.47A1.45 1.45 0 0 0 20.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12zM18.91 18.74h-3v-4.26c0-1.14-.03-2.6-1.59-2.6-1.59 0-1.83 1.24-1.83 2.52v4.34h-3v-9h2.88v1.23h.04a3.16 3.16 0 0 1 2.85-1.56c3.05 0 3.61 2 3.61 4.62v4.71z" />
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERTISE IN ACTION ===== -->
+    <section class="expertise" id="expertise">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">// expertise in action</span>
+                <h2 class="section-title">Engineering Skills, Proven</h2>
+                <p class="section-subtitle">No walls of text — just real hardware, real code, and real results.</p>
+            </div>
+
+            <!-- ── Cluster A: Hardware & PCB Design ── -->
+            <div class="cluster-card" data-aos="fade-up">
+                <div class="cluster-visual">
+                    <!-- Image carousel for PCB project shots -->
+                    <div class="image-carousel" id="carousel-hardware">
+                        <div class="carousel-track">
+                            <img src="assets/images/projects/gps_module_front.png" alt="GPS Module — front"
+                                class="carousel-slide active" />
+                            <img src="assets/images/projects/gps_module_back.png" alt="GPS Module — back"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/gps_module_traces.png" alt="GPS Module — traces"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/gps_antenna_front.png" alt="GPS Antenna — front"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/gps_antenna_back.png" alt="GPS Antenna — back"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/gps_antenna_traces.png" alt="GPS Antenna — traces"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/prop_module_front.png" alt="Propulsion Controller — front"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/prop_module_back.png" alt="Propulsion Controller — back"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/prop_module_traces.png"
+                                alt="Propulsion Controller — traces" class="carousel-slide" />
+                            <img src="assets/images/projects/avionics_stack1.png" alt="Avionics stack overview"
+                                class="carousel-slide" />
+                            <img src="assets/images/projects/avionics_stack2.png" alt="Avionics stack detail"
+                                class="carousel-slide" />
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn carousel-prev" aria-label="Previous image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="15 18 9 12 15 6" />
+                                </svg>
+                            </button>
+                            <div class="carousel-dots"></div>
+                            <button class="carousel-btn carousel-next" aria-label="Next image">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- 3D Viewer -->
+                    <div class="viewer-container" id="viewer-gps" data-model="assets/models/GPS_Module.wrl">
+                    </div>
+                </div>
+                <div class="cluster-info">
+                    <div class="cluster-label">Cluster A</div>
+                    <h3 class="cluster-title">Hardware &amp; PCB Design</h3>
+                    <p class="cluster-context">
+                        Architecting the complete avionics network for the Queen's Rocket Engineering Team (QRET)
+                        2026 hybrid rocket. Custom backplane PCB with PCIe interfaces, an ESP32 telemetry module,
+                        STM32 sensor/solenoid controller, and a CAN bus with radio forwarding for real-time
+                        ground station telemetry. Every board below was designed in KiCad — from schematic to
+                        gerbers to JLCPCB assembly.
+                    </p>
+                    <div class="cluster-skills">
+                        <span>KiCad</span>
+                        <span>PCB Design Cycle</span>
+                        <span>CAN Protocol</span>
+                        <span>DC-DC Conversion</span>
+                        <span>ESP32</span>
+                        <span>STM32</span>
+                        <span>I2C</span>
+                        <span>LoRa</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Cluster B: Computer Vision & Control Systems ── -->
+            <div class="cluster-card" data-aos="fade-up">
+                <div class="cluster-info">
+                    <div class="cluster-label">Cluster B</div>
+                    <h3 class="cluster-title">Computer Vision &amp; Control Systems</h3>
+                    <p class="cluster-context">
+                        Built an automated rocket tracking system combining YOLOv8 computer vision with PID
+                        control to lock onto and follow a rocket through its entire flight arc. The system helped
+                        secure <strong>2nd Place at the Launch Canada competition</strong>. Part of a 10-person launch
+                        team in the New Mexico desert, managing battery systems and critical altimeter/GPS
+                        configurations.
+                    </p>
+                    <div class="cluster-skills">
+                        <span>YOLOv8</span>
+                        <span>OpenCV</span>
+                        <span>PID Control</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+                <div class="cluster-visual">
+                    <div class="media-tabs">
+                        <button class="media-tab active" data-target="cv-video">Live Tracking</button>
+                        <button class="media-tab" data-target="cv-screenshots">Screenshots</button>
+                    </div>
+                    <div class="media-panel active" id="cv-video">
+                        <div class="video-container">
+                            <video src="assets/videos/tracking.mp4" autoplay loop muted playsinline></video>
+                        </div>
+                    </div>
+                    <div class="media-panel" id="cv-screenshots">
+                        <div class="image-carousel" id="carousel-cv">
+                            <div class="carousel-track">
+                                <img src="assets/images/projects/rocket_tracking1.png"
+                                    alt="Rocket tracking system — detection" class="carousel-slide active" />
+                                <img src="assets/images/projects/rocket_tracking2.png"
+                                    alt="Rocket tracking system — tracking" class="carousel-slide" />
+                            </div>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn carousel-prev" aria-label="Previous image">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="15 18 9 12 15 6" />
+                                    </svg>
+                                </button>
+                                <div class="carousel-dots"></div>
+                                <button class="carousel-btn carousel-next" aria-label="Next image">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Cluster C: FPGA & Embedded Firmware ── -->
+            <div class="cluster-card" data-aos="fade-up">
+                <div class="cluster-visual">
+                    <div class="media-tabs">
+                        <button class="media-tab active" data-target="fpga-board">Dev Board</button>
+                        <button class="media-tab" data-target="fpga-diagram">Block Design</button>
+                    </div>
+                    <div class="media-panel active" id="fpga-board">
+                        <div class="project-image-holder">
+                            <img src="assets/images/projects/fpga_board.jpg" alt="Zynq UltraScale+ Development Board" />
+                        </div>
+                    </div>
+                    <div class="media-panel" id="fpga-diagram">
+                        <div class="project-image-holder fpga-diagram-holder">
+                            <object data="assets/images/projects/fpga_design.pdf" type="application/pdf" width="100%"
+                                height="100%">
+                                <p>FPGA block design — <a href="assets/images/projects/fpga_design.pdf" target="_blank"
+                                        rel="noopener">View PDF</a></p>
+                            </object>
+                        </div>
+                    </div>
+                </div>
+                <div class="cluster-info">
+                    <div class="cluster-label">Cluster C</div>
+                    <h3 class="cluster-title">FPGA &amp; Embedded Firmware</h3>
+                    <p class="cluster-context">
+                        Co-designing <strong>LiteLM</strong> — an offline, domain-specific LLM inference engine
+                        on a Xilinx Zynq UltraScale+ SoC. The ARM Cortex-A53 orchestrates while custom FPGA
+                        accelerators handle tensor computation via high-bandwidth AXI4 buses and DMA transfers
+                        for weights and KV-cache. Also developed embedded controllers at Evertz Microsystems
+                        with distributed control systems and real-time telemetry.
+                    </p>
+                    <div class="cluster-skills">
+                        <span>Zynq UltraScale+ MPSoC</span>
+                        <span>Vitis HLS</span>
+                        <span>AXI4 (Lite, Full, Stream)</span>
+                        <span>DMA</span>
+                        <span>C / C++</span>
+                        <span>Verilog</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FIELD WORK GALLERY ===== -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">// in the field</span>
+                <h2 class="section-title">The Human Element</h2>
+                <p class="section-subtitle">From launch pads in New Mexico to the lab in Kingston — engineering in the
+                    real world.</p>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Populated dynamically from assets/images/gallery/manifest.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <img src="" alt="" id="lightbox-img" />
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <!-- ===== RESUME ===== -->
+    <section class="resume" id="resume">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">// the paperwork</span>
+                <h2 class="section-title">Resume</h2>
+            </div>
+
+            <div class="resume-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <a href="assets/TristanAlderson_Resume(02-19-26).pdf" class="btn btn-primary resume-download"
+                    target="_blank" rel="noopener" download>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    Download PDF
+                </a>
+                <div class="resume-embed">
+                    <iframe src="assets/TristanAlderson_Resume(02-19-26).pdf" title="Tristan Alderson Resume"
+                        frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">// let's connect</span>
+                <h2 class="section-title">Get in Touch</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Let's build something together.</h3>
+                    <p>
+                        I'm always open to discussing embedded systems, hardware design, rocketry, or new opportunities.
+                        Whether you have a project idea, a question, or just want to say hello — I'd love to hear from
+                        you.
+                    </p>
+                    <div class="contact-methods">
+                        <a href="mailto:TALDERSON42@GMAIL.COM" class="contact-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <polyline points="22,6 12,13 2,6" />
+                            </svg>
+                            <div class="contact-method-text">
+                                <span class="contact-method-label">Email</span>
+                                <span class="contact-method-value">TALDERSON42@GMAIL.COM</span>
+                            </div>
+                        </a>
+                        <a href="tel:+16048281437" class="contact-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                            <div class="contact-method-text">
+                                <span class="contact-method-label">Phone</span>
+                                <span class="contact-method-value">604-828-1437</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/trist-alderson" class="contact-method" target="_blank"
+                            rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.47 2H3.53A1.45 1.45 0 0 0 2 3.47v17.06A1.45 1.45 0 0 0 3.47 22h17.06A1.45 1.45 0 0 0 22 20.53V3.47A1.45 1.45 0 0 0 20.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12zM18.91 18.74h-3v-4.26c0-1.14-.03-2.6-1.59-2.6-1.59 0-1.83 1.24-1.83 2.52v4.34h-3v-9h2.88v1.23h.04a3.16 3.16 0 0 1 2.85-1.56c3.05 0 3.61 2 3.61 4.62v4.71z" />
+                            </svg>
+                            <div class="contact-method-text">
+                                <span class="contact-method-label">LinkedIn</span>
+                                <span class="contact-method-value">trist-alderson</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/t-alderson" class="contact-method" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                            </svg>
+                            <div class="contact-method-text">
+                                <span class="contact-method-label">GitHub</span>
+                                <span class="contact-method-value">t-alderson</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Tristan Alderson. Built with ☕ and solder fumes.</p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chevrotain@10.5.0/lib/chevrotain.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/VRMLLoader.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/viewer3d.js"></script>
+</body>
+
+</html>
