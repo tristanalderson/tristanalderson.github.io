@@ -74,20 +74,121 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- Image Carousels ----
-  document.querySelectorAll('.image-carousel').forEach(carousel => {
+  // ---- Hardware Project Switcher & Mode Toggle ----
+  const hardwareSection = document.getElementById('hardware-pcb-section');
+  if (hardwareSection) {
+    const projectTabs = hardwareSection.querySelectorAll('.project-selector .sub-tab');
+    const modeTabs = hardwareSection.querySelectorAll('.visual-mode-tabs .media-tab');
+    const carouselTrack = hardwareSection.querySelector('#carousel-hardware .carousel-track');
+    const viewer = hardwareSection.querySelector('#viewer-hardware');
+    const infoContainer = document.getElementById('hardware-project-info');
+
+    const projectData = {
+      'gps-module': {
+        title: 'GPS Module',
+        model: 'assets/models/GPS_Module.wrl',
+        context: 'Direct telemetry and positioning module featuring an u-blox GPS receiver and an integrated antenna. Designed for high-reliability data acquisition in flight environments.',
+        images: [
+          { src: 'assets/images/projects/gps_module_front.png', alt: 'GPS Module Front' },
+          { src: 'assets/images/projects/gps_module_back.png', alt: 'GPS Module Back' },
+          { src: 'assets/images/projects/gps_module_traces.png', alt: 'GPS Module Traces' }
+        ]
+      },
+      'gps-antenna': {
+        title: 'GPS Antenna',
+        model: 'assets/models/GPS_Antenna_Board.wrl',
+        context: 'Custom active antenna board with low-noise amplification (LNA) and filtered RF path. Optimized for high-gain reception in noisy avionics bays.',
+        images: [
+          { src: 'assets/images/projects/gps_antenna_front.png', alt: 'GPS Antenna Front' },
+          { src: 'assets/images/projects/gps_antenna_back.png', alt: 'GPS Antenna Back' },
+          { src: 'assets/images/projects/gps_antenna_traces.png', alt: 'GPS Antenna Traces' }
+        ]
+      },
+      'prop-controller': {
+        title: 'Propulsion Controller',
+        model: 'assets/models/upper_lc_board.wrl',
+        context: 'High-power propulsion management board controlling solenoid valves and ignition sequence. Features redundant safety interlocks and real-time pressure monitoring.',
+        images: [
+          { src: 'assets/images/projects/prop_module_front.png', alt: 'Propulsion Controller Front' },
+          { src: 'assets/images/projects/prop_module_back.png', alt: 'Propulsion Controller Back' },
+          { src: 'assets/images/projects/prop_module_traces.png', alt: 'Propulsion Controller Traces' }
+        ]
+      }
+    };
+
+    function switchProject(projectId) {
+      const data = projectData[projectId];
+      if (!data) return;
+
+      // Update Info
+      infoContainer.innerHTML = `<p class="cluster-context">${data.context}</p>`;
+
+      // Update Carousel Images
+      carouselTrack.innerHTML = data.images.map((img, i) =>
+        `<img src="${img.src}" alt="${img.alt}" class="carousel-slide ${i === 0 ? 'active' : ''}" />`
+      ).join('');
+
+      // Update 3D Model Path
+      viewer.dataset.model = data.model;
+
+      // Always reset the viewer so it reloads for the new project
+      viewer.dispatchEvent(new CustomEvent('resetViewer'));
+
+      // Re-init carousel logic for this specific carousel
+      initSingleCarousel(hardwareSection.querySelector('#carousel-hardware'));
+    }
+
+    const imagesPanel = document.getElementById('hardware-images');
+    const viewerPanel = document.getElementById('hardware-3d');
+    const imagesTab = hardwareSection.querySelector('.visual-mode-tabs [data-target="hardware-images"]');
+    const viewerTab = hardwareSection.querySelector('.visual-mode-tabs [data-target="hardware-3d"]');
+
+    function showImagesPanel() {
+      if (!imagesTab || !viewerTab || !imagesPanel || !viewerPanel) return;
+      modeTabs.forEach(t => t.classList.remove('active'));
+      imagesTab.classList.add('active');
+      imagesPanel.classList.add('active');
+      imagesPanel.style.display = 'block';
+      viewerPanel.classList.remove('active');
+      viewerPanel.style.display = 'none';
+    }
+
+    // When user clicks Images or 3D Viewer, clear inline display so CSS controls visibility
+    modeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        imagesPanel.style.display = '';
+        viewerPanel.style.display = '';
+      });
+    });
+
+    projectTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        projectTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        switchProject(tab.dataset.project);
+
+        // Force switch back to Images when changing project so 3D viewer doesn't stay stuck
+        showImagesPanel();
+      });
+    });
+  }
+
+  // Refactor carousel init to a function so it can be re-run
+  function initSingleCarousel(carousel) {
     const slides = carousel.querySelectorAll('.carousel-slide');
     const dotsContainer = carousel.querySelector('.carousel-dots');
     const prevBtn = carousel.querySelector('.carousel-prev');
     const nextBtn = carousel.querySelector('.carousel-next');
+
+    // Clear old dots
+    dotsContainer.innerHTML = '';
+
     let current = 0;
     let autoTimer = null;
 
-    // Build dots
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', `Slide ${i + 1}`);
       dot.addEventListener('click', () => goTo(i));
       dotsContainer.appendChild(dot);
     });
@@ -95,29 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const dots = dotsContainer.querySelectorAll('.carousel-dot');
 
     function goTo(index) {
+      if (slides.length === 0) return;
       slides[current].classList.remove('active');
       dots[current].classList.remove('active');
       current = (index + slides.length) % slides.length;
       slides[current].classList.add('active');
       dots[current].classList.add('active');
-      resetAuto();
     }
 
-    function resetAuto() {
-      clearInterval(autoTimer);
-      autoTimer = setInterval(() => goTo(current + 1), 4000);
-    }
+    prevBtn.onclick = () => goTo(current - 1);
+    nextBtn.onclick = () => goTo(current + 1);
+  }
 
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
-
-    // Start auto-cycle
-    resetAuto();
-
-    // Pause on hover
-    carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
-    carousel.addEventListener('mouseleave', () => resetAuto());
-  });
+  // Initial init for all carousels
+  document.querySelectorAll('.image-carousel').forEach(c => initSingleCarousel(c));
 
   // ---- Gallery: load from manifest ----
   const galleryGrid = document.getElementById('gallery-grid');
@@ -184,8 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height, particles, animId;
-    const PARTICLE_COUNT = 80;
-    const CONNECTION_DIST = 150;
+    const PARTICLE_COUNT = 150;
+    const CONNECTION_DIST = 120;
     const MOUSE_DIST = 200;
     let mouse = { x: -9999, y: -9999 };
 
@@ -196,13 +288,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createParticles() {
       particles = [];
+      const colors = [
+        'rgba(255, 255, 255,', // White
+        'rgba(224, 242, 254,', // Very light blue
+        'rgba(186, 230, 253,', // Light blue
+        'rgba(255, 255, 255,'  // More white
+      ];
+
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 1.8 + 0.5,
+          baseColor: colors[Math.floor(Math.random() * colors.length)],
+          twinkleSpeed: 0.01 + Math.random() * 0.03,
+          twinkleFactor: Math.random() * Math.PI,
         });
       }
     }
@@ -217,12 +319,12 @@ document.addEventListener('DOMContentLoaded', () => {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECTION_DIST) {
-            const opacity = 1 - dist / CONNECTION_DIST;
+            const opacity = (1 - dist / CONNECTION_DIST) * 0.4;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 212, 255, ${opacity * 0.15})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.1})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -254,10 +356,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
+        // Twinkle effect
+        p.twinkleFactor += p.twinkleSpeed;
+        const opacity = 0.4 + Math.abs(Math.sin(p.twinkleFactor)) * 0.6;
+
         // Draw
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 212, 255, ${glowAlpha})`;
+        ctx.fillStyle = `${p.baseColor} ${opacity * glowAlpha})`;
         ctx.fill();
       }
 

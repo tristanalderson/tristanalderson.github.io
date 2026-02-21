@@ -243,8 +243,132 @@ section {
   position: relative;
   z-index: 1;
   text-align: center;
-  max-width: 800px;
+  max-width: var(--container-width);
+  margin: 0 auto;
   padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.hero-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 4rem;
+}
+
+.hero-portrait {
+  width: 320px;
+  height: 320px;
+  flex-shrink: 0;
+  position: relative;
+  padding: 3px;
+  background: #e5e7eb;
+  border-radius: 24px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  animation: portrait-glow 4s ease-in-out infinite alternate;
+}
+
+.portrait-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 21px;
+  /* Slightly larger to follow outer radius better */
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border: none;
+  /* Removed internal border to let the new white-gray padding shine */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.hero-desc {
+  margin: 0 auto 2.5rem;
+  max-width: 600px;
+}
+
+.hero-cta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    gap: 2rem;
+  }
+
+  .hero-main {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    align-items: center;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-portrait {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+.portrait-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portrait-inner.no-image::after {
+  content: 'TA';
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  opacity: 0.5;
+}
+
+@keyframes portrait-glow {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    transform: scale(1);
+  }
+
+  100% {
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
+    transform: scale(1.01);
+  }
 }
 
 .hero-badge {
@@ -273,28 +397,6 @@ section {
   -webkit-text-fill-color: transparent;
 }
 
-.hero-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 3vw, 1.6rem);
-  color: var(--text-secondary);
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-}
-
-.hero-desc {
-  font-size: 1.05rem;
-  color: var(--text-muted);
-  max-width: 550px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.8;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
 
 .btn {
   display: inline-flex;
@@ -458,12 +560,51 @@ section {
   transform: translateY(-1px);
 }
 
-.cluster-visual {
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  background: rgba(0, 0, 0, 0.3);
+/* Sub-tabs / Project Selector */
+.sub-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+
+.sub-tab {
+  padding: 0.5rem 1rem;
+  background: transparent;
   border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.5px;
+}
+
+.sub-tab:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  background: var(--accent-glow);
+}
+
+.sub-tab.active {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Cluster Card tweaks */
+.cluster-card {
+  overflow: hidden;
+  /* To contain tabs */
+}
+
+/* Move media tabs to specific container if needed, but styling remains similar to before */
+.media-tabs {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* ============================================================
@@ -472,9 +613,18 @@ section {
 .image-carousel {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/10;
   background: linear-gradient(135deg, #0d1117, #161b22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+}
+
+.image-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .carousel-track {
@@ -563,7 +713,7 @@ section {
    ============================================================ */
 .viewer-container {
   width: 100%;
-  height: 400px;
+  aspect-ratio: 16/10;
   position: relative;
   background: linear-gradient(135deg, #0d1117, #161b22);
   border-radius: 0;
@@ -683,9 +833,9 @@ section {
 .video-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
+  aspect-ratio: 16/10;
   overflow: hidden;
+  background: linear-gradient(135deg, #0d1117, #161b22);
 }
 
 .video-container iframe,
@@ -700,7 +850,7 @@ section {
 
 .project-image-holder {
   width: 100%;
-  min-height: 350px;
+  aspect-ratio: 16/10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -715,12 +865,12 @@ section {
 }
 
 .fpga-diagram-holder {
-  min-height: 500px;
+  aspect-ratio: 16/10;
 }
 
 .fpga-diagram-holder object {
   width: 100%;
-  min-height: 500px;
+  height: 100%;
   background: white;
   border-radius: 4px;
 }
@@ -885,16 +1035,32 @@ section {
 .resume-embed {
   border: 1px solid var(--border-color);
   border-radius: var(--card-radius);
-  overflow: hidden;
+  overflow: auto;
   background: white;
+  min-height: 80vh;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-.resume-embed iframe {
-  width: 100%;
-  height: 80vh;
-  min-height: 600px;
-  border: none;
+.resume-embed canvas.resume-pdf-page {
   display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.resume-embed canvas.resume-pdf-page+canvas.resume-pdf-page {
+  margin-top: 0.5rem;
+}
+
+.resume-pdf-fallback {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.resume-pdf-fallback a {
+  color: var(--accent);
 }
 
 /* ============================================================

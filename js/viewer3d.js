@@ -189,12 +189,42 @@
             observer.observe(container);
 
             /* resize handler */
-            window.addEventListener('resize', () => {
+            const onResize = () => {
                 const w = container.clientWidth || 400;
                 const h = container.clientHeight || 300;
                 camera.aspect = w / h;
                 camera.updateProjectionMatrix();
                 renderer.setSize(w, h);
+            };
+            window.addEventListener('resize', onResize);
+
+            /* reset event listener for project changes */
+            container.addEventListener('resetViewer', function handleReset() {
+                container.removeEventListener('resetViewer', handleReset);
+                window.removeEventListener('resize', onResize);
+                observer.disconnect();
+                active = false;
+
+                // Dispose of resources
+                renderer.dispose();
+                scene.traverse(obj => {
+                    if (obj.geometry) obj.geometry.dispose();
+                    if (obj.material) {
+                        if (Array.isArray(obj.material)) {
+                            obj.material.forEach(m => m.dispose());
+                        } else {
+                            obj.material.dispose();
+                        }
+                    }
+                });
+
+                // Remove canvas and restore placeholder
+                if (renderer.domElement.parentNode) {
+                    renderer.domElement.parentNode.removeChild(renderer.domElement);
+                }
+                if (placeholder) placeholder.style.display = '';
+
+                console.log('viewer3d: reset and disposed for', modelPath);
             });
 
         } catch (err) {
