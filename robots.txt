@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://t-alderson.github.io/sitemap.xml
