@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'gps-module': {
         title: 'GPS Module',
         model: 'assets/models/GPS_Module.wrl',
-        context: 'Direct telemetry and positioning module featuring an u-blox GPS receiver and an integrated antenna. Designed for high-reliability data acquisition in flight environments.',
+        context: '<strong>Modular PCIeX1 GPS receiver and telemetry node.</strong> Engineered an STM32-based module that interfaces with the avionics AIM network backplane. Processes real-time location data using a SAM-M10Q sensor and handles CAN bus forwarding with an highly efficient 366mW power footprint.',
         images: [
           { src: 'assets/images/projects/gps_module_front.png', alt: 'GPS Module Front' },
           { src: 'assets/images/projects/gps_module_back.png', alt: 'GPS Module Back' },
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'gps-antenna': {
         title: 'GPS Antenna',
         model: 'assets/models/GPS_Antenna_Board.wrl',
-        context: 'Custom active antenna board with low-noise amplification (LNA) and filtered RF path. Optimized for high-gain reception in noisy avionics bays.',
+        context: '<strong>Custom SAM-M10Q active GPS receiver board.</strong> Designed, fabricated, and integrated a dedicated GPS daughter board. Successfully flight-proven while serving on a 10-person launch team in New Mexico.',
         images: [
           { src: 'assets/images/projects/gps_antenna_front.png', alt: 'GPS Antenna Front' },
           { src: 'assets/images/projects/gps_antenna_back.png', alt: 'GPS Antenna Back' },
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'prop-controller': {
         title: 'Propulsion Controller',
         model: 'assets/models/upper_lc_board.wrl',
-        context: 'High-power propulsion management board controlling solenoid valves and ignition sequence. Features redundant safety interlocks and real-time pressure monitoring.',
+        context: '<strong>Hardware-enforced fail-safe propulsion management.</strong> STM32-based lower control module for hybrid engine management. Interfaces with solenoids, pressure transducers, and thermocouples via CAN bus, featuring a hardware-inhibited 24V SAFE rail to prevent premature ignition.',
         images: [
           { src: 'assets/images/projects/prop_module_front.png', alt: 'Propulsion Controller Front' },
           { src: 'assets/images/projects/prop_module_back.png', alt: 'Propulsion Controller Back' },
