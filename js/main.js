@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'gps-module': {
         title: 'GPS Module',
         model: 'assets/models/GPS_Module.wrl',
-        context: '<strong>Modular PCIeX1 GPS receiver and telemetry node.</strong> Engineered an STM32-based module that interfaces with the avionics AIM network backplane. Processes real-time location data using a SAM-M10Q sensor and handles CAN bus forwarding with an 466mW power footprint.',
+        context: '<strong>Modular PCIeX1 GPS receiver and telemetry node.</strong> Engineered an STM32-based module that interfaces with the avionics AIM network backplane. Processes real-time location data using a SAM-M10Q sensor and handles CAN bus forwarding with a 466mW power footprint.',
         images: [
           { src: 'assets/images/projects/gps_module_front.png', alt: 'GPS Module Front' },
           { src: 'assets/images/projects/gps_module_back.png', alt: 'GPS Module Back' },
