@@ -10,7 +10,7 @@
   var container = document.getElementById('resume-pdf-container');
   if (!container) return;
 
-  var url = 'assets/TristanAlderson_Resume(02-19-26).pdf';
+  var url = 'assets/TristanAlderson_Resume(02-21-26).pdf';
 
   pdfjsLib.getDocument(url).promise.then(function (pdf) {
     var scale = 1.8;
