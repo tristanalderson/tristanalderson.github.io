@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'gps-module': {
         title: 'GPS Module',
         model: 'assets/models/GPS_Module.wrl',
-        context: '<strong>Modular PCIeX1 GPS receiver and telemetry node.</strong> Engineered an STM32-based module that interfaces with the avionics AIM network backplane. Processes real-time location data using a SAM-M10Q sensor and handles CAN bus forwarding with an highly efficient 366mW power footprint.',
+        context: '<strong>Modular PCIeX1 GPS receiver and telemetry node.</strong> Engineered an STM32-based module that interfaces with the avionics AIM network backplane. Processes real-time location data using a SAM-M10Q sensor and handles CAN bus forwarding with an 466mW power footprint.',
         images: [
           { src: 'assets/images/projects/gps_module_front.png', alt: 'GPS Module Front' },
           { src: 'assets/images/projects/gps_module_back.png', alt: 'GPS Module Back' },
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'prop-controller': {
         title: 'Propulsion Controller',
         model: 'assets/models/upper_lc_board.wrl',
-        context: '<strong>Hardware-enforced fail-safe propulsion management.</strong> STM32-based lower control module for hybrid engine management. Interfaces with solenoids, pressure transducers, and thermocouples via CAN bus, featuring a hardware-inhibited 24V SAFE rail to prevent premature ignition.',
+        context: '<strong>Distributed DAQ & launch management.</strong> ESP32-based upper valve control module for a hybrid engine. Interfaces with solenoids, pressure transducers, thermocouples, and initiates launch via CAN bus. High-bandwidth pre-launch telemetry over WiFi',
         images: [
           { src: 'assets/images/projects/prop_module_front.png', alt: 'Propulsion Controller Front' },
           { src: 'assets/images/projects/prop_module_back.png', alt: 'Propulsion Controller Back' },
