@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power Module - Tristan Alderson</title>
+  <meta name="description" content="Power architecture and conversion for avionics systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Figtree:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <nav aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-name">Tristan Alderson</a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a href="../index.html#gallery">Gallery</a></li>
+        <li><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+      <button class="nav-menu-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
+        aria-label="Toggle navigation">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 5h14M3 10h14M3 15h14" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="content">
+    <section class="project-hero">
+      <div class="container">
+        <p class="project-label">Project</p>
+        <h1 class="project-title">Power Module</h1>
+        <p class="project-subtitle">
+          24V battery pack with ORed ground power input, buck conversion to 3.3V and 5V, and hardware lockout for flight
+          avionics.
+        </p>
+        <div class="project-meta">
+          <div>
+            <p class="meta-label">Role</p>
+            <p class="meta-value">Power architecture, conversion design, PCB integration</p>
+          </div>
+          <div>
+            <p class="meta-label">Stack</p>
+            <p class="meta-value">DC-DC conversion, power electronics, safety interlocks</p>
+          </div>
+          <div>
+            <p class="meta-label">Repo</p>
+            <p class="meta-value"><a href="https://github.com/Queens-Rocket-Engineering-Team/av-power" target="_blank"
+                rel="noopener">av-power</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-page-body">
+      <div class="container">
+        <div class="project-grid">
+          <div>
+            <h2 class="section-title">The Problem</h2>
+            <p class="body-text">
+              Solenoids pull hard on the power rail. If the avionics share that rail without isolation, a solenoid
+              firing can brown out the flight computer mid-flight. A single power reset during a burn is mission over.
+            </p>
+
+            <h2 class="section-title">What I built</h2>
+            <p class="body-text">
+              The power module ORs two 24V sources: one from an external ground supply (used during oxidizer fill) and
+              one from a boost converter off the 18650 battery pack. Since our total wattage is low, I kept the design
+              simple — just two buck converters with a single 24V input producing 3.3V and 5V rails. No battery charger
+              on board; we rely on pre-charged cells and ground power to get us through the fill phase.
+            </p>
+            <p class="body-text">
+              All the inductor and capacitor sizing was calculated to keep the converters in CCM during normal
+              operation. High current draw really only happens during launch, and that's brief.
+            </p>
+
+            <h2 class="section-title">Highlights</h2>
+            <ul class="project-list">
+              <li>ORed 24V input from ground power and battery boost converter.</li>
+              <li>Inductor/capacitor sizing for Lcrit — CCM maintained under regular operating current.</li>
+              <li>PMOSFET reverse polarity protection on the ground power input with zener shunt for Vgs clamping.</li>
+              <li>Found a bug during bring-up: no current limiting resistor in the zener shunt path. Above 12V the shunt
+                was sinking too much current and overheating. Added the resistor in rework, fixed it.</li>
+              <li>Systematic board bring-up — probed all rails for continuity, checked resistance to ground,
+                current-limited power supply for first power-on.</li>
+            </ul>
+
+            <div class="project-links">
+              <a href="https://github.com/Queens-Rocket-Engineering-Team/av-power" target="_blank" rel="noopener"
+                class="btn btn-primary">View repo</a>
+              <a href="../index.html#work" class="btn btn-ghost">Back to work</a>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-title">Media</h2>
+            <div class="project-gallery">
+              <img src="../assets/projects/power-module/Screenshot%202026-04-30%20172020.png" alt="Power module render"
+                loading="lazy" />
+              <img src="../assets/projects/power-module/Screenshot%202026-04-30%20172048.png" alt="Power module detail"
+                loading="lazy" />
+              <img src="../assets/projects/power-module/Screenshot%202026-04-30%20170807.png" alt="Power module board"
+                loading="lazy" />
+            </div>
+            <p class="media-label">3D Viewer</p>
+            <div class="viewer-grid">
+              <div class="vrml-viewer" data-model="../assets/projects/power-module/Power_Module.wrl"></div>
+            </div>
+            <p class="vrml-note">Drag to rotate, scroll to zoom.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-copy">(c) <span id="year"></span> Tristan Alderson</p>
+      <p class="footer-copy"><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume
+          PDF</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/site.js" defer></script>
+</body>
+
+</html>

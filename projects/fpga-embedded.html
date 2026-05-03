@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FPGA and Embedded Firmware - Tristan Alderson</title>
+<meta name="description" content="Offline LLM inference on Zynq UltraScale+ with AXI4 DMA and embedded Linux." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Figtree:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<a href="#content" class="skip-link">Skip to content</a>
+
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-name">Tristan Alderson</a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../index.html#gallery">Gallery</a></li>
+      <li><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 5h14M3 10h14M3 15h14"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main id="content">
+  <section class="project-hero">
+    <div class="container">
+      <p class="project-label">Project</p>
+      <h1 class="project-title">LiteLM: On-Device LLM Inference</h1>
+      <p class="project-subtitle">
+        Capstone project — GPT-2 inference on a Kria KV260 using AXI4 DMA and custom kernel drivers. 3rd place at the Queen's ECE Showcase.
+      </p>
+      <div class="project-meta">
+        <div>
+          <p class="meta-label">Role</p>
+          <p class="meta-value">FPGA co-design, embedded Linux integration</p>
+        </div>
+        <div>
+          <p class="meta-label">Stack</p>
+          <p class="meta-value">Zynq UltraScale+, Vivado, Vitis HLS, AXI4, Linux</p>
+        </div>
+        <div>
+          <p class="meta-label">Repo</p>
+          <p class="meta-value"><a href="https://github.com/20lfr/ELEC_498-Capstone-LiteLM" target="_blank" rel="noopener">ELEC_498-Capstone-LiteLM</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-page-body">
+    <div class="container">
+      <div class="project-grid">
+        <div>
+          <h2 class="section-title">The Problem</h2>
+          <p class="body-text">
+            LLMs usually need cloud GPUs. We wanted to run a small model entirely on edge hardware — no network, low power, booting off an SD card.
+          </p>
+
+          <h2 class="section-title">What I built</h2>
+          <p class="body-text">
+            LiteLM runs GPT-2 small (124M parameters, INT8 quantized) on the Kria KV260's programmable logic. Matrix multiplications and attention ops run in the FPGA fabric, while precision-sensitive stuff like layer norm, softmax, and requantization runs on the ARM Cortex-A53 in firmware. That split was the most important architectural decision we made — earlier attempts that did everything in hardware lost too much precision during requantization and produced garbage output.
+          </p>
+          <p class="body-text">
+            I worked on the AXI4 DMA data paths between the PL and the ARM cores, and wrote the Linux kernel drivers that manage the accelerator. The firmware side handles loading quantized weights into DDR, streaming token embeddings to the PL via DMA, and reading back the output.
+          </p>
+
+          <h2 class="section-title">Highlights</h2>
+          <ul class="project-list">
+            <li><strong>3rd Place</strong> at the Queen's ECE Showcase for Top Computer Engineering Project.</li>
+            <li>AXI4 DMA paths: MM2S streams embeddings from DDR to the accelerator, S2MM writes output tokens back. Accelerator has two AXI master ports — one for weights, one for the KV cache.</li>
+            <li>Custom kernel drivers and device trees for loading the hardware overlay at boot.</li>
+            <li>Two abandoned architectures (end-to-end GPT-2 and Phi-3 Mini INT4) taught us that requantization in fixed-point logic just doesn't work for this class of model.</li>
+          </ul>
+
+          <h2 class="section-title">What I'd do differently</h2>
+          <p class="body-text">
+            We jumped into the full design too early, partly because school reports demanded a complete architecture before we really understood the problem. If I did it again, I'd start with just a matrix multiplication accelerator — close the loop on something small, let people build intuition for the tools, then scale up. The accelerator design was also consolidated to one person, which created bottlenecks. Letting everyone own a piece of the design makes better work and more motivated people.
+          </p>
+
+          <div class="project-links">
+            <a href="https://github.com/20lfr/ELEC_498-Capstone-LiteLM" target="_blank" rel="noopener" class="btn btn-primary">View repo</a>
+            <a href="../index.html#work" class="btn btn-ghost">Back to work</a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="section-title">Media</h2>
+          <div class="project-gallery">
+            <img src="../assets/projects/capstone/fpga_board.jpg" alt="Zynq UltraScale development board" loading="lazy" />
+          </div>
+          <div class="project-docs">
+            <a href="../assets/projects/capstone/fpga_design.pdf" target="_blank" rel="noopener">Block design PDF</a>
+            <a href="../assets/projects/capstone/fpga_vivado_block_design.pdf" target="_blank" rel="noopener">Vivado design PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-copy">(c) <span id="year"></span> Tristan Alderson</p>
+    <p class="footer-copy"><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume PDF</a></p>
+  </div>
+</footer>
+
+<script src="../js/site.js" defer></script>
+</body>
+</html>

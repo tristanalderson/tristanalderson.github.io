@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ground Station - Tristan Alderson</title>
+<meta name="description" content="Mission control pipeline for live telemetry and flight operations." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Figtree:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<a href="#content" class="skip-link">Skip to content</a>
+
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-name">Tristan Alderson</a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../index.html#gallery">Gallery</a></li>
+      <li><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 5h14M3 10h14M3 15h14"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main id="content">
+  <section class="project-hero">
+    <div class="container">
+      <p class="project-label">Project</p>
+      <h1 class="project-title">Ground Station</h1>
+      <p class="project-subtitle">
+        Ground station hardware and software for receiving live telemetry and coordinating launch ops. We call it Greg.
+      </p>
+      <div class="project-meta">
+        <div>
+          <p class="meta-label">Role</p>
+          <p class="meta-value">Telemetry integration, tooling, operations</p>
+        </div>
+        <div>
+          <p class="meta-label">Stack</p>
+          <p class="meta-value">RF telemetry, dashboards, data pipelines</p>
+        </div>
+        <div>
+          <p class="meta-label">Repo</p>
+          <p class="meta-value"><a href="https://github.com/Queens-Rocket-Engineering-Team/av-telemetry"
+              target="_blank" rel="noopener">av-telemetry</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-page-body">
+    <div class="container">
+      <div class="project-grid">
+        <div>
+          <h2 class="section-title">The Problem</h2>
+          <p class="body-text">
+            During flight, the rocket is streaming sensor data over RF. Without something to catch that data, decode it, and put it on a screen, the launch team is flying blind. You can't make go/no-go calls without knowing what the vehicle is doing.
+          </p>
+          
+          <h2 class="section-title">What I built</h2>
+          <p class="body-text">
+            Greg — Ground Radio Equipment Gizmo — is the handheld ground station the launch team uses during countdown and flight. Telemetry comes in over RF, gets decoded and timestamped, and shows up live on screen. After motor burnout, it switches to GPS tracking mode for recovery.
+          </p>
+          <p class="body-text">
+            This year's updates were mostly about simplifying. I removed the complexity around switching the 5V source between USB and the buck-boost from the battery. I also added a 330mF supercapacitor as a GPS backup — it charges fast and holds enough energy that if you lose power briefly, the GPS doesn't have to do a cold start and wait ages for a fix.
+          </p>
+
+          <h2 class="section-title">Highlights</h2>
+          <ul class="project-list">
+            <li>Simplified power path by removing 5V source switching.</li>
+            <li>330mF supercap GPS backup for fast recovery after power loss.</li>
+            <li>Live telemetry decode and dashboard for launch operations.</li>
+            <li>GPS tracking mode for post-flight recovery.</li>
+          </ul>
+
+          <div class="project-links">
+            <a href="https://github.com/Queens-Rocket-Engineering-Team/av-telemetry" target="_blank" rel="noopener"
+              class="btn btn-primary">View repo</a>
+            <a href="../index.html#work" class="btn btn-ghost">Back to work</a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="section-title">Media</h2>
+          <div class="project-gallery">
+            <img src="../assets/projects/ground-station/Screenshot%202026-04-30%20174326.png"
+              alt="Ground station platform" loading="lazy" />
+            <img src="../assets/projects/ground-station/Screenshot%202026-05-01%20141629.png"
+              alt="Ground station rig" loading="lazy" />
+            <img src="../assets/projects/ground-station/Screenshot%202026-05-01%20141640.png"
+              alt="Ground station layout" loading="lazy" />
+          </div>
+          <p class="media-label">3D Viewer</p>
+          <div class="viewer-grid">
+            <div class="vrml-viewer" data-model="../assets/projects/ground-station/Handheld_GS.wrl"></div>
+          </div>
+          <p class="vrml-note">Drag to rotate, scroll to zoom.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-copy">(c) <span id="year"></span> Tristan Alderson</p>
+    <p class="footer-copy"><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume PDF</a></p>
+  </div>
+</footer>
+
+<script src="../js/site.js" defer></script>
+<script src="../js/viewer3d.js" defer></script>
+</body>
+</html>

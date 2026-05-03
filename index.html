@@ -2,451 +2,340 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tristan Alderson — Electrical Systems Engineer</title>
-    <meta name="description"
-        content="Portfolio of Tristan Alderson — Electrical Systems Engineer. Queen's University ECE, QRET Avionics Lead, FPGA & hardware design." />
-    <meta name="google-site-verification" content="kRpbzihfq3Q74EJMTgyfuQDc7e5rfOE5--xldVt-kHc" />
-    <meta property="og:image" content="https://t-alderson.github.io/assets/images/portrait.jpg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tristan Alderson - Embedded Systems Engineer</title>
+  <meta name="description"
+    content="Embedded Systems Engineer specializing in firmware, real-time systems, and avionics." />
+  <meta name="robots" content="index, follow" />
+  <meta name="google-site-verification" content="kRpbzihfq3Q74EJMTgyfuQDc7e5rfOE5--xldVt-kHc" />
+  <link rel="canonical" href="https://t-alderson.github.io/" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tristan Alderson - Embedded Systems Engineer" />
+  <meta property="og:description"
+    content="Embedded Systems Engineer specializing in firmware, real-time systems, and avionics." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://t-alderson.github.io/" />
+  <meta property="og:image" content="https://t-alderson.github.io/assets/portrait.jpg" />
 
-    <!-- AOS Scroll Animations -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tristan Alderson - Embedded Systems Engineer" />
+  <meta name="twitter:description"
+    content="Embedded Systems Engineer specializing in firmware, real-time systems, and avionics." />
+  <meta name="twitter:image" content="https://t-alderson.github.io/assets/portrait.jpg" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css" />
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tristan Alderson",
+    "jobTitle": "Embedded Systems Engineer",
+    "url": "https://t-alderson.github.io",
+    "sameAs": [
+      "https://github.com/t-alderson",
+      "https://linkedin.com/in/trist-alderson"
+    ],
+    "knowsAbout": ["Embedded Systems", "Firmware", "Avionics", "Real-Time Systems", "STM32", "CAN Bus", "FPGA"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Figtree:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+  <a href="#work" class="skip-link">Skip to work</a>
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#hero" class="nav-logo">T<span>.</span>A<span>.</span></a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#gallery">Field Work</a></li>
-                <li><a href="#contact">Connect</a></li>
-            </ul>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-content">
-            <div class="hero-main">
-                <div class="hero-text">
-                    <div class="hero-badge">Dual US &amp; Canadian Citizen</div>
-                    <h1 class="hero-name">Tristan Alderson</h1>
-                    <p class="hero-title">Electrical Systems Engineer</p>
-                    <p class="hero-desc">
-                        Architecting the bridge between firmware, hardware, and control systems 
-                        — from rocket avionics networks to on-device LLM inference.
-                    </p>
-                </div>
-                <div class="hero-portrait">
-                    <div class="portrait-inner">
-                        <img src="assets/images/portrait.jpg" alt="Tristan Alderson"
-                            onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">
-                    </div>
-                </div>
-            </div>
-            <div class="hero-cta">
-                <a href="#skills" class="btn btn-primary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1" />
-                    </svg>
-                    View My Work
-                </a>
-                <a href="assets/TristanAlderson_Resume(02-21-26).pdf" class="btn btn-outline" target="_blank"
-                    rel="noopener">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <line x1="16" y1="13" x2="8" y2="13" />
-                        <line x1="16" y1="17" x2="8" y2="17" />
-                    </svg>
-                    Resume
-                </a>
-                <a href="https://github.com/t-alderson" class="btn btn-outline" target="_blank" rel="noopener">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://linkedin.com/in/trist-alderson" class="btn btn-outline" target="_blank" rel="noopener">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M20.47 2H3.53A1.45 1.45 0 0 0 2 3.47v17.06A1.45 1.45 0 0 0 3.47 22h17.06A1.45 1.45 0 0 0 22 20.53V3.47A1.45 1.45 0 0 0 20.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12zM18.91 18.74h-3v-4.26c0-1.14-.03-2.6-1.59-2.6-1.59 0-1.83 1.24-1.83 2.52v4.34h-3v-9h2.88v1.23h.04a3.16 3.16 0 0 1 2.85-1.56c3.05 0 3.61 2 3.61 4.62v4.71z" />
-                    </svg>
-                    LinkedIn
-                </a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SKILLS IN ACTION ===== -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Engineering Skills</h2>
-            </div>
-
-            <!-- ── Cluster A: Hardware & PCB Design ── -->
-            <div class="cluster-card" data-aos="fade-up" id="hardware-pcb-section">
-                <div class="cluster-visual">
-                    <!-- Project Selector Tabs -->
-                    <div class="sub-tabs project-selector">
-                        <button class="sub-tab active" data-project="gps-module">GPS Module</button>
-                        <button class="sub-tab" data-project="gps-antenna">GPS Antenna</button>
-                        <button class="sub-tab" data-project="prop-controller">Propulsion Controller</button>
-                    </div>
-
-                    <!-- Visual Mode Tabs -->
-                    <div class="media-tabs visual-mode-tabs">
-                        <button class="media-tab active" data-target="hardware-images">Images</button>
-                        <button class="media-tab" data-target="hardware-3d">3D Viewer</button>
-                    </div>
-
-                    <!-- Visual Panel: Images -->
-                    <div class="media-panel active" id="hardware-images">
-                        <div class="image-carousel" id="carousel-hardware">
-                            <div class="carousel-track">
-                                <img src="assets/images/projects/gps_module_front.png" alt="GPS Module — front"
-                                    class="carousel-slide active" />
-                                <img src="assets/images/projects/gps_module_back.png" alt="GPS Module — back"
-                                    class="carousel-slide" />
-                                <img src="assets/images/projects/gps_module_traces.png" alt="GPS Module — traces"
-                                    class="carousel-slide" />
-                            </div>
-                            <div class="carousel-controls">
-                                <button class="carousel-btn carousel-prev">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polyline points="15 18 9 12 15 6" />
-                                    </svg>
-                                </button>
-                                <div class="carousel-dots"></div>
-                                <button class="carousel-btn carousel-next">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polyline points="9 18 15 12 9 6" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Visual Panel: 3D -->
-                    <div class="media-panel" id="hardware-3d">
-                        <div class="viewer-container" id="viewer-hardware" data-model="assets/models/GPS_Module.wrl">
-                        </div>
-                    </div>
-                </div>
-                <div class="cluster-info">
-                    <h3 class="cluster-title">Hardware &amp; PCB Design</h3>
-                    <div class="project-details" id="hardware-project-info">
-                        <p class="cluster-context">
-                            <strong>Owning the full PCB design cycle from specification to flight-proven hardware.</strong> 
-                            Designed custom avionics backplanes, GPS receivers, and propulsion controllers using KiCad.
-                            Experience includes developing 18650-based 24V SAFE power architectures with DC-DC boost/buck 
-                            conversion and modular PCIeX1 interfaces.
-                        </p>
-                    </div>
-                    <div class="cluster-skills">
-                        <span>KiCad</span>
-                        <span>PCB Design</span>
-                        <span>DC-DC Conversion</span>
-                        <span>Power Electronics</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Cluster B: Avionics Firmware and Protocols ── -->
-            <div class="cluster-card" data-aos="fade-up">
-                <div class="cluster-info">
-                    <h3 class="cluster-title">Avionics Firmware &amp; Protocols</h3>
-                    <p class="cluster-context">
-                        <strong>Leading the development of distributed avionics networks for hybrid rockets.</strong> 
-                        Architected an application-layer CAN protocol and radio forwarding for real-time telemetry. 
-                        Programmed ESP32 and STM32 modules to handle high-bandwidth Wi-Fi data, sensor polling, 
-                        and fail-safe solenoid actuation.
-                    </p>
-                    <div class="cluster-skills">
-                        <span>C / C++</span>
-                        <span>CAN bus & I2C</span>
-                        <span>STM32 HAL & ESP-IDF</span>
-                        <span>System Architecture</span>
-                        <span>LoRa & WiFi Telemetry</span>
-                    </div>
-                </div>
-                <div class="cluster-visual">
-                    <div class="image-carousel" id="carousel-avionics">
-                        <div class="carousel-track">
-                            <img src="assets/images/projects/avionics_stack1.png" alt="Avionics stack overview"
-                                class="carousel-slide active" />
-                            <img src="assets/images/projects/avionics_stack2.png" alt="Avionics stack detail"
-                                class="carousel-slide" />
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-btn carousel-prev">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <polyline points="15 18 9 12 15 6" />
-                                </svg>
-                            </button>
-                            <div class="carousel-dots"></div>
-                            <button class="carousel-btn carousel-next">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <polyline points="9 18 15 12 9 6" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Cluster C: Computer Vision & Control Systems ── -->
-            <div class="cluster-card" data-aos="fade-up">
-                <div class="cluster-visual">
-                    <div class="media-tabs">
-                        <button class="media-tab active" data-target="cv-video">Live Tracking</button>
-                        <button class="media-tab" data-target="cv-system">System</button>
-                    </div>
-                    <div class="media-panel active" id="cv-video">
-                        <div class="video-container">
-                            <video src="assets/videos/tracking_cropped.mp4" autoplay loop muted playsinline></video>
-                        </div>
-                    </div>
-                    <div class="media-panel" id="cv-system">
-                        <div class="image-carousel" id="carousel-cv">
-                            <div class="carousel-track">
-                                <img src="assets/images/projects/rocket_tracking1.png" alt="Tracking system view 1"
-                                    class="carousel-slide active" />
-                                <img src="assets/images/projects/rocket_tracking2.png" alt="Tracking system view 2"
-                                    class="carousel-slide" />
-                            </div>
-                            <div class="carousel-controls">
-                                <button class="carousel-btn carousel-prev">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polyline points="15 18 9 12 15 6" />
-                                    </svg>
-                                </button>
-                                <div class="carousel-dots"></div>
-                                <button class="carousel-btn carousel-next">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polyline points="9 18 15 12 9 6" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cluster-info">
-                    <h3 class="cluster-title">Computer Vision &amp; Control Systems</h3>
-                    <p class="cluster-context">
-                        <strong>Helped Build an autonomous tracking systems using machine learning and control theory.</strong> 
-                        Developed the "Sunflower Tracking System," our team secured 2nd Place at Launch Canada. Implemented a YOLOv8 
-                        object detection model and dual-axis PID control loops to track high-speed rockets via custom 
-                        mechanical stepper-motor assemblies.
-                    </p>
-                    <div class="cluster-skills">
-                        <span>YOLOv8</span>
-                        <span>OpenCV</span>
-                        <span>PID Control</span>
-                        <span>Python & C++</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ── Cluster D: FPGA & Embedded Firmware ── -->
-            <div class="cluster-card" data-aos="fade-up">
-                <div class="cluster-info">
-                    <h3 class="cluster-title">FPGA &amp; Embedded Firmware</h3>
-                    <p class="cluster-context">
-                        <strong>Accelerating edge compute and building robust embedded Linux systems.</strong> Co-designing an offline LLM
-                        inference engine on Zynq UltraScale+ MPSoCs using AXI4 DMA transfers and custom kernel drivers. Utilizing knowledge from
-                        internships where I previously built reboot-safe GNSS logging and Prometheus/Grafana telemetry pipelines on embedded linux.
-                        </p>
-                    <div class="cluster-skills">
-                        <span>Zynq UltraScale+</span>
-                        <span>Vivado & Vitis HLS</span>
-                        <span>AXI4 / DMA</span>
-                        <span>Verilog</span>
-                        <span>Embedded Linux</span>
-                    </div>
-                </div>
-                <div class="cluster-visual">
-                    <div class="media-tabs">
-                        <button class="media-tab active" data-target="fpga-board">Hardware</button>
-                        <button class="media-tab" data-target="fpga-block-design">Block Design</button>
-                        <button class="media-tab" data-target="fpga-vivado-design">Vivado Design</button>
-                    </div>
-                    <div class="media-panel active" id="fpga-board">
-                        <div class="project-image-holder">
-                            <img src="assets/images/projects/fpga_board.jpg" alt="Zynq UltraScale+ Development Board" />
-                        </div>
-                    </div>
-                    <div class="media-panel" id="fpga-block-design">
-                        <div class="project-image-holder fpga-diagram-holder">
-                            <object data="assets/images/projects/fpga_design.pdf" type="application/pdf" width="100%"
-                                height="500px">
-                                <p>Block design — <a href="assets/images/projects/fpga_design.pdf" target="_blank"
-                                        rel="noopener">View PDF</a></p>
-                            </object>
-                        </div>
-                    </div>
-                    <div class="media-panel" id="fpga-vivado-design">
-                        <div class="project-image-holder fpga-diagram-holder">
-                            <object data="assets/images/projects/fpga_vivado_block_design.pdf" type="application/pdf"
-                                width="100%" height="500px">
-                                <p>Vivado design — <a href="assets/images/projects/fpga_vivado_block_design.pdf"
-                                        target="_blank" rel="noopener">View PDF</a></p>
-                            </object>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ===== RESUME ===== -->
-    <section class="resume" id="resume">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Resume</h2>
-            </div>
-            <div class="resume-wrapper" data-aos="fade-up">
-                <a href="assets/TristanAlderson_Resume(02-21-26).pdf" class="btn btn-primary resume-download"
-                    target="_blank" download>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    Download PDF
-                </a>
-                <div class="resume-embed" id="resume-pdf-container"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FIELD WORK GALLERY ===== -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Field Work</h2>
-                <p class="section-subtitle">Engineering in the real world — from the desert to the lab.</p>
-            </div>
-            <div class="gallery-grid" id="gallery-grid"></div>
-        </div>
-    </section>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightbox-close">&times;</button>
-        <img src="" alt="" id="lightbox-img" />
-        <div class="lightbox-caption" id="lightbox-caption"></div>
+  <nav aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-name">Tristan Alderson</a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+      <button class="nav-menu-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
+        aria-label="Toggle navigation">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 5h14M3 10h14M3 15h14" />
+        </svg>
+      </button>
     </div>
+  </nav>
 
-    <!-- ===== CONTACT ===== -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Get in Touch</h2>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right">
-                    <p>
-                        I'm always open to discussing embedded systems, hardware design, rocketry, or new opportunities.
-                    </p>
-                    <div class="contact-methods">
-                        <a href="mailto:TALDERSON42@GMAIL.COM" class="contact-method">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                                <polyline points="22,6 12,13 2,6" />
-                            </svg>
-                            <div class="contact-method-text">
-                                <span class="contact-method-label">Email</span>
-                                <span class="contact-method-value">TALDERSON42@GMAIL.COM</span>
-                            </div>
-                        </a>
-                        <a href="tel:+16048281437" class="contact-method">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                            </svg>
-                            <div class="contact-method-text">
-                                <span class="contact-method-label">Phone</span>
-                                <span class="contact-method-value">604-828-1437</span>
-                            </div>
-                        </a>
-                        <a href="https://linkedin.com/in/trist-alderson" class="contact-method" target="_blank"
-                            rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M20.47 2H3.53A1.45 1.45 0 0 0 2 3.47v17.06A1.45 1.45 0 0 0 3.47 22h17.06A1.45 1.45 0 0 0 22 20.53V3.47A1.45 1.45 0 0 0 20.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12zM18.91 18.74h-3v-4.26c0-1.14-.03-2.6-1.59-2.6-1.59 0-1.83 1.24-1.83 2.52v4.34h-3v-9h2.88v1.23h.04a3.16 3.16 0 0 1 2.85-1.56c3.05 0 3.61 2 3.61 4.62v4.71z" />
-                            </svg>
-                            <div class="contact-method-text">
-                                <span class="contact-method-label">LinkedIn</span>
-                                <span class="contact-method-value">trist-alderson</span>
-                            </div>
-                        </a>
-                        <a href="https://github.com/t-alderson" class="contact-method" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                            </svg>
-                            <div class="contact-method-text">
-                                <span class="contact-method-label">GitHub</span>
-                                <span class="contact-method-value">t-alderson</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <section id="hero" aria-label="Introduction" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; border-bottom: none; padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="hero-layout" style="grid-template-columns: 1fr;">
+        <div class="hero-copy">
+          <p class="hero-label">Embedded Systems Engineer</p>
+          <h1 class="hero-name">Tristan Alderson</h1>
+          <p class="hero-tagline">Firmware. Avionics. Real-Time Control.</p>
+          <div class="hero-actions" style="margin-top: 3rem;">
+            <a href="#work" class="btn btn-primary" style="padding: 0.8rem 1.6rem; font-size: 14px;">
+              View My Work
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 7h10M8 3l4 4-4 4" />
+              </svg>
+            </a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Tristan Alderson. Built with ☕ and solder fumes.</p>
+  <section id="work" aria-label="Selected work">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Work</h2>
+        <div class="section-rule" role="presentation"></div>
+      </div>
+      <div class="work-grid" role="list">
+        <a class="project-card" href="projects/gps-module-antenna.html" role="listitem"
+          aria-label="GPS module and antenna project">
+          <div class="project-thumb">
+            <img src="assets/projects/gps-modules/gps_antenna_front.png" alt="GPS antenna front" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <div class="project-tags" aria-label="Technologies">
+              <span class="tag">GPS</span>
+              <span class="tag">RF</span>
+              <span class="tag">PCB</span>
+            </div>
+            <h3 class="project-card-title">SAM M10Q GPS Board</h3>
+            <p class="project-tagline">GPS-on-module daughter board for flight navigation and recovery, separated from the comms stack to keep RF clean.</p>
+            <div class="project-footer">
+              <span class="project-link">View project</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/power-module.html" role="listitem" aria-label="Power module project">
+          <div class="project-thumb">
+            <img src="assets/projects/power-module/Screenshot%202026-04-30%20172020.png" alt="Power module render"
+              loading="lazy" />
+          </div>
+          <div class="project-body">
+            <div class="project-tags" aria-label="Technologies">
+              <span class="tag">Power</span>
+              <span class="tag">DC-DC</span>
+              <span class="tag">Safety</span>
+            </div>
+            <h3 class="project-card-title">Power Module</h3>
+            <p class="project-tagline">ORed 24V power with buck conversion to 3.3V and 5V. Found a zener shunt bug during bring-up.</p>
+            <div class="project-footer">
+              <span class="project-link">View project</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/control-sensor-modules.html" role="listitem"
+          aria-label="Control and sensor modules project">
+          <div class="project-thumb">
+            <img src="assets/projects/control-modules/Screenshot%202026-04-30%20173053.png"
+              alt="Mixed module render" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <div class="project-tags" aria-label="Technologies">
+              <span class="tag">Control</span>
+              <span class="tag">Sensors</span>
+              <span class="tag">STM32</span>
+            </div>
+            <h3 class="project-card-title">Control and Sensor Modules</h3>
+            <p class="project-tagline">ESP32 upper and STM32 lower control boards for valve actuation and pressure transducer reads, connected by a 6-pin Molex Nano-Fit cable.</p>
+            <div class="project-footer">
+              <span class="project-link">View project</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/ground-station.html" role="listitem" aria-label="Ground station project">
+          <div class="project-thumb">
+            <img src="assets/projects/ground-station/Screenshot%202026-05-01%20141629.png"
+              alt="Ground station platform" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <div class="project-tags" aria-label="Technologies">
+              <span class="tag">Telemetry</span>
+              <span class="tag">RF</span>
+              <span class="tag">Systems</span>
+            </div>
+            <h3 class="project-card-title">Ground Station</h3>
+            <p class="project-tagline">Greg: handheld ground station for live telemetry decode and GPS recovery tracking.</p>
+            <div class="project-footer">
+              <span class="project-link">View project</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/avionics-firmware.html" role="listitem"
+          aria-label="Avionics firmware and protocols project">
+          <div class="project-thumb">
+            <img src="assets/projects/avionics-stack/avionics_stack1.png" alt="Avionics stack" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <div class="project-tags" aria-label="Technologies">
+              <span class="tag">C/C++</span>
+              <span class="tag">CAN</span>
+              <span class="tag">STM32</span>
+            </div>
+            <h3 class="project-card-title">Avionics Firmware and Protocols</h3>
+            <p class="project-tagline">Shared firmware libraries (av-libraries) with locked-down CAN protocol, heartbeat monitoring, and telemetry forwarding.
+            </p>
+            <div class="project-footer">
+              <span class="project-link">View project</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/computer-vision.html" role="listitem"
+          aria-label="Sunflower tracking system project">
+          <div class="project-thumb">
+            <img src="assets/projects/sunflower/rocket_tracking1.png" alt="Tracking system" loading="lazy" />
+          </div>
+          <div class="project-body">
+            <div class="project-tags" aria-label="Technologies">
+              <span class="tag">YOLOv8</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">PID</span>
+            </div>
+            <h3 class="project-card-title">Sunflower Tracking System</h3>
+            <p class="project-tagline">Camera tracker that locks onto a rocket using YOLOv8 and dual-axis PID. 2nd place at Launch Canada.</p>
+            <div class="project-footer">
+              <span class="project-link">View project</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="project-card" href="projects/fpga-embedded.html" role="listitem"
+          aria-label="FPGA and embedded firmware project">
+          <div class="project-thumb">
+            <img src="assets/projects/capstone/fpga_board.jpg" alt="Zynq UltraScale development board"
+              loading="lazy" />
+          </div>
+          <div class="project-body">
+            <div class="project-tags" aria-label="Technologies">
+              <span class="tag">Zynq</span>
+              <span class="tag">AXI4</span>
+              <span class="tag">Linux</span>
+            </div>
+            <h3 class="project-card-title">LiteLM: On-Device LLM Inference</h3>
+            <p class="project-tagline">GPT-2 inference on Kria KV260 with AXI4 DMA and custom kernel drivers. 3rd place at Queen's ECE Showcase.</p>
+            <div class="project-footer">
+              <span class="project-link">View project</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-label="About">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About</h2>
+        <div class="section-rule" role="presentation"></div>
+      </div>
+      <div class="about-grid">
+        <figure class="about-portrait">
+          <img src="assets/portrait.jpg" alt="Portrait of Tristan Alderson" loading="lazy" decoding="async" />
+        </figure>
+        <div class="about-bio">
+          <p>
+            I write firmware for things that can't afford to crash. As avionics lead for QRET (Queen's Rocket Engineering Team), I've been designing the flight electronics for a hybrid rocket — everything from the CAN protocol and power distribution to the GPS recovery boards.
+          </p>
+          <p>
+            Most of what I build runs on STM32s or ESP32s, usually bare-metal or with a lightweight RTOS.
+            My day-to-day is C, PCB bring-up, and a lot of time staring at logic analyzer traces.
+          </p>
         </div>
-    </footer>
+        <div class="about-skills">
+          <p class="hero-label about-label">What I can help with</p>
+          <ul class="skills-list" aria-label="Core competencies">
+            <li class="skill-item"><strong>Embedded Firmware</strong> — RTOS, bare-metal C/C++, STM32, ESP32</li>
+            <li class="skill-item"><strong>Hardware Design</strong> — PCB layout, KiCad, DC-DC power modules</li>
+            <li class="skill-item"><strong>FPGA Co-design</strong> — Zynq, Verilog, AXI4 interfaces</li>
+            <li class="skill-item"><strong>RF &amp; Comms</strong> — CAN Bus, LoRa telemetry, impedance routing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chevrotain@10.5.0/lib/chevrotain.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/VRMLLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
-    <script src="js/resume-pdf.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/viewer3d.js"></script>
+  <section id="contact" aria-label="Contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Contact</h2>
+        <div class="section-rule" role="presentation"></div>
+      </div>
+      <div class="contact-inner">
+        <p class="contact-text">
+          Looking for full-time or contract work in embedded firmware, avionics, or anything where the hardware has to work the first time.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:TALDERSON42@GMAIL.COM" class="contact-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+              <rect x="1" y="3" width="14" height="10" rx="1.5" />
+              <path d="M1 4l7 5 7-5" />
+            </svg>
+            TALDERSON42@GMAIL.COM
+          </a>
+          <a href="assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener" class="contact-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M4 2.5h5l3 3V13a.9.9 0 0 1-.9.9H4.9A.9.9 0 0 1 4 13V2.5z" />
+              <path d="M9 2.5V6h3" />
+              <path d="M5.5 8.5h5" />
+              <path d="M5.5 10.8h5" />
+            </svg>
+            Resume PDF
+          </a>
+          <a href="https://github.com/t-alderson" target="_blank" rel="noopener" class="contact-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.49c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+            </svg>
+            github.com/t-alderson
+          </a>
+          <a href="https://linkedin.com/in/trist-alderson" target="_blank" rel="noopener" class="contact-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+            </svg>
+            linkedin.com/in/trist-alderson
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" aria-label="Gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Gallery</h2>
+        <div class="section-rule" role="presentation"></div>
+      </div>
+      <div class="gallery-grid" id="gallery-grid" role="list"></div>
+      <p class="gallery-note" id="gallery-note">Photos load from assets/gallery.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-copy">(c) <span id="year"></span> Tristan Alderson</p>
+      <p class="footer-copy"><a href="assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume
+          PDF</a></p>
+    </div>
+  </footer>
+
+  <script src="js/site.js" defer></script>
 </body>
 
 </html>

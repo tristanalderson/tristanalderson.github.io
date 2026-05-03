@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avionics Firmware and Protocols - Tristan Alderson</title>
+<meta name="description" content="Distributed avionics firmware with custom CAN protocol and real-time telemetry." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Figtree:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<a href="#content" class="skip-link">Skip to content</a>
+
+<nav aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-name">Tristan Alderson</a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../index.html#gallery">Gallery</a></li>
+      <li><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 5h14M3 10h14M3 15h14"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main id="content">
+  <section class="project-hero">
+    <div class="container">
+      <p class="project-label">Project</p>
+      <h1 class="project-title">Avionics Firmware and Protocols</h1>
+      <p class="project-subtitle">
+        Shared firmware libraries for QRET's avionics stack — CAN protocol, logging, flash storage, and telemetry forwarding.
+      </p>
+      <div class="project-meta">
+        <div>
+          <p class="meta-label">Role</p>
+          <p class="meta-value">Firmware lead, protocol design, integration</p>
+        </div>
+        <div>
+          <p class="meta-label">Stack</p>
+          <p class="meta-value">C/C++, STM32 HAL, ESP-IDF, CAN, WiFi, LoRa</p>
+        </div>
+        <div>
+          <p class="meta-label">Repo</p>
+          <p class="meta-value"><a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener">av-libraries</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-page-body">
+    <div class="container">
+      <div class="project-grid">
+        <div>
+          <h2 class="section-title">The Problem</h2>
+          <p class="body-text">
+            You have a bunch of STM32 nodes spread around a rocket and an ESP32 handling communications. They all need to share data, log events, and save telemetry to flash. If every developer writes their own CAN bus implementation from scratch, you end up with incompatible packet formats, timing issues, and dropped messages. Network code is the last thing you want to be debugging when you're supposed to be reading a pressure sensor or firing an actuator.
+          </p>
+
+          <h2 class="section-title">What I built</h2>
+          <p class="body-text">
+            The team built a shared foundation called <code>av-libraries</code>. It handles the messy infrastructure so developers can focus on their application logic — a logger (<code>AimLogger</code>) that tags messages with timestamps and severity, a flash table manager (<code>AimFlashTable</code>) for dumping flight data to serial memory, and at the core, <code>AimNetwork</code>.
+          </p>
+          <p class="body-text">
+            <code>AimNetwork</code> handles CAN bus communication and abstracts the hardware — whether you're on the STM32 HAL or ESP32 TWAI — behind a single interface. The packet structure is entirely locked down: 3 bits for origin, 3 bits for destination, 4 bits for packet type. Payload is always 64 bits, either raw data or a timed format that packs a 27-bit timestamp with a 32-bit payload. Everyone agrees on exactly what a packet looks like.
+          </p>
+
+          <h2 class="section-title">Highlights</h2>
+          <ul class="project-list">
+            <li>STM32 CAN core uses no dynamic memory — fixed 16-frame TX and RX queues, with a max of 8 iterations per poll cycle to prevent infinite loops if the bus gets flooded.</li>
+            <li>Heartbeat health table tracks which nodes are alive and when they last checked in.</li>
+            <li>Automatic time synchronization across the bus so events on different boards share a common clock.</li>
+            <li>STM32 driver skips Arduino libraries and talks directly to the HAL — gives precise control over hardware mailboxes and pulls detailed error telemetry like dropped queues and bus-off events.</li>
+            <li>WiFi and LoRa telemetry forwarding for ground station visibility.</li>
+          </ul>
+
+          <div class="project-links">
+            <a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener" class="btn btn-primary">View repo</a>
+            <a href="../index.html#work" class="btn btn-ghost">Back to work</a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="section-title">Media</h2>
+          <div class="project-gallery">
+            <img src="../assets/projects/avionics-stack/avionics_stack1.png" alt="Avionics stack overview" loading="lazy" />
+            <img src="../assets/projects/avionics-stack/avionics_stack2.png" alt="Avionics stack detail" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-copy">(c) <span id="year"></span> Tristan Alderson</p>
+    <p class="footer-copy"><a href="../assets/TristanAlderson_Resume_Latest.pdf" target="_blank" rel="noopener">Resume PDF</a></p>
+  </div>
+</footer>
+
+<script src="../js/site.js" defer></script>
+</body>
+</html>
