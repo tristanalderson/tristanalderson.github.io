@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://t-alderson.github.io/sitemap.xml
+Sitemap: https://tristanalderson.com/sitemap.xml

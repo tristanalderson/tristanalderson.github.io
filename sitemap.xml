@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://t-alderson.github.io/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <loc>https://tristanalderson.com/</loc>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-        <loc>https://t-alderson.github.io/assets/TristanAlderson_Resume_Latest.pdf</loc>
-    <lastmod>2026-02-22</lastmod>
+    <loc>https://tristanalderson.com/projects/gps-module-antenna.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tristanalderson.com/projects/power-module.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tristanalderson.com/projects/control-sensor-modules.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tristanalderson.com/projects/ground-station.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tristanalderson.com/projects/avionics-firmware.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tristanalderson.com/projects/computer-vision.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tristanalderson.com/projects/fpga-embedded.html</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tristanalderson.com/assets/TristanAlderson_Resume_Latest.pdf</loc>
+    <lastmod>2026-05-07</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>
