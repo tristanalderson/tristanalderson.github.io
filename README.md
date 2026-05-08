@@ -1,2 +1,2 @@
-# t-alderson.github.io
+# tristanalderson.github.io
 Portfolio for Tristan Alderson
