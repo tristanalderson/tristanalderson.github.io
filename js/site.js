@@ -90,33 +90,45 @@
 
     fetch(`${basePath}assets/gallery/manifest.json`, { cache: "no-store" })
       .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to load gallery manifest");
-        }
+        if (!res.ok) throw new Error("Failed to load gallery manifest");
         return res.json();
       })
       .then((data) => {
         const entries = Array.isArray(data) ? data : data.images || [];
         gallery.innerHTML = "";
 
+        // Per-image observer — fires when each image scrolls into view
+        const imgObserver = new IntersectionObserver((observed, obs) => {
+          observed.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              delete img.dataset.src;
+            }
+            obs.unobserve(img);
+          });
+        }, { rootMargin: "300px" });
+
+        // Insert ALL figure shells immediately so the masonry layout is computed
+        // correctly — images load in real viewport order as the user scrolls
         entries.forEach((entry) => {
           const file = typeof entry === "string" ? entry : entry.file;
-          if (!file) {
-            return;
-          }
+          if (!file) return;
 
           const caption = typeof entry === "object" && entry.caption ? entry.caption : "";
           const img = document.createElement("img");
-          img.src = `${basePath}assets/gallery/${encodeURIComponent(file)}`;
+          img.dataset.src = `${basePath}assets/gallery/${encodeURIComponent(file)}`;
           img.alt = caption || file.replace(/[_-]+/g, " ").replace(/\.[^.]+$/, "");
-          img.loading = "lazy";
+          img.decoding = "async";
 
           const figure = document.createElement("figure");
           figure.className = "gallery-item";
           figure.setAttribute("role", "listitem");
           figure.appendChild(img);
-
           gallery.appendChild(figure);
+
+          imgObserver.observe(img);
         });
 
         if (galleryNote) {
@@ -126,7 +138,7 @@
       .catch((err) => {
         console.warn("Gallery load failed", err);
         if (galleryNote) {
-          galleryNote.textContent = "Gallery unavailable. Run scripts/update-gallery.js to regenerate manifest.json.";
+          galleryNote.textContent = "Gallery unavailable.";
         }
       });
   }

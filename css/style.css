@@ -16,7 +16,6 @@
   --text-2: #D1CDC7;
   --text-3: #AFA89E;
   --accent: #FF5F1F;
-  --accent-light: rgba(255, 95, 31, 0.08);
   --border: rgba(245, 243, 238, 0.11);
   --border-2: rgba(245, 243, 238, 0.22);
   --font-serif: "Cormorant", Georgia, serif;
@@ -28,6 +27,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -179,42 +179,6 @@ nav {
   gap: 4rem;
 }
 
-.hero-copy {
-  min-width: 0;
-}
-
-.hero-portrait {
-  margin: 0;
-  flex-shrink: 0;
-  animation: rise 0.7s ease both;
-  animation-delay: 0.2s;
-}
-
-.hero-portrait img {
-  width: 320px;
-  height: 320px;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 8px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  display: block;
-}
-
-@media (max-width: 680px) {
-  .hero-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-portrait {
-    order: -1;
-  }
-
-  .hero-portrait img {
-    width: 180px;
-    height: 180px;
-  }
-}
-
 .hero-label {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -326,7 +290,7 @@ nav {
 }
 
 .work-grid {
-  column-width: 280px;
+  column-width: 260px;
   column-gap: 1.5rem;
 }
 
@@ -357,21 +321,6 @@ nav {
   overflow: hidden;
   background: var(--surface);
   position: relative;
-}
-
-.project-thumb-empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.thumb-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .project-thumb img {
@@ -445,15 +394,26 @@ nav {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: minmax(0, 0.8fr) 1.2fr;
+  grid-template-areas:
+    "portrait bio"
+    "skills   bio";
+  gap: 2rem 4rem;
+  align-items: start;
+}
+
+.about-portrait {
+  grid-area: portrait;
 }
 
 .about-portrait img {
+  width: 100%;
+  height: auto;
   border-radius: 12px;
 }
 
 .about-bio {
+  grid-area: bio;
   font-size: 16px;
   color: var(--text-2);
   line-height: 1.75;
@@ -463,21 +423,43 @@ nav {
   margin-top: 1rem;
 }
 
+.about-skills {
+  grid-area: skills;
+  align-self: start;
+  padding-top: 0.5rem;
+}
+
+.about-label {
+  margin-bottom: 1rem;
+}
+
 .skills-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  margin: 0;
+  padding: 0;
 }
 
 .skill-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-2);
-  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.skill-item strong {
+  min-width: 10.5em;
+  flex-shrink: 0;
+}
+
+.skill-item span {
+  flex: 1;
+  color: var(--text-3);
 }
 
 .skill-item::before {
@@ -485,6 +467,7 @@ nav {
   display: block;
   width: 6px;
   height: 6px;
+  margin-top: 0.55em;
   border-radius: 50%;
   background: var(--accent);
   flex-shrink: 0;
@@ -498,14 +481,6 @@ nav {
 
 .contact-inner {
   max-width: 480px;
-}
-
-.contact-heading {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 400;
-  line-height: 1.15;
-  margin-bottom: 1rem;
 }
 
 .contact-text {
@@ -549,22 +524,42 @@ nav {
 }
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  columns: 3 180px;
+  column-gap: 0.75rem;
 }
 
 .gallery-item {
+  break-inside: avoid;
+  margin-bottom: 0.75rem;
   border-radius: 8px;
   overflow: hidden;
   background: var(--surface);
+}
+
+/* Placeholder shimmer while image hasn't loaded yet */
+.gallery-item img:not([src]) {
+  display: block;
+  width: 100%;
   aspect-ratio: 4 / 3;
+  background: linear-gradient(90deg, var(--surface) 25%, #222 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .gallery-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .gallery-note {
@@ -778,27 +773,7 @@ footer {
   display: block;
 }
 
-.project-docs {
-  display: grid;
-  gap: 0.6rem;
-  margin-top: 1rem;
-}
-
-.project-docs a {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-2);
-  border: 1px solid var(--border);
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--r);
-}
-
-.project-docs a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  text-decoration: none;
-}
-
+/* 3D viewer (VRML / WebGL) */
 .media-label {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -858,7 +833,9 @@ footer {
 }
 
 @keyframes vrml-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .vrml-note {
@@ -869,6 +846,10 @@ footer {
 
 /* Responsive */
 @media (max-width: 680px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
   .nav-links {
     display: none;
   }
@@ -886,18 +867,43 @@ footer {
     right: 0;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
-    padding: 1rem 2rem;
+    padding: 1rem 1.25rem;
     gap: 1rem;
     z-index: 99;
   }
 
   #hero {
-    padding: 4rem 0 3.5rem;
+    padding: 3.5rem 0 3rem;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #about {
+    padding: 4rem 0;
   }
 
   .about-grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "portrait"
+      "skills"
+      "bio";
     gap: 2rem;
+  }
+
+  .about-portrait img {
+    max-width: 100%;
+  }
+
+  .skill-item strong {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .project-meta {
+    grid-template-columns: 1fr 1fr;
   }
 
   .project-grid {
@@ -910,7 +916,7 @@ footer {
   }
 
   .gallery-grid {
-    grid-template-columns: 1fr;
+    columns: 2 120px;
   }
 
   .footer-inner {
