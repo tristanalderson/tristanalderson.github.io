@@ -34,12 +34,28 @@
       overlay.className = "vrml-overlay";
       container.appendChild(overlay);
     }
-    overlay.textContent = text;
+    // Show a spinner + label so the user knows something is happening
+    overlay.innerHTML = `<span class="vrml-spinner"></span><span>${text}</span>`;
     return overlay;
   }
 
+  // ── Lazy-load strategy ──────────────────────────────────────────────────────
+  // VRMLLoader.parse() is a heavy synchronous operation that blocks the main
+  // thread. If it runs while the user hasn't scrolled to the viewer yet, any
+  // pending navigation click (e.g. a navbar link) gets queued behind the parse
+  // and the page appears frozen.
+  //
+  // Fix: use IntersectionObserver to defer ALL work (fetch + parse) until the
+  // viewer container is actually visible. Since the 3D viewer is always below
+  // the fold, clicking nav links at the top navigates instantly because the
+  // heavy parse hasn't started yet.
+  //
+  // Additionally, we use an AbortController so that if the user navigates away
+  // mid-fetch, the download is cancelled and we never enter the parse step.
+  // ───────────────────────────────────────────────────────────────────────────
+
   function initViewer(container, modelUrl) {
-    const overlay = addOverlay(container, "Loading 3D model");
+    const overlay = addOverlay(container, "Loading 3D model\u2026");
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(window.devicePixelRatio || 1);
@@ -59,84 +75,109 @@
     directional2.position.set(-1, -1, -1);
     scene.add(ambient, directional1, directional2);
 
-    const loader = new THREE.VRMLLoader();
-    loader.load(
-      modelUrl,
-      (object) => {
-        scene.add(object);
+    // AbortController lets us cancel the fetch if the user navigates away
+    const abortCtrl = new AbortController();
+    window.addEventListener("beforeunload", () => abortCtrl.abort(), { once: true });
 
-        // Ensure all matrices are updated before calculating bounding box
+    const loader = new THREE.VRMLLoader();
+
+    fetch(modelUrl, { signal: abortCtrl.signal })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.text();
+      })
+      .then((vrmlText) => {
+        // Yield to browser event loop before the CPU-heavy parse step.
+        // This lets any queued click/navigation events fire first.
+        return new Promise((resolve) => setTimeout(() => resolve(vrmlText), 0));
+      })
+      .then((vrmlText) => {
+        const object = loader.parse(vrmlText, modelUrl);
+
+        scene.add(object);
         object.updateMatrixWorld(true);
 
         const box = new THREE.Box3().setFromObject(object);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
 
-        // Center the model relative to its bounding box
         object.position.sub(center);
 
-        // Calculate camera distance based on model size and FOV
         const maxDim = Math.max(size.x, size.y, size.z) || 1;
         const fov = camera.fov * (Math.PI / 180);
         let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
-        
-        // Add padding and set angled position
-        cameraZ *= 0.8; 
+
+        cameraZ *= 0.8;
         camera.position.set(cameraZ, cameraZ * 0.5, cameraZ);
-        
+
         camera.near = maxDim / 100;
         camera.far = cameraZ * 10;
         camera.updateProjectionMatrix();
+        camera.lookAt(0, 0, 0);
 
-        if (controls) {
-          controls.target.set(0, 0, 0);
-          controls.update();
-        }
+        controls.target.set(0, 0, 0);
+        controls.update();
 
         overlay.remove();
-      },
-      undefined,
-      (err) => {
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") return; // user navigated away, ignore
         console.error("VRML Load Error:", err);
-        overlay.textContent = "Failed to load model";
-      }
-    );
+        overlay.innerHTML = "Failed to load model";
+      });
 
     return { container, renderer, scene, camera, controls };
   }
 
   function initAll() {
-    const viewers = viewerNodes.map((node) => {
-      const modelUrl = node.dataset.model;
-      if (!modelUrl) {
-        addOverlay(node, "Missing model path");
-        return null;
-      }
-      return initViewer(node, modelUrl);
-    }).filter(Boolean);
+    const viewers = [];
 
-    function onResize() {
-      viewers.forEach((viewer) => {
-        const { container, renderer, camera } = viewer;
+    // Use IntersectionObserver to lazy-init each viewer only when it scrolls
+    // into view.  rootMargin gives a 200px head-start so the load begins just
+    // before the user reaches it.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const node = entry.target;
+          observer.unobserve(node); // only trigger once per viewer
+
+          const modelUrl = node.dataset.model;
+          if (!modelUrl) {
+            addOverlay(node, "Missing model path");
+            return;
+          }
+
+          const viewer = initViewer(node, modelUrl);
+          viewers.push(viewer);
+
+          // Start the render loop for this viewer (each gets its own rAF)
+          function animate() {
+            requestAnimationFrame(animate);
+            viewer.controls.update();
+            viewer.renderer.render(viewer.scene, viewer.camera);
+          }
+          animate();
+        });
+      },
+      { rootMargin: "200px" }
+    );
+
+    viewerNodes.forEach((node) => {
+      addOverlay(node, "Scroll to load 3D model");
+      observer.observe(node);
+    });
+
+    window.addEventListener("resize", () => {
+      viewers.forEach(({ container, renderer, camera }) => {
         const width = container.clientWidth || 1;
         const height = container.clientHeight || 1;
         renderer.setSize(width, height, false);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
       });
-    }
-
-    window.addEventListener("resize", onResize);
-
-    function animate() {
-      requestAnimationFrame(animate);
-      viewers.forEach(({ renderer, scene, camera, controls }) => {
-        controls.update();
-        renderer.render(scene, camera);
-      });
-    }
-
-    animate();
+    });
   }
 
   sources
