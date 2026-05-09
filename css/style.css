@@ -934,4 +934,10 @@ footer {
     animation: none !important;
     transition: none !important;
   }
+
+  /* Loading spinners are "essential" motion (WCAG) — they communicate
+     system status, so keep them spinning even with reduced-motion on. */
+  .vrml-spinner {
+    animation: vrml-spin 0.7s linear infinite !important;
+  }
 }
