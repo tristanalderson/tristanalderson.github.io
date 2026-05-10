@@ -56,8 +56,8 @@
 		\item \textbf{Lead 10 engineers} building the distributed avionics network for a hybrid rocket. Wrote a fixed-format \textbf{CAN} protocol to sync time and forward telemetry across \textbf{STM32} and \textbf{ESP32} nodes.
 		\item Designed \textbf{STM32} and \textbf{ESP32} control boards with hardware fail-safes for solenoid valves and switched power logic to cut idle draw on pressure transducers.
 		\item Engineered a 24V power module that ORs ground supply and a 18650-based boost converter; sized bucks for CCM and added PMOSFET reverse polarity protection with a zener shunt.
-		\item Built a handheld \textbf{ground station} receiver with live telemetry decoding and a 330mF supercapacitor to hold GPS locks through brief power losses.
-		\item Managed the full \textbf{PCB design cycle} from \textbf{KiCad} schematics and RF layouts through JLCPCB assembly, manual rework, and bench bring-up.
+		\item Reworked a custom handheld \textbf{ground station} receiver with live telemetry decoding and a 330mF supercapacitor to hold GPS locks through brief power losses.
+		\item Managed \textbf{PCB design cycle} from \textbf{KiCad} schematics through JLCPCB assembly, manual rework, and bench bring-up.
 	\end{itemize}
 	
 	\noindent \textbf{Embedded Software Engineer Intern} \hfill 05/2024 -- 08/2025 \\
@@ -65,8 +65,6 @@
 	\begin{itemize}[noitemsep, topsep=2pt]
 		\item Designed distributed backend control software in \textbf{C++} on \textbf{Zynq UltraScale+ MPSoCs}, coordinating status and telemetry across multiple ARM Linux nodes.
 		\item Debugged 10G/100G \textbf{SFP/QSFP} data paths, \textbf{multicast} forwarding, and switch behavior using Marvell vendor tooling, \textbf{GDB}, logs, and board-level traces.
-		\item Brought up an observability stack on an \textbf{x86 COM Express} module by adding \textbf{Prometheus}, \textbf{Grafana}, and \textbf{Fluent Bit} through \textbf{Buildroot}.
-		\item Wrote a reboot-safe \textbf{GNSS binary logging} system using atomic file I/O to guarantee data integrity across power cycles.
 	\end{itemize}
 	
 	\noindent \textbf{AI Engineer \& Avionics Developer} \hfill 10/2023 -- 08/2024 \\
@@ -75,7 +73,6 @@
 		\item Secured \textbf{2nd Place at Launch Canada} by implementing \textbf{YOLOv8} computer vision and \textbf{PID} control, simulated using \textbf{Matlab}, for an automated rocket tracking system.
 		\item Served on a 10-person launch team in New Mexico, managing \textbf{18650 battery management systems} and critical altimeter/GPS configurations.
 		\item Designed and flew a custom \textbf{SAM-M10Q GPS} daughter board; isolated it from the main comms stack to cut RF noise and enlarged the ground plane to hold locks during high-G flight.
-		\item Developed an \textbf{I2C} library for real-time accelerometer data processing to determine launch state and trigger flight events.
 	\end{itemize}
 	
 	\noindent \textbf{Programmer and Assembler}  \hfill 05/2023 -- 09/2023 \\
@@ -102,7 +99,7 @@
 		\item \textbf{Embedded Platforms:} STM32, ESP32, Zynq UltraScale+ MPSoCs, Kria KV260, x86 COM Express, ARM Linux
 		\item \textbf{Languages:} C/C++, Python, Bash, Matlab, Verilog/SystemVerilog
 		\item \textbf{Systems \& Tools:} Embedded Linux, RTOS, Buildroot, U-Boot, device trees, GDB, Git, Prometheus, Grafana
-		\item \textbf{Protocols \& Bus:} AXI4 (Lite, Full, Stream), DMA, CAN, I2C, LoRa, NTP/PTP, 1G/10G/100G SFP/QSFP debugging, ACL/TCAM
+		\item \textbf{Protocols \& Bus:} AXI4 (Lite, Full, Stream), DMA, CAN, I2C, LoRa, NTP/PTP, 1G/10G/100G SFP/QSFP, ACL/TCAM
 	\end{itemize}
 	
 \end{document}
