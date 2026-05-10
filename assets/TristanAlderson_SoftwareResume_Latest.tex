@@ -54,7 +54,7 @@
     \begin{itemize}[noitemsep, topsep=2pt]
         \item Lead a 10-person avionics team building the distributed control network for a hybrid rocket engine, including \textbf{STM32} valve-control nodes, \textbf{ESP32} telemetry, shared firmware libraries, power electronics, and launch-ops ground-station integration.
         \item Architected \textbf{AimNetwork}, a fixed-format \textbf{CAN} application protocol with 64-bit payloads, strict 3-bit addressing, heartbeat health tracking, time synchronization, and telemetry forwarding over WiFi/LoRa.
-        \item Wrote \textbf{STM32 CAN} drivers directly against \textbf{HAL} with zero dynamic memory, fixed 16-frame TX/RX queues, and a bounded poll loop so bus handling stays predictable under fault or flooded-bus conditions.
+        \item Wrote \textbf{STM32 CAN} drivers directly against \textbf{hardware abstraction layer (HAL)} with zero dynamic memory, fixed 16-frame TX/RX queues, and a bounded poll loop so bus handling stays predictable under fault or flooded-bus conditions.
     \end{itemize}
 
     \noindent \textbf{Embedded Software Engineer Intern} \hfill 05/2024 -- 08/2025 \\
@@ -62,8 +62,8 @@
     \begin{itemize}[noitemsep, topsep=2pt]
         \item Built distributed backend control software for a 1RU embedded Linux platform using \textbf{gRPC} and \textbf{REST APIs}; coordinated configuration, status, telemetry, and device control across \textbf{six ARM Linux nodes} from a central backend controller.
         \item Developed Linux application and UI software in \textbf{C++/Qt} for ARM-based front-panel devices, including backend monitor logic for \textbf{SFP/QSFP} state, \textbf{NTP/PTP} synchronization, system status, remote configuration, and event logging.
-        \item Brought up an embedded observability stack on an \textbf{x86} \textbf{COM Express} module by adding \textbf{Prometheus}, \textbf{Grafana}, and \textbf{Fluent Bit} through \textbf{Buildroot}, configuring \textbf{lighttpd}, and modifying \textbf{Go/Grafana} behavior needed for the target platform.
-        \item Designed production support protocols for \textbf{UDP} stream telemetry, grouped gRPC read/write requests, reboot-safe GNSS binary storage, and synchronized control updates across multiple embedded nodes in the same server frame.
+        \item Brought up an embedded observability stack on an \textbf{x86} \textbf{COM Express} module by adding \textbf{Prometheus}, \textbf{Grafana}, and \textbf{Fluent Bit} through \textbf{Buildroot}, and configuring \textbf{lighttpd}.
+        \item Designed production support protocols for \textbf{UDP} stream telemetry, grouped \textbf{gRPC} read/write requests, reboot-safe GNSS binary storage, and synchronized control updates across multiple embedded nodes in the same server frame.
         \item Debugged 1G/10G/100G \textbf{SFP/QSFP} paths, \textbf{multicast} forwarding, and switch behavior down to Marvell vendor tooling; wrote custom \textbf{ACL} rules and used \textbf{GDB}, logs, and board-level traces to isolate segfaults, deadlocks, and \textbf{TLS/OpenSSL} issues.
     \end{itemize}
 
@@ -76,7 +76,7 @@
     \noindent \textbf{Programmer and Assembler} \hfill 05/2023 -- 09/2023 \\
     Radius Security \hfill Richmond, BC, Canada
     \begin{itemize}[noitemsep, topsep=2pt]
-        \item Manufactured and tested remote-guarding surveillance units; contributed to \textbf{Lean process} improvements that improved production efficiency by \textbf{20\%}.
+        \item Manufactured and tested remote-guarding surveillance units; contributed to \textbf{Lean} process improvements that improved production efficiency by \textbf{20\%}.
     \end{itemize}
 
     % --- PROJECTS ---
@@ -85,7 +85,7 @@
     Queen's University \hfill Kingston, ON, Canada
     \begin{itemize}[noitemsep, topsep=2pt]
         \item Earned \textbf{3rd Place for Top Computer Engineering Project} at the Queen's ECE Showcase for GPT-2 small inference on an \textbf{AMD Xilinx Kria KV260} using programmable logic and ARM Linux firmware.
-        \item Co-designed the hardware/software split: matrix multiplication and attention run in FPGA fabric, while ARM Cortex-A53 Linux firmware handles layer norm, softmax, requantization, AXI DMA control, DDR memory mapping, device trees, and low-level C/C++ accelerator interfaces.
+        \item Co-designed the hardware/software split: matrix multiplication and attention run in FPGA fabric, while \textbf{ARM Cortex-A53} Linux firmware handles layer norm, softmax, requantization, \textbf{AXI DMA} control, DDR memory mapping, device trees, and low-level \textbf{C/C++} accelerator interfaces.
     \end{itemize}
 
     % --- SKILLS ---
@@ -93,7 +93,7 @@
     \begin{itemize}[label={}, leftmargin=0pt, noitemsep]
         \item \textbf{Languages:} C, C++, Python, Go, Bash, Matlab, Verilog/SystemVerilog
         \item \textbf{Linux \& systems:} Embedded Linux, Buildroot, U-Boot, device trees, GDB, Jenkins, Git, shell automation
-        \item \textbf{Backend \& observability:} gRPC, REST, Prometheus, Grafana, Fluent Bit, lighttpd, JSON, logging, metrics pipelines
+        \item \textbf{Backend \& observability:} gRPC, REST, Prometheus, Grafana, Fluent Bit, lighttpd, nginx, JSON, logging, metrics pipelines
         \item \textbf{Networking:} TCP/IP, UDP telemetry, CAN, LoRa, I2C, NTP/PTP, SNMP, ACL/TCAM, TLS/OpenSSL, 1G/10G/100G SFP/QSFP debugging
         \item \textbf{Platforms \& hardware:} ARM Linux, x86 COM Express, STM32, ESP32, Zynq UltraScale+, Kria KV260, Marvell switch SDKs, KiCad, Vivado, Vitis HLS, oscilloscopes, logic analyzers
     \end{itemize}
