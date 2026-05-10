@@ -1,0 +1,36 @@
+name: Compile LaTeX Resumes
+
+on:
+  push:
+    paths:
+      - 'assets/**.tex'
+      - '.github/workflows/compile_latex.yml'
+  workflow_dispatch:
+
+jobs:
+  build_and_commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile Hardware Resume
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: assets
+          root_file: TristanAlderson_HardwareResume_Latest.tex
+
+      - name: Compile Software Resume
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: assets
+          root_file: TristanAlderson_SoftwareResume_Latest.tex
+
+      - name: Commit PDFs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-compile LaTeX resumes to PDF"
+          file_pattern: "assets/*.pdf"
