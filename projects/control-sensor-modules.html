@@ -78,7 +78,7 @@
             Two control and sensor boards that plug directly into the propulsion system. They do the same job — solenoid actuation with hardware fail-safes, pressure transducer reads, and CAN reporting — but differ by location and microcontroller. The upper module sits in the main avionics bay near the upper valve bay, runs an ESP32, communicates over WiFi for launch control, and uses our standard PCIe x1 edge connector. The lower module sits below the ox tank above the engine, runs an STM32, and connects to the upper board through a Molex Nano-Fit extension cable carrying 24V, 5V, 3.3V, GND, CANH, and CANL on just 6 pins.
           </p>
           <p class="body-text">
-            A lot of the credit on these boards goes to Jeavan Sanchez. One thing I pushed hard on was using our EDA tool's schematic sharing feature so both boards pulled from the same source for shared circuitry — no copy paste drift between modules.
+            A lot of the credit on these boards goes to Jeevan Sanchez (<a href="https://github.com/jeevan9s" target="_blank" rel="noopener">GitHub</a>, <a href="https://www.linkedin.com/in/jeevansanchez/" target="_blank" rel="noopener">LinkedIn</a>). One thing I pushed hard on was using our EDA tool's schematic sharing feature so both boards pulled from the same source for shared circuitry — no copy paste drift between modules.
           </p>
 
           <h2 class="section-title">Highlights</h2>
