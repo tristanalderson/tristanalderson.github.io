@@ -111,8 +111,9 @@
             <h2 class="section-title">What I'd do differently</h2>
             <p class="body-text">
               We jumped into the full design too early, partly because school reports demanded a complete architecture
-              before we really understood the problem. If I did it again, I'd start with just a matrix multiplication
-              accelerator — close the loop on something small, let people build intuition for the tools, then scale up.
+              before we really understood the problem. If I did it again, I'd start with just matrix multiplication
+              on the PL, get that working end to end, then split the FSM onto the PS with the acceleration on the PL.
+              From there, migrate optimizations onto the PL as we go, and eventually integrate the FSM onto the PL too.
               I also should have taken more initiative on the PL side of the design — most of the accelerator work ended
               up falling on one person, and that created bottlenecks I could have helped with. Letting everyone
               own a piece of the design makes for better work and more motivated people.
