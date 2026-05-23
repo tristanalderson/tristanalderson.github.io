@@ -19,7 +19,7 @@
     urlcolor=deepblue,
 }
 \urlstyle{same}
-\AtBeginDocument{\fontsize{9.65}{10.35}\selectfont}
+\AtBeginDocument{\fontsize{9.55}{10.25}\selectfont}
 
 \titleformat{\section}
 {\large\bfseries\color{deepblue}}
@@ -27,8 +27,8 @@
 {0em}
 {\uppercase}
 [\color{deepblue}\titlerule]
-\titlespacing{\section}{0pt}{5.5pt}{2pt}
-\setlist[itemize]{leftmargin=*, itemsep=0.5pt, topsep=1pt, parsep=0pt, partopsep=0pt}
+\titlespacing{\section}{0pt}{5pt}{2pt}
+\setlist[itemize]{leftmargin=*, itemsep=0.45pt, topsep=1pt, parsep=0pt, partopsep=0pt}
 
 \begin{document}
 
@@ -50,7 +50,7 @@
 
     % --- HARDWARE & EMBEDDED FOCUS ---
     \section{Hardware \& Embedded Focus}
-    \noindent Hardware/embedded engineer focused on PCB design and bring-up, \textbf{STM32}/\textbf{ESP32} firmware, \textbf{CAN} avionics, power distribution, GPS/RF integration, and Linux/FPGA hardware interfaces; comfortable debugging across schematic, power rails, boot behavior, firmware, telemetry, and physical system behavior.
+    \noindent Hardware-aware embedded engineer focused on bringing up, debugging, and validating real systems where \textbf{PCBs}, \textbf{power rails}, \textbf{STM32}/\textbf{ESP32} firmware, \textbf{CAN} control networks, telemetry, and Linux/FPGA interfaces meet. Comfortable tracing failures from schematic and bench measurements through firmware, boot behavior, networking, and physical system behavior.
 
     % --- WORK EXPERIENCE ---
     \section{Work Experience}
@@ -58,24 +58,24 @@
     \noindent \textbf{Avionics Lead} \hfill 05/2025 -- Present \\
     Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
     \begin{itemize}
-        \item Lead a 10-person avionics team building hybrid-rocket flight electronics across \textbf{STM32}/\textbf{ESP32} control nodes, \textbf{CAN} networking, power distribution, telemetry, GPS recovery, and launch-ops ground-station hardware.
-        \item Designed and brought up \textbf{STM32} and \textbf{ESP32} control/sensor boards for solenoid actuation, pressure-transducer reads, switched sensor power, CAN reporting, and hardware fail-safes; managed schematics, PCB layout, JLCPCB assembly, bench validation, and manual rework.
-        \item Engineered a \textbf{24V avionics power module} with ORed ground/battery inputs, \textbf{3.3V/5V buck rails}, PMOSFET reverse-polarity protection, and zener Vgs clamping; diagnosed an overheating zener shunt during current-limited first power-on and reworked the board.
-        \item Architected \textbf{AimNetwork}, a fixed-format \textbf{CAN} protocol with 64-bit payloads, strict node addressing, heartbeat checks, time synchronization, and WiFi/LoRa telemetry forwarding across rocket avionics nodes.
+        \item Lead a 10-person avionics team building hybrid-rocket control hardware across \textbf{STM32} valve nodes, \textbf{ESP32} telemetry, \textbf{CAN} networking, 24V power distribution, pressure sensing, GPS recovery, and launch-ops ground-station integration.
+        \item Designed and brought up custom \textbf{STM32}/\textbf{ESP32} control and sensor PCBs with solenoid actuation, switched transducer power, CAN reporting, hardware fail-safes, KiCad schematics/layout, JLCPCB assembly, bench validation, and manual rework.
+        \item Engineered a \textbf{24V avionics power module} with ORed ground/battery inputs, 3.3V/5V buck rails, PMOSFET reverse-polarity protection, and zener Vgs clamping; diagnosed an overheating shunt path during current-limited first power-on and reworked the board.
+        \item Designed \textbf{AimNetwork}, a fixed-format \textbf{CAN} protocol with 64-bit payloads, strict node addressing, heartbeat health checks, time synchronization, bounded queues, and WiFi/LoRa forwarding so telemetry and commands remain predictable under fault conditions.
     \end{itemize}
 
     \noindent \textbf{Embedded Software Engineer Intern} \hfill 05/2024 -- 08/2025 \\
     Evertz Microsystems \hfill Burlington, ON, Canada
     \begin{itemize}
-        \item Built distributed \textbf{C++ Linux} control services for a 1RU embedded hardware platform, coordinating device status, configuration, telemetry, and control across \textbf{six ARM Linux nodes} using gRPC, REST APIs, and Redis-backed state.
-        \item Developed Linux application and monitor software for ARM front-panel devices, including \textbf{SFP/QSFP} state, \textbf{NTP/PTP} synchronization, system status, remote configuration, and event logging.
-        \item Debugged 1G/10G/100G \textbf{SFP/QSFP} paths, multicast forwarding, TLS/OpenSSL failures, and Marvell switch behavior using vendor tooling, \textbf{GDB}, logs, board traces, and custom ACL rules.
+        \item Built \textbf{C++ Linux} control services for a constrained 1RU hardware platform, coordinating configuration, telemetry, status, and device control across \textbf{six ARM Linux nodes} using gRPC, REST APIs, and Redis-backed state.
+        \item Developed ARM Linux monitor/application software for hardware-facing status paths including \textbf{SFP/QSFP} state, \textbf{NTP/PTP} synchronization, front-panel devices, remote configuration, event logging, and reboot-safe persistent device data.
+        \item Debugged 1G/10G/100G \textbf{SFP/QSFP} links, multicast forwarding, TLS/OpenSSL failures, and Marvell switch behavior using vendor tooling, \textbf{GDB}, logs, board traces, and custom ACL rules.
     \end{itemize}
 
     \noindent \textbf{AI Engineer \& Avionics Developer} \hfill 10/2023 -- 08/2024 \\
     Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
     \begin{itemize}
-        \item Designed and flew a custom \textbf{SAM-M10Q GPS} daughter board with I2C breakout, physical separation from comms electronics, and enlarged ground plane to improve reception and reduce RF interference.
+        \item Designed and flew a custom \textbf{SAM-M10Q GPS} daughter board with I2C breakout, physical separation from comms electronics, and enlarged ground plane to reduce RF interference and maintain GPS lock during flight/recovery.
         \item Reworked a handheld \textbf{ground-station receiver} for live telemetry decode and GPS recovery tracking, including a simplified 5V power path and 330mF supercapacitor backup to preserve GPS state through brief power loss.
         \item Secured \textbf{2nd Place at Launch Canada} by implementing YOLOv8 rocket tracking with dual-axis PID control and Matlab simulation; owned 18650 battery, altimeter, and GPS configuration during launch operations.
     \end{itemize}
@@ -83,7 +83,7 @@
     \noindent \textbf{Programmer and Assembler} \hfill 05/2023 -- 09/2023 \\
     Radius Security \hfill Richmond, BC, Canada
     \begin{itemize}
-        \item Manufactured remote-guarding surveillance units; earned internal recognition for wiring quality and contributed to \textbf{Lean} process improvements that increased manufacturing space and overall efficiency by \textbf{20\%}.
+        \item Manufactured and tested remote-guarding surveillance units; earned internal recognition for wiring quality and contributed to \textbf{Lean} process changes that improved production efficiency by \textbf{20\%}.
     \end{itemize}
 
     % --- PROJECTS ---
@@ -91,19 +91,20 @@
     \noindent \textbf{LiteLM: FPGA-backed LLM Inference on ARM Linux} \hfill 08/2025 -- 03/2026 \\
     Queen's University \hfill Kingston, ON, Canada
     \begin{itemize}
-        \item Earned \textbf{3rd Place for Top Computer Engineering Project} at the Queen's ECE Showcase for GPT-2 inference on an \textbf{AMD Xilinx Kria KV260} using FPGA fabric for matrix operations and ARM Cortex-A53 Linux firmware for precision-sensitive operations.
-        \item Implemented hardware/software interfaces using \textbf{AXI4 DMA}, DDR memory maps, device trees, U-Boot boot files, hardware overlay loading, and register access between processing system and programmable logic.
-        \item Debugged DMA-backed accelerator buffers and Linux-side transfer stability across CMA sizing, udmabuf allocation, boot-time service behavior, and device-tree configuration.
+        \item Built a GPT-2 inference accelerator on an \textbf{AMD Xilinx Kria KV260}, using FPGA fabric for matrix operations and \textbf{ARM Cortex-A53 Linux} firmware for control, precision-sensitive operations, and system orchestration.
+        \item Implemented the hardware/software boundary around \textbf{AXI4 DMA}, shared DDR memory maps, device-tree configuration, U-Boot boot files, overlay loading, and low-level C/C++ register and buffer interfaces between Linux and programmable logic.
+        \item Debugged DMA-backed accelerator stability by tracing \textbf{CMA} sizing, \textbf{udmabuf} allocation, boot-time service memory use, device-tree configuration, and Linux-side transfer behavior.
+        \item Earned \textbf{3rd Place for Top Computer Engineering Project} at the Queen's ECE Showcase.
     \end{itemize}
 
     % --- SKILLS ---
     \section{Skills}
     \begin{itemize}[label={}, leftmargin=0pt, noitemsep]
-        \item \textbf{Hardware \& EDA:} KiCad, LTspice, Vivado, Vitis HLS, JLCPCB assembly, schematic capture, PCB layout, manual rework, oscilloscopes, logic analyzers, current-limited supplies
-        \item \textbf{Embedded platforms:} STM32, ESP32, Zynq UltraScale+, Kria KV260, ARM Cortex-A53, ARM Linux, x86 COM Express
-        \item \textbf{Power, RF \& interfaces:} DC-DC buck rails, PMOSFET protection, zener clamps, 18650 packs, GPS, RF layout, ground planes, CAN, I2C, SPI, UART, LoRa, WiFi
-        \item \textbf{Languages \& firmware:} C, C++, Python, Bash, Matlab, Verilog/SystemVerilog, STM32 HAL, ESP-IDF, fixed queues, heartbeat logic
-        \item \textbf{Linux \& debug:} Embedded Linux, Buildroot, U-Boot, device trees, AXI4, AXI DMA, DDR memory maps, GDB, Git, logs, board bring-up, fault isolation
+        \item \textbf{Hardware \& bring-up:} KiCad, LTspice, schematic capture, PCB layout, JLCPCB assembly, manual rework, oscilloscopes, logic analyzers, current-limited supplies, board-level fault isolation
+        \item \textbf{Embedded platforms:} STM32, ESP32, Zynq UltraScale+, Kria KV260, ARM Cortex-A53, ARM Linux, x86 COM Express, Marvell switch ASICs
+        \item \textbf{Power, RF \& interfaces:} DC-DC bucks, PMOSFET protection, zener clamps, 18650 packs, GPS/RF layout, ground planes, CAN, I2C, SPI, UART, LoRa, WiFi, SFP/QSFP
+        \item \textbf{Firmware \& software:} C, C++, Python, Bash, Matlab, Verilog/SystemVerilog, STM32 HAL, ESP-IDF, fixed queues, heartbeat logic, telemetry protocols
+        \item \textbf{Linux \& debug:} Embedded Linux, Buildroot, U-Boot, device trees, AXI4, AXI DMA, DDR memory maps, CMA, udmabuf, GDB, Git, logs, boot/service debugging
     \end{itemize}
 
 \end{document}
