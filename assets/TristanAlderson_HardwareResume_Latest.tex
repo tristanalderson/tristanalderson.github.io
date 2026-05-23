@@ -2,104 +2,108 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=0.4in]{geometry}
+\usepackage[left=0.36in,right=0.36in,top=0.32in,bottom=0.25in]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{hyperref}
-\usepackage{xcolor}
 \usepackage[dvipsnames]{xcolor}
-\definecolor{deepblue}{RGB}{0, 51, 102} % A professional navy/deep blue
+\definecolor{deepblue}{RGB}{0, 51, 102}
 
 % Style Settings
 \pagestyle{empty}
 \definecolor{primary}{RGB}{0, 0, 0}
 \hypersetup{
-	colorlinks=true,
-	linkcolor=primary,
-	filecolor=magenta,      
-	urlcolor=deepblue, % Makes links subtle but identifiable
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=magenta,
+    urlcolor=deepblue,
 }
 \urlstyle{same}
+\AtBeginDocument{\fontsize{9.65}{10.35}\selectfont}
 
 \titleformat{\section}
-{\large\bfseries\color{deepblue}} % format
-{} % label
-{0em} % sep
-{\uppercase} % before-code
-[\color{deepblue}\titlerule] % after-code
-\titlespacing{\section}{0pt}{10pt}{5pt}
+{\large\bfseries\color{deepblue}}
+{}
+{0em}
+{\uppercase}
+[\color{deepblue}\titlerule]
+\titlespacing{\section}{0pt}{5.5pt}{2pt}
+\setlist[itemize]{leftmargin=*, itemsep=0.5pt, topsep=1pt, parsep=0pt, partopsep=0pt}
 
 \begin{document}
-	
-	% --- HEADER ---
-	\begin{center}
-		{\Huge \textbf{\color{deepblue} TRISTAN ALDERSON}} \\
-		\textbf{\color{deepblue} Work Authorization: Dual US \& Canadian Citizen} \\
-		\vspace{4pt}
-		12809 25 Ave, Surrey, BC \textbullet{} 604-828-1437 \\ 
-		\href{mailto:TALDERSON42@GMAIL.COM}{TALDERSON42@GMAIL.COM} \textbullet{} 
-		\href{https://www.linkedin.com/in/tristanalderson/}{linkedin.com/in/tristanalderson} \textbullet{} 
-		\href{http://www.tristanalderson.com/}{tristanalderson.com} \\
-	\end{center}
-	
-	% --- EDUCATION ---
-	\section{Education}
-	\noindent \textbf{Bachelor of Applied Science in Electrical and Computer Engineering} \hfill Kingston, ON \\
-	Queen's University \textbullet{} \textit{Dean's Scholar} \hfill 05/2026
-	
-	% --- WORK EXPERIENCE ---
-	\section{Work Experience}
-	
-	\noindent \textbf{Avionics Lead} \hfill 05/2025 -- Present \\
-	Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
-	\begin{itemize}[noitemsep, topsep=2pt]
-		\item \textbf{Lead 10 engineers} building the distributed avionics network for a hybrid rocket. Wrote a fixed-format \textbf{CAN} protocol to sync time and forward telemetry across \textbf{STM32} and \textbf{ESP32} nodes.
-		\item Designed \textbf{STM32} and \textbf{ESP32} control boards with hardware fail-safes for solenoid valves and switched power logic to cut idle draw on pressure transducers.
-		\item Engineered a 24V power module that ORs ground supply and a 18650-based boost converter; sized bucks for CCM and added PMOSFET reverse polarity protection with a zener shunt.
-		\item Reworked a custom handheld \textbf{ground station} receiver with live telemetry decoding and a 330mF supercapacitor to hold GPS locks through brief power losses.
-		\item Managed \textbf{PCB design cycle} from \textbf{KiCad} schematics through JLCPCB assembly, manual rework, and bench bring-up.
-	\end{itemize}
-	
-	\noindent \textbf{Embedded Software Engineer Intern} \hfill 05/2024 -- 08/2025 \\
-	Evertz Microsystems \hfill Burlington, ON, Canada
-	\begin{itemize}[noitemsep, topsep=2pt]
-		\item Designed distributed backend control software in \textbf{C++} on \textbf{Zynq UltraScale+ MPSoCs}, coordinating status and telemetry across multiple ARM Linux nodes.
-		\item Debugged 10G/100G \textbf{SFP/QSFP} data paths, \textbf{multicast} forwarding, and switch behavior using Marvell vendor tooling, \textbf{GDB}, logs, and board-level traces.
-	\end{itemize}
-	
-	\noindent \textbf{AI Engineer \& Avionics Developer} \hfill 10/2023 -- 08/2024 \\
-	Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
-	\begin{itemize}[noitemsep, topsep=2pt]
-		\item Secured \textbf{2nd Place at Launch Canada} by implementing \textbf{YOLOv8} computer vision and \textbf{PID} control, simulated using \textbf{Matlab}, for an automated rocket tracking system.
-		\item Served on a 10-person launch team in New Mexico, managing \textbf{18650 battery management systems} and critical altimeter/GPS configurations.
-		\item Designed and flew a custom \textbf{SAM-M10Q GPS} daughter board; isolated it from the main comms stack to cut RF noise and enlarged the ground plane to hold locks during high-G flight.
-	\end{itemize}
-	
-	\noindent \textbf{Programmer and Assembler}  \hfill 05/2023 -- 09/2023 \\
-	Radius Security \hfill Richmond, BC, Canada
-	\begin{itemize}[noitemsep, topsep=2pt]
-		\item Manufactured remote-guarding surveillance units, earning an internal achievement for wire management quality.
-		\item Contributed to \textbf{Lean} process improvements that increased manufacturing space and overall \textbf{efficiency by 20}\%.
-	\end{itemize}
-	
-% --- PROJECTS ---
-	\section{Projects}
-	\noindent \textbf{LiteLM: On-Device LLM Inference (Capstone Project)} \hfill 08/2025 -- 03/2026 \\
-	Queen's University \hfill Kingston, ON
-	\begin{itemize}[noitemsep, topsep=2pt]
-		\item Earned \textbf{3rd Place for Top Computer Engineering Project} at the Queen's ECE Showcase for running GPT-2 inference entirely on the \textbf{AMD Xilinx Kria KV260} edge hardware.
-		\item Architected \textbf{AXI4 DMA} data paths: MM2S streams token embeddings from DDR to the accelerator while S2MM writes output tokens back.
-		\item Wrote custom \textbf{Linux kernel drivers} and device trees to load the hardware overlay and manage transfers between the ARM Cortex-A53 and FPGA fabric.
-	\end{itemize}
-	
-	% --- SKILLS ---
-	\section{Skills}
-	\begin{itemize}[label={}, leftmargin=0pt, noitemsep]
-		\item \textbf{Hardware \& EDA:} KiCad, LTspice, Vivado, Vitis HLS, oscilloscopes, logic analyzers
-		\item \textbf{Embedded Platforms:} STM32, ESP32, Zynq UltraScale+ MPSoCs, Kria KV260, x86 COM Express, ARM Linux
-		\item \textbf{Languages:} C/C++, Python, Bash, Matlab, Verilog/SystemVerilog
-		\item \textbf{Systems \& Tools:} Embedded Linux, RTOS, Buildroot, U-Boot, device trees, GDB, Git, Prometheus, Grafana
-		\item \textbf{Protocols \& Bus:} AXI4 (Lite, Full, Stream), DMA, CAN, I2C, LoRa, NTP/PTP, 1G/10G/100G SFP/QSFP, ACL/TCAM
-	\end{itemize}
-	
+
+    % --- HEADER ---
+    \begin{center}
+        {\Huge \textbf{\color{deepblue} TRISTAN ALDERSON}} \\
+        \textbf{\color{deepblue} Work Authorization: Dual US \& Canadian Citizen} \\
+        \vspace{4pt}
+        Surrey, BC \textbullet{} 604-828-1437 \\
+        \href{mailto:TALDERSON42@GMAIL.COM}{TALDERSON42@GMAIL.COM} \textbullet{}
+        \href{https://www.linkedin.com/in/tristanalderson/}{linkedin.com/in/tristanalderson} \textbullet{}
+        \href{https://tristanalderson.com/}{tristanalderson.com} \\
+    \end{center}
+
+    % --- EDUCATION ---
+    \section{Education}
+    \noindent \textbf{Bachelor of Applied Science in Electrical and Computer Engineering} \hfill Kingston, ON, Canada \\
+    Queen's University \textbullet{} \textit{Dean's Scholar} \hfill 05/2026
+
+    % --- HARDWARE & EMBEDDED FOCUS ---
+    \section{Hardware \& Embedded Focus}
+    \noindent Hardware/embedded engineer focused on PCB design and bring-up, \textbf{STM32}/\textbf{ESP32} firmware, \textbf{CAN} avionics, power distribution, GPS/RF integration, and Linux/FPGA hardware interfaces; comfortable debugging across schematic, power rails, boot behavior, firmware, telemetry, and physical system behavior.
+
+    % --- WORK EXPERIENCE ---
+    \section{Work Experience}
+
+    \noindent \textbf{Avionics Lead} \hfill 05/2025 -- Present \\
+    Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
+    \begin{itemize}
+        \item Lead a 10-person avionics team building hybrid-rocket flight electronics across \textbf{STM32}/\textbf{ESP32} control nodes, \textbf{CAN} networking, power distribution, telemetry, GPS recovery, and launch-ops ground-station hardware.
+        \item Designed and brought up \textbf{STM32} and \textbf{ESP32} control/sensor boards for solenoid actuation, pressure-transducer reads, switched sensor power, CAN reporting, and hardware fail-safes; managed schematics, PCB layout, JLCPCB assembly, bench validation, and manual rework.
+        \item Engineered a \textbf{24V avionics power module} with ORed ground/battery inputs, \textbf{3.3V/5V buck rails}, PMOSFET reverse-polarity protection, and zener Vgs clamping; diagnosed an overheating zener shunt during current-limited first power-on and reworked the board.
+        \item Architected \textbf{AimNetwork}, a fixed-format \textbf{CAN} protocol with 64-bit payloads, strict node addressing, heartbeat checks, time synchronization, and WiFi/LoRa telemetry forwarding across rocket avionics nodes.
+    \end{itemize}
+
+    \noindent \textbf{Embedded Software Engineer Intern} \hfill 05/2024 -- 08/2025 \\
+    Evertz Microsystems \hfill Burlington, ON, Canada
+    \begin{itemize}
+        \item Built distributed \textbf{C++ Linux} control services for a 1RU embedded hardware platform, coordinating device status, configuration, telemetry, and control across \textbf{six ARM Linux nodes} using gRPC, REST APIs, and Redis-backed state.
+        \item Developed Linux application and monitor software for ARM front-panel devices, including \textbf{SFP/QSFP} state, \textbf{NTP/PTP} synchronization, system status, remote configuration, and event logging.
+        \item Debugged 1G/10G/100G \textbf{SFP/QSFP} paths, multicast forwarding, TLS/OpenSSL failures, and Marvell switch behavior using vendor tooling, \textbf{GDB}, logs, board traces, and custom ACL rules.
+    \end{itemize}
+
+    \noindent \textbf{AI Engineer \& Avionics Developer} \hfill 10/2023 -- 08/2024 \\
+    Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
+    \begin{itemize}
+        \item Designed and flew a custom \textbf{SAM-M10Q GPS} daughter board with I2C breakout, physical separation from comms electronics, and enlarged ground plane to improve reception and reduce RF interference.
+        \item Reworked a handheld \textbf{ground-station receiver} for live telemetry decode and GPS recovery tracking, including a simplified 5V power path and 330mF supercapacitor backup to preserve GPS state through brief power loss.
+        \item Secured \textbf{2nd Place at Launch Canada} by implementing YOLOv8 rocket tracking with dual-axis PID control and Matlab simulation; owned 18650 battery, altimeter, and GPS configuration during launch operations.
+    \end{itemize}
+
+    \noindent \textbf{Programmer and Assembler} \hfill 05/2023 -- 09/2023 \\
+    Radius Security \hfill Richmond, BC, Canada
+    \begin{itemize}
+        \item Manufactured remote-guarding surveillance units; earned internal recognition for wiring quality and contributed to \textbf{Lean} process improvements that increased manufacturing space and overall efficiency by \textbf{20\%}.
+    \end{itemize}
+
+    % --- PROJECTS ---
+    \section{Projects}
+    \noindent \textbf{LiteLM: FPGA-backed LLM Inference on ARM Linux} \hfill 08/2025 -- 03/2026 \\
+    Queen's University \hfill Kingston, ON, Canada
+    \begin{itemize}
+        \item Earned \textbf{3rd Place for Top Computer Engineering Project} at the Queen's ECE Showcase for GPT-2 inference on an \textbf{AMD Xilinx Kria KV260} using FPGA fabric for matrix operations and ARM Cortex-A53 Linux firmware for precision-sensitive operations.
+        \item Implemented hardware/software interfaces using \textbf{AXI4 DMA}, DDR memory maps, device trees, U-Boot boot files, hardware overlay loading, and register access between processing system and programmable logic.
+        \item Debugged DMA-backed accelerator buffers and Linux-side transfer stability across CMA sizing, udmabuf allocation, boot-time service behavior, and device-tree configuration.
+    \end{itemize}
+
+    % --- SKILLS ---
+    \section{Skills}
+    \begin{itemize}[label={}, leftmargin=0pt, noitemsep]
+        \item \textbf{Hardware \& EDA:} KiCad, LTspice, Vivado, Vitis HLS, JLCPCB assembly, schematic capture, PCB layout, manual rework, oscilloscopes, logic analyzers, current-limited supplies
+        \item \textbf{Embedded platforms:} STM32, ESP32, Zynq UltraScale+, Kria KV260, ARM Cortex-A53, ARM Linux, x86 COM Express
+        \item \textbf{Power, RF \& interfaces:} DC-DC buck rails, PMOSFET protection, zener clamps, 18650 packs, GPS, RF layout, ground planes, CAN, I2C, SPI, UART, LoRa, WiFi
+        \item \textbf{Languages \& firmware:} C, C++, Python, Bash, Matlab, Verilog/SystemVerilog, STM32 HAL, ESP-IDF, fixed queues, heartbeat logic
+        \item \textbf{Linux \& debug:} Embedded Linux, Buildroot, U-Boot, device trees, AXI4, AXI DMA, DDR memory maps, GDB, Git, logs, board bring-up, fault isolation
+    \end{itemize}
+
 \end{document}
