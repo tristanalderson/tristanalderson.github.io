@@ -2,7 +2,7 @@
 \documentclass[letterpaper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=0.45in]{geometry}
+\usepackage[margin=0.4in]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{hyperref}
@@ -36,6 +36,16 @@
     \noindent Embedded Linux platform engineer focused on \textbf{C/C++ control services}, \textbf{SOM image bring-up}, \textbf{device trees/Buildroot/U-Boot}, \textbf{Linux-to-microcontroller interfaces}, telemetry/logging, networking, and dependable field behavior across hardware-backed control systems.
 
     \section{Work Experience}
+
+    \noindent \textbf{Avionics Lead} \hfill 05/2025 -- Present \\
+    Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
+    \begin{itemize}
+        \item Lead a 5-person avionics team building a distributed control network for a rocket engine, spanning \textbf{STM32} valve-control nodes, \textbf{ESP32} telemetry, shared \textbf{C/C++} firmware libraries, power electronics, and launch-ops ground-station tooling.
+        \item Architected \textbf{AimNetwork}, a fixed-format \textbf{CAN} protocol with 64-bit payloads, strict 3-bit addressing, heartbeat health checks, time synchronization, and telemetry forwarding over WiFi/LoRa.
+        \item Wrote low-level \textbf{STM32 CAN} drivers against HAL with zero dynamic memory, fixed 16-frame TX/RX queues, and a bounded poll loop so bus handling remains predictable under fault or flooded-bus conditions.
+        \item Drove board bring-up and \textbf{failure analysis} across custom power/control hardware, including power-rail isolation for solenoid loads and rework after diagnosing an overheated zener shunt from a missing current-limiting resistor.
+    \end{itemize}
+    
     \noindent \textbf{Embedded Software Engineer Intern} \hfill 05/2024 -- 08/2025 \\
     Evertz Microsystems \hfill Burlington, ON, Canada
     \begin{itemize}
@@ -46,13 +56,11 @@
         \item Maintained Linux build and deployment tooling across \textbf{Jenkins}, \textbf{Buildroot}, libssl/OpenSSL, Go, Node.js dependency issues, and scripted hardware upload flows for faster validation.
     \end{itemize}
 
-    \noindent \textbf{Avionics Lead} \hfill 05/2025 -- Present \\
+    \noindent \textbf{AI Engineer \& Avionics Developer} \hfill 10/2023 -- 08/2024 \\
     Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
     \begin{itemize}
-        \item Lead a 10-person avionics team building a distributed control network for a hybrid rocket engine, spanning \textbf{STM32} valve-control nodes, \textbf{ESP32} telemetry, shared C/C++ firmware libraries, power electronics, and launch-ops ground-station tooling.
-        \item Architected \textbf{AimNetwork}, a fixed-format \textbf{CAN} protocol with 64-bit payloads, strict 3-bit addressing, heartbeat health checks, time synchronization, and telemetry forwarding over WiFi/LoRa.
-        \item Wrote low-level \textbf{STM32 CAN} drivers against HAL with zero dynamic memory, fixed 16-frame TX/RX queues, and a bounded poll loop so bus handling remains predictable under fault or flooded-bus conditions.
-        \item Drove board bring-up and failure analysis across custom power/control hardware, including power-rail isolation for solenoid loads and rework after diagnosing an overheated zener shunt from a missing current-limiting resistor.
+        \item Designed and flew a custom \textbf{SAM-M10Q GPS} daughter board with I2C breakout, physical separation from comms electronics, and enlarged ground plane to reduce RF interference and maintain GPS lock during flight/recovery.
+        \item Secured \textbf{2nd Place at Launch Canada} by implementing YOLOv8 rocket tracking with dual-axis PID control and \textbf{Matlab} simulation; owned 18650 battery, altimeter, and GPS configuration during launch operations.
     \end{itemize}
 
     \section{Projects}
@@ -61,16 +69,15 @@
     \begin{itemize}
         \item Built the Linux control layer for a GPT-2 inference accelerator on an \textbf{AMD Xilinx Kria KV260}, using FPGA fabric for bulk matrix operations and \textbf{ARM Cortex-A53 Linux} firmware for numerically sensitive operations.
         \item Implemented \textbf{C/C++} accelerator interfaces using \textbf{AXI DMA}, DDR memory maps, device trees, U-Boot boot files, hardware overlay loading, and low-level register access between PS and PL.
-        \item Debugged \textbf{CMA}/\textbf{udmabuf} allocation failures by tracing boot-time journald/audit activity and removing unnecessary services to stabilize DMA-backed accelerator buffers.
         \item Earned \textbf{3rd Place for Top Computer Engineering Project} at the Queen's ECE Showcase.
     \end{itemize}
 
     \section{Skills}
     \begin{itemize}[label={}, leftmargin=0pt, noitemsep]
-        \item \textbf{Languages:} C, C++, Python, Go, Bash, Matlab, Verilog/SystemVerilog
-        \item \textbf{Embedded Linux:} Buildroot, U-Boot, device trees, userspace services, rootfs/image integration, GDB, Jenkins, Git, shell automation
-        \item \textbf{Control \& telemetry:} gRPC, REST APIs, Redis configuration, Prometheus, Grafana, Fluent Bit, lighttpd, logging, metrics, event pipelines
-        \item \textbf{Interfaces:} TCP/IP, UDP, Ethernet, CAN, SPI/I2C exposure, LoRa, NTP/PTP, SNMP, TLS/OpenSSL, 1G/10G/100G SFP/QSFP
-        \item \textbf{Platforms:} ARM Linux, x86 COM Express, STM32, ESP32, Zynq UltraScale+, Kria KV260, AXI4, AXI DMA, Marvell switch SDKs
+        \item \textbf{Languages:} C, C++, Python, Bash, Matlab, Verilog/SystemVerilog
+        \item \textbf{Embedded Linux:} Buildroot, U-Boot, device trees, rootfs/image integration, GDB, Jenkins, Git, shell automation
+        \item \textbf{Control \& telemetry:} gRPC, REST APIs, Redis, Prometheus, Grafana, Fluentbit, lighttpd, logging, metrics, event pipelines
+        \item \textbf{Interfaces:} TCP/IP, UDP, Ethernet, CAN, SPI/I2C, LoRa, NTP/PTP, SNMP, TLS/OpenSSL, 1G/10G/100G SFP/QSFP
+        \item \textbf{Platforms:} ARM Linux, x86 COM Express, STM32, ESP32, Zynq UltraScale+, AXI4, AXI DMA, Marvell switch SDKs
     \end{itemize}
 \end{document}\n
