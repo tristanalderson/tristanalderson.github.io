@@ -79,37 +79,54 @@
 
             <h2 class="section-title">What I built</h2>
             <p class="body-text">
-              I designed the CAN protocol and firmware architecture that five subsystem teams built on over two years. AimNetwork is the core abstraction — locked-down packet structure with 3-bit addressing, 4-bit packet types, and 64-bit payloads. The STM32 CAN core uses no dynamic memory and drives the HAL directly for precise control over hardware mailboxes. <a
+              I designed the CAN protocol and firmware architecture that five subsystem teams built on over two years. AimNetwork is the core abstraction — locked-down packet structure with 3-bit addressing, 4-bit packet types, and 64-bit payloads. The STM32 CAN core uses no dynamic memory, fixed 16-frame TX/RX queues, and drives the HAL directly for precise hardware mailbox control. <a
                 href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/00b5fd1b99877ac09ca747f2b30b727a8dfc8077"
                 target="_blank" rel="noopener">v0.7.0 protocol migration (July 2026)</a>
             </p>
             <p class="body-text">
-              av-libraries is the shared foundation. Telemetry storage to SPI NOR flash via LittleFS, RDES3 compression for telemetry, dynamic rate switching for LaunchDetect and LowPower modes, heartbeat health monitoring. <a
+              av-libraries is the shared foundation: telemetry storage to SPI NOR flash via LittleFS, RDES3 compression, dynamic rate switching for LaunchDetect and LowPower modes, heartbeat health monitoring. <a
                 href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/994617c5b00629fe93597fd9af920a95a3aef13b"
                 target="_blank" rel="noopener">RDES3 compression (Aug 2026)</a>
             </p>
             <p class="body-text">
-              The day before pad build, I made hard calls: reverted ISR logging that could stall the CAN driver, locked down rate switching to fixed jobs, added 10-second watchdog timers. <a
+              The day before pad build, I made hard calls: reverted ISR logging that could stall the CAN driver, locked down rate switching to fixed jobs, added 10-second watchdog timers. ISR logging worked fine in testing, but on the pad you can't afford a CAN TX interrupt that blocks because it's trying to format a log message. <a
                 href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/07ef3faac6b463f1921d944d6ab03157b44f020f"
                 target="_blank" rel="noopener">Pre-launch hardening (Aug 18, 2026)</a>
             </p>
 
+            <h2 class="section-title">What I'd do differently</h2>
+            <p class="body-text">
+              The v0.7.x protocol migration took two months to stabilize across all five repos because I changed too much at once — catalog remap, dynamic rates, power FETs, event-based telemetry modes. If I did it again, I'd migrate the protocol structure first, get that working across all nodes, then add features one at a time. The tight coupling between protocol version and feature releases made debugging harder than it needed to be.
+            </p>
+            <p class="body-text">
+              I also should have started hardware testing earlier. Most of our integration bugs — the I2C stream corruption on the GPS, the zener shunt overheating on the power module — only showed up on real hardware. Simulation would have given clean data every time.
+            </p>
+
             <h2 class="section-title">The subsystems</h2>
             <p class="body-text">
-              Five repositories, each a flight computer node:
+              Five repositories, each a flight computer node with its own hardware and firmware, all speaking the same protocol:
             </p>
             <ul class="project-list">
-              <li><strong>GPS Recovery</strong> — SAM-M10Q receiver, 3D flight logging, I2C stream bug fix. <a href="gps-module-antenna.html">Details</a></li>
-              <li><strong>Power Module</strong> — ORed 24V input, DC-DC buck, zener shunt bug during bring-up</li>
-              <li><strong>Propulsion Control</strong> — ESP32 upper / STM32 lower control for valve actuation, pressure monitoring</li>
-              <li><strong>Telemetry</strong> — LoRa downlink at 904.5 MHz, binary 13B/5B wire format</li>
-              <li><strong>Altimeter</strong> — KX134 high-G accelerometer, launch detection</li>
+              <li><strong>GPS Recovery</strong> — SAM-M10Q receiver, 3D flight logging, I2C stream bug fix three weeks before launch. <a href="gps-module-antenna.html">Details</a></li>
+              <li><strong>Power Module</strong> — ORed 24V input, DC-DC buck to 3.3V/5V rails, zener shunt bug found during bench bring-up</li>
+              <li><strong>Propulsion Control</strong> — ESP32 upper / STM32 lower control for valve actuation and pressure monitoring, 5-minute server timeout for test safety</li>
+              <li><strong>Telemetry</strong> — LoRa downlink at 904.5 MHz, 500kHz/SF10, binary 13B Fast / 5B Slow wire format, QLCP uplink to ground station</li>
+              <li><strong>Altimeter</strong> — KX134 high-G accelerometer, Kalman filter fusing baro + accel for altitude estimate, launch detection algorithm</li>
             </ul>
 
             <h2 class="section-title">Protocol evolution</h2>
             <p class="body-text">
-              v0.4.x (2024) → v0.6.x (June 2026) → v0.7.x (July-Aug 2026). Each migration touched all five subsystem repos. The v0.7.x series alone had five release candidates as we discovered real constraints during integration testing.
+              The network evolved through three major versions as we learned what actually mattered: v0.4.x (2024) initial CAN implementation → v0.6.x (June 2026) 29-bit protocol with content-based addressing → v0.7.x (July-Aug 2026) catalog remap, dynamic rate switching, power FETs, event-based telemetry modes. Each migration touched all five subsystem repos. The v0.7.x series alone had five release candidates.
             </p>
+
+            <h2 class="section-title">Highlights</h2>
+            <ul class="project-list">
+              <li><strong>152 commits</strong> to av-libraries over two years, coordinating five subsystem repositories</li>
+              <li>Fixed 16-frame TX/RX queues, no dynamic memory, bounded poll loop to prevent infinite loops on bus floods</li>
+              <li>Pre-launch hardening: reverted ISR logging, locked rate modes, 10-second watchdog timers</li>
+              <li>Three major protocol versions, five release candidates in the final v0.7.x series</li>
+              <li>RDES3 compression, LittleFS telemetry storage, heartbeat health monitoring, time synchronization</li>
+            </ul>
 
             <div class="project-links">
               <a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener"
