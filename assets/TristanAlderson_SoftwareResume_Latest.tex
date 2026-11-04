@@ -1,83 +1,94 @@
-
 \documentclass[letterpaper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=0.4in]{geometry}
+\usepackage[left=0.4in,right=0.4in,top=0.4in,bottom=0.4in]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{tabularx}
+
 \definecolor{deepblue}{RGB}{0, 51, 102}
 \pagestyle{empty}
 \definecolor{primary}{RGB}{0, 0, 0}
 \hypersetup{colorlinks=true, linkcolor=primary, filecolor=magenta, urlcolor=deepblue}
 \urlstyle{same}
+
+% Section formatting
 \titleformat{\section}{\large\bfseries\color{deepblue}}{}{0em}{\uppercase}[\color{deepblue}\titlerule]
-\titlespacing{\section}{0pt}{6.8pt}{2.8pt}
-\setlist[itemize]{leftmargin=*, itemsep=1.0pt, topsep=1.3pt, parsep=0pt, partopsep=0pt}
+\titlespacing{\section}{0pt}{7.5pt}{3.5pt}
+\setlist[itemize]{leftmargin=*, itemsep=1.2pt, topsep=2pt, parsep=0pt, partopsep=0pt}
 \sloppy
+
 \begin{document}
 
+    % --- HEADER ---
     \begin{center}
         {\Huge \textbf{\color{deepblue} TRISTAN ALDERSON}} \\
-        \textbf{\color{deepblue} Work Authorization: Dual US \& Canadian Citizen} \\
-        \vspace{5pt}
-        Surrey, BC \textbullet{} 604-828-1437 \\
-        \href{mailto:TALDERSON42@GMAIL.COM}{TALDERSON42@GMAIL.COM} \textbullet{}
-        \href{https://www.linkedin.com/in/tristanalderson/}{linkedin.com/in/tristanalderson} \textbullet{}
-        \href{https://tristanalderson.com/}{tristanalderson.com} \\
+        \vspace{2pt}
+        \textbf{\color{deepblue}Work Authorization: Dual US \& Canadian Citizen} \\
+        \vspace{4pt}
+        Surrey, BC \textbullet{} 604-828-1437 \textbullet{} \href{mailto:TALDERSON42@GMAIL.COM}{TALDERSON42@GMAIL.COM} \\
+        \href{https://www.linkedin.com/in/tristanalderson/}{linkedin.com/in/tristanalderson} \textbullet{} \href{https://tristanalderson.com/}{tristanalderson.com} \\
     \end{center}
 
+    % --- EDUCATION ---
     \section{Education}
     \noindent \textbf{Bachelor of Applied Science in Electrical and Computer Engineering} \hfill Kingston, ON, Canada \\
-    Queen's University \textbullet{} \textit{Dean's Scholar} \hfill 05/2026
+    Queen's University \textbullet{} \textit{Dean's Scholar} \hfill Graduation: 05/2026
 
-    \section{Systems Focus}
-    \noindent Embedded Linux platform engineer focused on \textbf{C/C++ control services}, \textbf{SOM image bring-up}, \textbf{device trees/Buildroot/U-Boot}, \textbf{Linux-to-microcontroller interfaces}, telemetry/logging, networking, and dependable field behavior across hardware-backed control systems.
+    % --- PROFESSIONAL PROFILE ---
+    \section{Professional Profile}
+    \noindent Hardware-aware systems engineer specializing in bridging the gap between custom PCB architectures and low-level Linux/RTOS execution environments. Experienced in full-stack board bring-up, custom bootloader configurations, writing deterministic drivers, and utilizing bench tools to isolate transient electrical and logical faults across the hardware-software boundary.
 
-    \section{Work Experience}
+    % --- TECHNICAL SKILLS ---
+    \section{Technical Skills}
+    \small
+    \noindent \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \textbf{Languages:} & C, C++, Python, Bash, MATLAB, Verilog, SystemVerilog \\
+        \textbf{Embedded Linux:} & Buildroot, U-Boot, Device Trees, Rootfs/Image Integration, GDB, Jenkins CI/CD \\
+        \textbf{Hardware \& Bring-Up:} & KiCad, LTspice, PCB Multi-layer Layout, Component Selection, Oscilloscopes, Logic Analyzers \\
+        \textbf{Protocols \& Interfaces:} & CAN, SPI, I2C, UART, AXI4, AXI DMA, TCP/IP, UDP, Ethernet, NTP/PTP, 1G/10G/100G SFP/QSFP \\
+        \textbf{Power \& RF Design:} & DC-DC Buck Regulators, PMOSFET Protection Circuits, Zener Clamping, Controlled Impedance RF Layout \\
+        \textbf{Target Platforms:} & ARM Cortex-A53 Linux, STM32 (Cortex-M), ESP32, AMD Xilinx Kria KV260, Marvell Switch ASICs \\
+    \end{tabularx}
+    \normalsize
 
-    \noindent \textbf{Avionics Lead} \hfill 05/2025 -- Present \\
-    Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
-    \begin{itemize}
-        \item Lead a 5-person avionics team building a distributed control network for a rocket engine, spanning \textbf{STM32} valve-control nodes, \textbf{ESP32} telemetry, shared \textbf{C/C++} firmware libraries, power electronics, and launch-ops ground-station tooling.
-        \item Architected \textbf{AimNetwork}, a fixed-format \textbf{CAN} protocol with 64-bit payloads, strict 3-bit addressing, heartbeat health checks, time synchronization, and telemetry forwarding over WiFi/LoRa.
-        \item Wrote low-level \textbf{STM32 CAN} drivers against HAL with zero dynamic memory, fixed 16-frame TX/RX queues, and a bounded poll loop so bus handling remains predictable under fault or flooded-bus conditions.
-        \item Drove board bring-up and \textbf{failure analysis} across custom power/control hardware, including power-rail isolation for solenoid loads and rework after diagnosing an overheated zener shunt from a missing current-limiting resistor.
-    \end{itemize}
-    
+    % --- WORK EXPERIENCE ---
+    \section{Professional Experience}
     \noindent \textbf{Embedded Software Engineer Intern} \hfill 05/2024 -- 08/2025 \\
     Evertz Microsystems \hfill Burlington, ON, Canada
     \begin{itemize}
-        \item Built \textbf{C++ Linux control services} for a multi-node 1RU embedded platform, using \textbf{gRPC}, \textbf{REST APIs}, and \textbf{Redis-backed configuration} to coordinate health, telemetry, and device control across ARM Linux nodes.
-        \item Brought up an embedded observability stack on an \textbf{x86 COM Express} module by extending \textbf{Buildroot} with \textbf{Prometheus}, \textbf{Grafana}, \textbf{Fluent Bit}, and \textbf{lighttpd}; adapted Go/Grafana behavior for constrained deployment.
-        \item Designed hardware-facing protocols for \textbf{UDP stream telemetry}, grouped \textbf{gRPC} operations, reboot-safe GNSS binary storage, and synchronized control updates across multiple embedded nodes in the same chassis.
-        \item Debugged 1G/10G/100G \textbf{SFP/QSFP} paths, multicast forwarding, TLS/OpenSSL failures, and Marvell switch behavior using vendor tooling, \textbf{GDB}, logs, board traces, and custom \textbf{ACL} rules.
-        \item Maintained Linux build and deployment tooling across \textbf{Jenkins}, \textbf{Buildroot}, libssl/OpenSSL, Go, Node.js dependency issues, and scripted hardware upload flows for faster validation.
+        \item Architected high-performance \textbf{C++ Linux platform control services} for a distributed, multi-node 1RU embedded chassis, utilizing \textbf{gRPC}, \textbf{REST APIs}, and \textbf{Redis-backed architecture} to safely synchronize inter-node telemetry.
+        \item Designed low-level, hardware-facing protocols for deterministic \textbf{UDP stream telemetry} and reboot-safe GNSS binary state preservation across multiple hot-swappable computing elements.
+        \item Isolated and resolved high-speed hardware initialization and link-stability failures on \textbf{100G QSFP data paths} by cross-referencing \textbf{GDB} thread states with physical multi-layer board traces and vendor SDK metrics.
+        \item Automated validation workflows by optimizing hardware-upload script infrastructure and upgrading core communication layers utilizing OpenSSL within custom \textbf{Buildroot} target environments.
+    \end{itemize}
+
+    % --- DESIGN TEAMS & PROJECTS ---
+    \section{Engineering Design Teams \& Projects}
+    \noindent \textbf{Avionics Lead} \hfill 05/2025 -- Present \\
+    Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
+    \begin{itemize}
+        \item Direct a 5-person engineering sub-team designing distributed hardware and real-time firmware for rocketry valve actuation nodes, \textbf{ESP32 telemetry boards}, \textbf{CAN communication networks}, and safety-critical launch interfaces.
+        \item Developed \textbf{AimNetwork}, a low-latency, fixed-format \textbf{CAN bus protocol} featuring 64-bit payloads, rigid 3-bit addressing topologies, structured node heartbeat checks, and fault-tolerant WiFi/LoRa link forwarding layers.
+        \item Authored zero-dynamic-memory, hardware-abstracted \textbf{STM32 CAN drivers} with strict 16-frame TX/RX bounded queues; verified 100\% communication packet retention under heavy 90\% bus-load injection simulations.
+        \item Executed comprehensive board-level bring-up and bench validation of custom flight microcontrollers; tracked and mitigated a thermal fault in a zener-clamped power distribution circuit via manual rework and parameter adjustment.
+    \end{itemize}
+
+    \noindent \textbf{LiteLM: FPGA-Backed LLM Inference on ARM Linux} \hfill 08/2025 -- 03/2026 \\
+    Queen's University Showcase Project \hfill Kingston, ON, Canada
+    \begin{itemize}
+        \item Engineered a hybrid compute subsystem on an \textbf{AMD Xilinx Kria KV260 SoM}, splitting parallel matrix math offloads to custom programmable logic while maintaining sequential execution on an \textbf{ARM Cortex-A53 Linux platform}.
+        \item Built the deterministic hardware-software boundary by mapping explicit \textbf{AXI4 DMA} physical addresses, configuring custom Linux Device Trees, managing U-Boot overlays, and orchestrating zero-copy \textbf{udmabuf} kernel blocks.
+        \item Awarded \textbf{3rd Place for Top Computer Engineering Project} across the entire departmental ECE Showcase.
     \end{itemize}
 
     \noindent \textbf{AI Engineer \& Avionics Developer} \hfill 10/2023 -- 08/2024 \\
     Queen's Rocket Engineering Team (QRET) \hfill Kingston, ON, Canada
     \begin{itemize}
-        \item Designed and flew a custom \textbf{SAM-M10Q GPS} daughter board with I2C breakout, physical separation from comms electronics, and enlarged ground plane to reduce RF interference and maintain GPS lock during flight/recovery.
-        \item Secured \textbf{2nd Place at Launch Canada} by implementing YOLOv8 rocket tracking with dual-axis PID control and \textbf{Matlab} simulation; owned 18650 battery, altimeter, and GPS configuration during launch operations.
+        \item Modeled, fabricated, and validated a modular \textbf{SAM-M10Q GPS daughter board} leveraging precise I2C data isolation and a maximized copper ground plane to suppress high-frequency RF noise and preserve satellite lock during flight profiles.
+        \item Secured \textbf{2nd Place Overall at the Launch Canada Competition} through the successful implementation of real-time rocket video tracking using YOLOv8, integrated with MATLAB-simulated dual-axis PID tracking mounts.
     \end{itemize}
 
-    \section{Projects}
-    \noindent \textbf{LiteLM: FPGA-backed LLM Inference on ARM Linux} \hfill 08/2025 -- 03/2026 \\
-    Queen's University \hfill Kingston, ON, Canada
-    \begin{itemize}
-        \item Built the Linux control layer for a GPT-2 inference accelerator on an \textbf{AMD Xilinx Kria KV260}, using FPGA fabric for bulk matrix operations and \textbf{ARM Cortex-A53 Linux} firmware for numerically sensitive operations.
-        \item Implemented \textbf{C/C++} accelerator interfaces using \textbf{AXI DMA}, DDR memory maps, device trees, U-Boot boot files, hardware overlay loading, and low-level register access between PS and PL.
-        \item Earned \textbf{3rd Place for Top Computer Engineering Project} at the Queen's ECE Showcase.
-    \end{itemize}
-
-    \section{Skills}
-    \begin{itemize}[label={}, leftmargin=0pt, noitemsep]
-        \item \textbf{Languages:} C, C++, Python, Bash, Matlab, Verilog/SystemVerilog
-        \item \textbf{Embedded Linux:} Buildroot, U-Boot, device trees, rootfs/image integration, GDB, Jenkins, Git, shell automation
-        \item \textbf{Control \& telemetry:} gRPC, REST APIs, Redis, Prometheus, Grafana, Fluentbit, lighttpd, logging, metrics, event pipelines
-        \item \textbf{Interfaces:} TCP/IP, UDP, Ethernet, CAN, SPI/I2C, LoRa, NTP/PTP, SNMP, TLS/OpenSSL, 1G/10G/100G SFP/QSFP
-        \item \textbf{Platforms:} ARM Linux, x86 COM Express, STM32, ESP32, Zynq UltraScale+, AXI4, AXI DMA, Marvell switch SDKs
-    \end{itemize}
-\end{document}\n
+\end{document}

@@ -48,7 +48,7 @@
     <section class="project-hero">
       <div class="container">
         <p class="project-label">Project</p>
-        <h1 class="project-title">SAM M10Q GPS Board</h1>
+        <h1 class="project-title">GPS Recovery Module</h1>
         <p class="project-subtitle">
           GPS receiver daughter board for in-flight navigation and post-flight recovery, built around the u-blox SAM-M10Q.
         </p>
@@ -81,18 +81,44 @@
 
             <h2 class="section-title">What I built</h2>
             <p class="body-text">
-              The SAM-M10Q is a GPS-on-module from u-blox that we soldered onto a custom 2-layer daughter board. The board exposes I2C through a connector and keeps the GPS on its own PCB, physically separated from the comms module on the avionics stack. That separation is the point — by moving the GPS microcontroller and its RF antenna away from the CAN transceiver and WiFi radio, we cut down on the interference that kills signal quality.
+              The SAM-M10Q is a GPS-on-module from u-blox that I designed onto a custom 2-layer daughter board. The board exposes I2C through a connector and keeps the GPS on its own PCB, physically separated from the comms module on the avionics stack. That separation is the point — by moving the GPS microcontroller and its RF antenna away from the CAN transceiver and WiFi radio, we cut down on the interference that kills signal quality.
             </p>
             <p class="body-text">
               One thing that actually helped was just making the daughter board a bit larger than the module strictly needs. The SAM-M10Q receives signals through the ground plane it's connected to, so a bigger board means a bigger ground plane and better reception. It's a simple trick but it made a measurable difference.
             </p>
 
+            <h3 class="subsection-title">The I2C Stream Bug</h3>
+            <p class="body-text">
+              Three weeks before launch, I caught a bug that would have corrupted our position telemetry. The SAM-M10Q returns <code>0xFF</code> pad bytes when its FIFO is empty. I wasn't filtering these out before feeding the NMEA parser, so the parser would see garbage data and produce bad coordinates. Fixed it by checking the stream for pad bytes before parsing. <a
+                href="https://github.com/Queens-Rocket-Engineering-Team/av-recovery/commit/369e50ef6903f46f75a0a4f6d622e18bf832a264"
+                target="_blank" rel="noopener">I2C stream bug fix (July 2026)</a>
+            </p>
+            <p class="body-text">
+              That's the kind of bug you only catch during real bench testing with the actual hardware. A simulator would have given you clean NMEA sentences every time.
+            </p>
+
+            <h3 class="subsection-title">3D Flight Logging</h3>
+            <p class="body-text">
+              The GPS module logs a 3D flight path to flash — latitude, longitude, and altitude at 10 Hz during flight, 1 Hz on the pad. That data reconstructs the trajectory for post-recovery analysis. The module also broadcasts position over the CAN bus so the telemetry system can downlink it via LoRa, and it sends satellite count at 0.2 Hz to conserve bandwidth.
+            </p>
+
+            <h3 class="subsection-title">Pre-Flight Check</h3>
+            <p class="body-text">
+              The SAM-M10Q needs to be configured for 10 Hz / High-G mode using u-blox's u-center tool before flight. That's not something you can set in firmware — it's a persistent configuration stored in the module. We made that check mandatory in the pre-flight procedure after discovering it wasn't surviving power cycles. <a
+                href="https://github.com/Queens-Rocket-Engineering-Team/av-recovery/commit/7cfc391181f8f29ae7cdca74dc6f522a5c1deb7b"
+                target="_blank" rel="noopener">u-center pre-flight check requirement (July 2026)</a>
+            </p>
+
             <h2 class="section-title">Highlights</h2>
             <ul class="project-list">
-              <li>Custom 2-layer GPS daughter board with I2C breakout connector.</li>
-              <li>Physically separated from avionics stack comms to reduce RF interference.</li>
-              <li>Enlarged ground plane for improved signal reception.</li>
-              <li>Validated integration with the backplane harness and avionics bay connectors.</li>
+              <li><strong>Hardware:</strong> Custom 2-layer daughter board, backup power supply, recovery buzzer/LEDs. <a
+                  href="https://github.com/Queens-Rocket-Engineering-Team/av-recovery/commit/afc52be72c01432348866774709bccbf6c3bb438"
+                  target="_blank" rel="noopener">GPS backup power (Feb 2024)</a></li>
+              <li><strong>RF isolation:</strong> Physically separated from comms stack to reduce interference, enlarged ground plane for better reception</li>
+              <li><strong>3D flight logging:</strong> Lat/lon/altitude at 10 Hz flight / 1 Hz pad, stored to flash for trajectory reconstruction</li>
+              <li><strong>I2C stream bug fix:</strong> Filtered SAM-M10Q's 0xFF pad bytes before NMEA parsing (caught 3 weeks before launch)</li>
+              <li><strong>Dual-rate telemetry:</strong> 10 Hz position broadcast, 0.2 Hz satellite count, phase-adaptive based on LaunchDetect events</li>
+              <li><strong>Pre-flight operational constraint:</strong> Mandatory u-center check for 10 Hz / High-G mode configuration</li>
             </ul>
 
             <div class="project-links">
