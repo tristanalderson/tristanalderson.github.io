@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QRET Avionics - Tristan Alderson</title>
-  <meta name="description" content="Distributed avionics firmware for a hybrid rocket — CAN protocol, shared libraries, and subsystem integration." />
+  <meta name="description" content="Distributed avionics firmware for a hybrid rocket - CAN protocol, shared libraries, and subsystem integration." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -49,7 +49,7 @@
         <p class="project-label">Project</p>
         <h1 class="project-title">QRET Avionics</h1>
         <p class="project-subtitle">
-          Distributed firmware for a hybrid rocket — CAN protocol, shared libraries, and five flight computer nodes. Two years, 152 commits, three protocol versions.
+          Distributed firmware for a hybrid rocket - CAN protocol, shared libraries, and five flight computer nodes. Two years, 152 commits, three protocol versions.
         </p>
         <div class="project-meta">
           <div>
@@ -62,7 +62,7 @@
           </div>
           <div>
             <p class="meta-label">Timeline</p>
-            <p class="meta-value">Oct 2023 - Present</p>
+            <p class="meta-value">Oct 2023 - Sep 2026</p>
           </div>
         </div>
       </div>
@@ -77,25 +77,25 @@
               <div class="timeline-item">
                 <div class="timeline-year">Oct 2023</div>
                 <div class="timeline-content">
-                  <strong>Joined QRET</strong> — AI Engineer & Avionics Developer, GPS board design, Launch Canada 2nd place
+                  <strong>Joined QRET</strong> - AI Engineer & Avionics Developer, GPS board design, Launch Canada 2nd place
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-year">May 2024</div>
                 <div class="timeline-content">
-                  <strong>Evertz co-op</strong> — Embedded Software Engineer Intern (May 2024 - Aug 2025)
+                  <strong>Evertz co-op</strong> - Embedded Software Engineer Intern (May 2024 - Aug 2025)
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-year">May 2025</div>
                 <div class="timeline-content">
-                  <strong>Avionics Lead</strong> — Returned to lead 5-person team, architected AimNetwork CAN protocol
+                  <strong>Avionics Lead</strong> - Returned to lead 5-person team, architected AimNetwork CAN protocol
                 </div>
               </div>
               <div class="timeline-item">
                 <div class="timeline-year">2026</div>
                 <div class="timeline-content">
-                  <strong>Launch prep</strong> — v0.7.x protocol hardening, pre-launch decisions, 152 commits across five repos
+                  <strong>Launch prep</strong> - v0.7.x protocol hardening, pre-launch decisions, 152 commits across five repos
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@
 
             <h2 class="section-title">What I built</h2>
             <p class="body-text">
-              I designed the CAN protocol and firmware architecture that five subsystem teams built on over two years. AimNetwork is the core abstraction — locked-down packet structure with 3-bit addressing, 4-bit packet types, and 64-bit payloads. The STM32 CAN core uses no dynamic memory, fixed 16-frame TX/RX queues, and drives the HAL directly for precise hardware mailbox control. <a
+              I designed the CAN protocol and firmware architecture that five subsystem teams built on over two years. AimNetwork is the core abstraction - locked-down packet structure with 3-bit addressing, 4-bit packet types, and 64-bit payloads. The STM32 CAN core uses no dynamic memory, fixed 16-frame TX/RX queues, and drives the HAL directly for precise hardware mailbox control. <a
                 href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/00b5fd1b99877ac09ca747f2b30b727a8dfc8077"
                 target="_blank" rel="noopener">v0.7.0 protocol migration (July 2026)</a>
             </p>
@@ -122,10 +122,10 @@
 
             <h2 class="section-title">What I'd do differently</h2>
             <p class="body-text">
-              The v0.7.x protocol migration took two months to stabilize across all five repos because I changed too much at once — catalog remap, dynamic rates, power FETs, event-based telemetry modes. If I did it again, I'd migrate the protocol structure first, get that working across all nodes, then add features one at a time. The tight coupling between protocol version and feature releases made debugging harder than it needed to be.
+              The v0.7.x protocol migration took two months to stabilize across all five repos because I changed too much at once - catalog remap, dynamic rates, power FETs, event-based telemetry modes. If I did it again, I'd migrate the protocol structure first, get that working across all nodes, then add features one at a time. The tight coupling between protocol version and feature releases made debugging harder than it needed to be.
             </p>
             <p class="body-text">
-              I also should have started hardware testing earlier. Most of our integration bugs — the I2C stream corruption on the GPS, the zener shunt overheating on the power module — only showed up on real hardware. Simulation would have given clean data every time.
+              I also should have started hardware testing earlier. Most of our integration bugs - the I2C stream corruption on the GPS, the zener shunt overheating on the power module - only showed up on real hardware. Simulation would have given clean data every time.
             </p>
 
             <h2 class="section-title">The subsystems</h2>
@@ -137,16 +137,16 @@
               Five repositories, each a flight computer node with its own hardware and firmware, all speaking the same protocol:
             </p>
             <ul class="project-list">
-              <li><strong>GPS Recovery</strong> — SAM-M10Q receiver, 3D flight logging, I2C stream bug fix three weeks before launch. <a href="gps-module-antenna.html">Details</a></li>
-              <li><strong>Power Module</strong> — ORed 24V input, DC-DC buck to 3.3V/5V rails, zener shunt bug found during bench bring-up. <a href="power-module.html">Details</a></li>
-              <li><strong>Propulsion Control</strong> — ESP32 upper / STM32 lower control for valve actuation and pressure monitoring, 5-minute server timeout for test safety. <a href="control-sensor-modules.html">Details</a></li>
-              <li><strong>Telemetry</strong> — LoRa downlink at 904.5 MHz, 500kHz/SF10, binary 13B Fast / 5B Slow wire format, QLCP uplink to ground station. <a href="ground-station.html">Details</a></li>
-              <li><strong>Altimeter</strong> — KX134 high-G accelerometer, Kalman filter fusing baro + accel for altitude estimate, launch detection algorithm</li>
+              <li><strong>GPS Recovery</strong> - SAM-M10Q receiver, 3D flight logging, I2C stream bug fix three weeks before launch. <a href="gps-module-antenna.html">Details</a></li>
+              <li><strong>Power Module</strong> - ORed 24V input, DC-DC buck to 3.3V/5V rails, zener shunt bug found during bench bring-up. <a href="power-module.html">Details</a></li>
+              <li><strong>Propulsion Control</strong> - ESP32 upper / STM32 lower control for valve actuation and pressure monitoring, 5-minute server timeout for test safety. <a href="control-sensor-modules.html">Details</a></li>
+              <li><strong>Telemetry</strong> - LoRa downlink at 904.5 MHz, 500kHz/SF10, binary 13B Fast / 5B Slow wire format, QLCP uplink to ground station. <a href="ground-station.html">Details</a></li>
+              <li><strong>Altimeter</strong> - KX134 high-G accelerometer, Kalman filter fusing baro + accel for altitude estimate, launch detection algorithm</li>
             </ul>
 
             <h2 class="section-title">Protocol evolution</h2>
             <p class="body-text">
-              The network evolved through three major versions as we learned what actually mattered: v0.4.x (2024) initial CAN implementation → v0.6.x (June 2026) 29-bit protocol with content-based addressing → v0.7.x (July-Aug 2026) catalog remap, dynamic rate switching, power FETs, event-based telemetry modes. Each migration touched all five subsystem repos. The v0.7.x series alone had five release candidates.
+              The network evolved through three major versions as we learned what actually mattered: v0.4.x (2024) initial CAN implementation -> v0.6.x (June 2026) 29-bit protocol with content-based addressing -> v0.7.x (July-Aug 2026) catalog remap, dynamic rate switching, power FETs, event-based telemetry modes. Each migration touched all five subsystem repos. The v0.7.x series alone had five release candidates.
             </p>
 
             <h2 class="section-title">Highlights</h2>
@@ -186,7 +186,7 @@
             <ul class="project-list">
               <li><strong>152 commits</strong> to av-libraries</li>
               <li><strong>5 subsystem repos</strong> coordinated</li>
-              <li><strong>3 major protocol versions</strong> (v0.4.x → v0.6.x → v0.7.x)</li>
+              <li><strong>3 major protocol versions</strong> (v0.4.x -> v0.6.x -> v0.7.x)</li>
               <li><strong>2 years</strong> development (Nov 2022 - Aug 2026)</li>
             </ul>
 
