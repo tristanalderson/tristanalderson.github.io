@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QRET Avionics - Tristan Alderson</title>
-  <meta name="description" content="Distributed avionics firmware for a hybrid rocket - CAN protocol, shared libraries, and subsystem integration." />
+  <meta name="description" content="A distributed control network for a hybrid rocket engine - CAN protocol, shared firmware, and avionics boards." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -49,16 +49,17 @@
         <p class="project-label">Project</p>
         <h1 class="project-title">QRET Avionics</h1>
         <p class="project-subtitle">
-          Distributed firmware for a hybrid rocket - CAN protocol, shared libraries, and five flight computer nodes. Two years, 152 commits, three protocol versions.
+          A distributed control network for a hybrid rocket engine - STM32 valve nodes, ESP32 telemetry, shared
+          firmware, and the boards they run on.
         </p>
         <div class="project-meta">
           <div>
             <p class="meta-label">Role</p>
-            <p class="meta-value">Avionics lead, firmware architect</p>
+            <p class="meta-value">Avionics lead, firmware and protocol design</p>
           </div>
           <div>
             <p class="meta-label">Stack</p>
-            <p class="meta-value">C/C++, STM32 HAL, ESP-IDF, CAN, LoRa</p>
+            <p class="meta-value">C/C++, STM32 HAL, ESP32, CAN, LoRa</p>
           </div>
           <div>
             <p class="meta-label">Timeline</p>
@@ -73,98 +74,101 @@
         <div class="project-grid">
           <div>
             <h2 class="section-title">The Journey</h2>
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-year">Oct 2023</div>
-                <div class="timeline-content">
-                  <strong>Joined QRET</strong> - AI Engineer & Avionics Developer, GPS board design, Launch Canada 2nd place
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">May 2024</div>
-                <div class="timeline-content">
-                  <strong>Evertz co-op</strong> - Embedded Software Engineer Intern (May 2024 - Aug 2025)
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">May 2025</div>
-                <div class="timeline-content">
-                  <strong>Avionics Lead</strong> - Returned to lead 5-person team, architected AimNetwork CAN protocol
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-year">Aug 2026</div>
-                <div class="timeline-content">
-                  <strong>Launch prep</strong> - v0.7.x protocol hardening, Launch Canada qualification flights
-                </div>
-              </div>
-            </div>
+            <ol class="timeline">
+              <li class="timeline-item">
+                <span class="timeline-year">Oct 2023</span>
+                <p class="timeline-content"><strong>Joined QRET</strong> as an AI engineer and avionics developer.
+                  First board: the SAM-M10Q GPS module.</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">May 2024</span>
+                <p class="timeline-content"><strong>Evertz co-op</strong> - embedded software intern through Aug
+                  2025.</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">Jun 2024</span>
+                <p class="timeline-content"><strong>Spaceport America Cup</strong> - we drove across the US to launch
+                  in New Mexico.</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">Aug 2024</span>
+                <p class="timeline-content"><strong>Launch Canada</strong> - Sunflower tracker, 2nd place.</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">May 2025</span>
+                <p class="timeline-content"><strong>Avionics lead</strong> - five-person team.</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">Jun 2026</span>
+                <p class="timeline-content"><strong>AIM Network v0.6</strong> - 29-bit CAN protocol on every node,
+                  v0.7 in July.</p>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-year">Aug 2026</span>
+                <p class="timeline-content"><strong>Launch Canada</strong> - pad build, launch week, one field fix.
+                </p>
+              </li>
+            </ol>
 
             <h2 class="section-title">The Problem</h2>
             <p class="body-text">
-              You have STM32 nodes spread around a rocket and an ESP32 handling comms. They need to share data, log events, and save telemetry to flash. If every developer writes their own CAN implementation from scratch, you end up with incompatible packet formats, timing bugs, and dropped messages.
+              You have STM32 nodes spread around a rocket and an ESP32 handling comms. They need to share data, log
+              events, and save telemetry to flash. If every developer writes their own CAN implementation from
+              scratch, you end up with incompatible packet formats, timing bugs, and dropped messages. Network code
+              is the last thing you want to be debugging when you're supposed to be reading a pressure sensor or firing an actuator.
             </p>
 
             <h2 class="section-title">What I built</h2>
             <p class="body-text">
-              I designed the CAN protocol and firmware architecture that five subsystem teams built on over two years. AimNetwork is the core abstraction - locked-down packet structure with 3-bit addressing, 4-bit packet types, and 64-bit payloads. The STM32 CAN core uses no dynamic memory, fixed 16-frame TX/RX queues, and drives the HAL directly for precise hardware mailbox control. <a
-                href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/00b5fd1b99877ac09ca747f2b30b727a8dfc8077"
-                target="_blank" rel="noopener">v0.7.0 protocol migration (July 2026)</a>
+              The team's shared foundation is <code>av-libraries</code>: a logger, flash storage on LittleFS, RDES3
+              telemetry compression, and at the core, AimNetwork. In 2026 I rebuilt AimNetwork twice. The
+              <a href="avionics-firmware.html">first version</a> locked down origin, destination, and packet type.
+              By v0.6 I threw the destination field out. The 29-bit ID is now class, subject, source: class sets bus
+              priority, subject says what the data is, and consumers filter on that. Every frame carries its
+              sender's bits, so no two nodes can ever transmit the same ID.
             </p>
             <p class="body-text">
-              av-libraries is the shared foundation: telemetry storage to SPI NOR flash via LittleFS, RDES3 compression, dynamic rate switching for LaunchDetect and LowPower modes, heartbeat health monitoring. <a
-                href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/994617c5b00629fe93597fd9af920a95a3aef13b"
-                target="_blank" rel="noopener">RDES3 compression (Aug 2026)</a>
+              The STM32 core skips Arduino libraries and drives the bxCAN HAL directly - no dynamic memory, fixed
+              16-frame TX and RX queues, and at most 8 RX polls per cycle so a flooded bus can't hang a node. The
+              ESP32 side uses TWAI behind the same interface.
+              <a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/00b5fd1b99877ac09ca747f2b30b727a8dfc8077"
+                target="_blank" rel="noopener">v0.7.0 migration (July 2026)</a>
             </p>
             <p class="body-text">
-              The day before pad build, I made hard calls: reverted ISR logging that could stall the CAN driver, locked down rate switching to fixed jobs, added 10-second watchdog timers. ISR logging worked fine in testing, but on the pad you can't afford a CAN TX interrupt that blocks because it's trying to format a log message.
+              The day before pad build, I cut features instead of adding them. Runtime rate switching went away in
+              favour of fixed-rate jobs, diagnostic logging that ran inside the CAN TX interrupt got reverted, every
+              node armed a 10-second watchdog after init, and the pad builds dropped to INFO-only logs.
             </p>
+            <p class="team-credit">Built with the QRET avionics team.</p>
 
-            <h2 class="section-title">What I'd do differently</h2>
+            <h2 class="section-title">Launch pad triage</h2>
             <p class="body-text">
-              The v0.7.x protocol migration took two months to stabilize across all five repos because I changed too much at once - catalog remap, dynamic rates, power FETs, event-based telemetry modes. If I did it again, I'd migrate the protocol structure first, get that working across all nodes, then add features one at a time. The tight coupling between protocol version and feature releases made debugging harder than it needed to be.
-            </p>
-            <p class="body-text">
-              I also should have started hardware testing earlier. Most of our integration bugs - the I2C stream corruption on the GPS, the zener shunt overheating on the power module - only showed up on real hardware. Simulation would have given clean data every time.
+              Day 4 at Launch Canada. Fill valve stopped responding. Last-minute firmware commit broke the command
+              handler. Two launch opportunities left. Drilled through the airframe, reflashed the node, verified the
+              fix in under an hour. Owning the mistake kept the mission alive.
             </p>
 
             <h2 class="section-title">The subsystems</h2>
-            <div class="project-gallery" style="margin-bottom: 1.5rem;">
-              <img src="../assets/images/qret/slide05_img01.jpg" alt="System architecture dataflow chart" loading="lazy" />
-              <img src="../assets/images/qret/slide07_img01.jpg" alt="Propulsion system block diagram" loading="lazy" />
+            <div class="project-gallery gallery-inline">
+              <img src="../assets/images/qret/slide05_img01.jpg"
+                alt="Dataflow chart showing how each avionics board connects to the CAN backbone" loading="lazy" />
+              <img src="../assets/images/qret/slide07_img01.jpg"
+                alt="Block diagram of the rocket-side and ground-side systems" loading="lazy" />
             </div>
-            <p class="body-text">
-              Five repositories, each a flight computer node with its own hardware and firmware, all speaking the same protocol:
-            </p>
             <ul class="project-list">
-              <li><strong>GPS Recovery</strong> - SAM-M10Q receiver, 3D flight logging, I2C stream bug fix three weeks before launch. <a href="gps-module-antenna.html">Details</a></li>
-              <li><strong>Power Module</strong> - ORed 24V input, DC-DC buck to 3.3V/5V rails, zener shunt bug found during bench bring-up. <a href="power-module.html">Details</a></li>
-              <li><strong>Propulsion Control</strong> - ESP32 upper / STM32 lower control for valve actuation and pressure monitoring, 5-minute server timeout for test safety. <a href="control-sensor-modules.html">Details</a></li>
-              <li><strong>Telemetry</strong> - LoRa downlink at 904.5 MHz, 500kHz/SF10, binary 13B Fast / 5B Slow wire format, QLCP uplink to ground station. <a href="ground-station.html">Details</a></li>
-              <li><strong>Altimeter</strong> - KX134 high-G accelerometer, Kalman filter fusing baro + accel for altitude estimate, launch detection algorithm</li>
+              <li><strong>GPS Recovery</strong> - SAM-M10Q receiver and 3D flash logging. A month before launch I
+                caught the receiver padding its I2C stream with 0xFF bytes and feeding them to the NMEA parser.
+                <a href="gps-module-antenna.html">Details</a></li>
+              <li><strong>Power Module</strong> - 24V battery with ORed ground power, buck to 3.3V and 5V, and a zener shunt that
+                overheated on the bench from a missing current-limiting resistor. <a
+                  href="power-module.html">Details</a></li>
+              <li><strong>Propulsion Control</strong> - ESP32 upper and STM32 lower valve control. Lose CAN or WiFi
+                for 5 minutes and the nodes safe the valves, then the power FETs. <a
+                  href="control-sensor-modules.html">Details</a></li>
+              <li><strong>Telemetry</strong> - LoRa at 904.5 MHz, 250 kHz / SF8, fixed 13-byte fast and 5-byte slow
+                frames down to the ground station. <a href="ground-station.html">Details</a></li>
+              <li><strong>Altimeter</strong> - KX134 high-g accelerometer on a 100 Hz fixed-rate job.</li>
             </ul>
-
-            <h2 class="section-title">Protocol evolution</h2>
-            <p class="body-text">
-              The network evolved through three major versions as we learned what actually mattered: v0.4.x (2024) initial CAN implementation &gt; v0.6.x (June 2026) 29-bit protocol with content-based addressing &gt; v0.7.x (July-Aug 2026) catalog remap, dynamic rate switching, power FETs, event-based telemetry modes. Each migration touched all five subsystem repos. The v0.7.x series alone had five release candidates.
-            </p>
-
-            <h2 class="section-title">Highlights</h2>
-            <ul class="project-list">
-              <li><strong>152 commits</strong> to av-libraries over two years, coordinating five subsystem repositories</li>
-              <li>Fixed 16-frame TX/RX queues, no dynamic memory, bounded poll loop to prevent infinite loops on bus floods</li>
-              <li>Pre-launch hardening: reverted ISR logging, locked rate modes, 10-second watchdog timers</li>
-              <li>Three major protocol versions, five release candidates in the final v0.7.x series</li>
-              <li>RDES3 compression, LittleFS telemetry storage, heartbeat health monitoring, time synchronization</li>
-            </ul>
-
-            <h2 class="section-title">Launch pad triage</h2>
-            <div class="project-gallery" style="margin-bottom: 1.5rem;">
-              <img src="../assets/images/qret/slide08_img02.jpg" alt="Rocket on pad through telescope view" loading="lazy" />
-            </div>
-            <p class="body-text">
-              Day 4 at Launch Canada. Fill valve stopped responding. Last-minute firmware commit broke the command handler. Two launch opportunities left. Drilled through the airframe, reflashed the node, verified the fix in under an hour. Owning the mistake kept the mission alive.
-            </p>
 
             <div class="project-links">
               <a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener"
@@ -175,28 +179,29 @@
 
           <div>
             <h2 class="section-title">Media</h2>
-            <div class="project-gallery">
-              <img src="../assets/images/qret/slide06_img01.jpg" alt="Avionics stack system architecture" loading="lazy" />
-              <img src="../assets/images/qret/slide04_img01.png" alt="QRET avionics team" loading="lazy" />
-              <img src="../assets/images/qret/slide06_img06.jpg" alt="Avionics hardware detail" loading="lazy" />
-              <img src="../assets/images/qret/tristan-field-fix.jpg" alt="Field programming at Launch Canada" loading="lazy" />
+            <div class="project-gallery gallery-composed">
+              <img class="wide" src="../assets/images/qret/slide04_img01.png"
+                alt="The QRET team holding the rocket, with each subteam marked" loading="lazy" />
+              <img class="pair" src="../assets/images/qret/slide06_img06.jpg"
+                alt="The full avionics stack and battery, wired up in the field" loading="lazy" />
+              <img class="pair" src="../assets/images/qret/slide11_img02.jpg"
+                alt="The rocket on the launch rail, seen through a spotting scope" loading="lazy" />
+              <img class="wide" src="../assets/images/qret/tristan-field-fix.jpg"
+                alt="Tristan on a ladder at the rail, reflashing a node through the airframe" loading="lazy" />
             </div>
 
-            <h2 class="section-title">Stats</h2>
+            <h2 class="section-title">Repositories</h2>
             <ul class="project-list">
-              <li><strong>152 commits</strong> to av-libraries</li>
-              <li><strong>5 subsystem repos</strong> coordinated</li>
-              <li><strong>3 major protocol versions</strong> (v0.4.x &gt; v0.6.x &gt; v0.7.x)</li>
-              <li><strong>2 years</strong> development (Nov 2022 - Aug 2026)</li>
-            </ul>
-
-            <h2 class="section-title">Repository Links</h2>
-            <ul class="project-list">
-              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener">av-libraries</a></li>
-              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-recovery" target="_blank" rel="noopener">av-recovery</a></li>
-              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-power" target="_blank" rel="noopener">av-power</a></li>
-              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-prop" target="_blank" rel="noopener">av-prop</a></li>
-              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-telemetry" target="_blank" rel="noopener">av-telemetry</a></li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank"
+                  rel="noopener">av-libraries</a> - shared firmware</li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-prop" target="_blank"
+                  rel="noopener">av-prop</a> - valve control</li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-power" target="_blank"
+                  rel="noopener">av-power</a> - power module</li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-recovery" target="_blank"
+                  rel="noopener">av-recovery</a> - GPS and altimeter</li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-telemetry" target="_blank"
+                  rel="noopener">av-telemetry</a> - LoRa and ground station</li>
             </ul>
           </div>
         </div>
