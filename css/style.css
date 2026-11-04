@@ -1121,3 +1121,141 @@ footer {
     animation: vrml-spin 0.7s linear infinite !important;
   }
 }
+
+/* Subsystem cards for QRET architecture page */
+.subsystem-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.subsystem-card {
+  padding: 1.5rem;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+
+.subsystem-card:hover {
+  border-color: var(--primary-color);
+}
+
+.subsystem-card h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.75rem 0;
+  color: var(--text-primary);
+}
+
+.subsystem-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.subsystem-card a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.subsystem-card a:hover {
+  text-decoration: underline;
+}
+
+/* Stats, repo links, and tech stack lists */
+.stats-list, .repo-links, .tech-stack-list, .gate-list, .timeline-list, .ordered-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.stats-list li, .tech-stack-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
+
+.stats-list li:last-child, .tech-stack-list li:last-child {
+  border-bottom: none;
+}
+
+.repo-links li {
+  margin: 0.75rem 0;
+}
+
+.repo-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.repo-links a:hover {
+  text-decoration: underline;
+}
+
+.gate-list li, .timeline-list li {
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.ordered-list {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+.ordered-list li {
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+/* Code highlights */
+.code-highlight {
+  margin: 1.5rem 0;
+}
+
+.code-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.code-highlight pre {
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.code-highlight code {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-primary);
+}
+
+/* Blockquotes for project pages */
+.project-quote {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--primary-color);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* Subsection titles */
+.subsection-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 2rem 0 1rem 0;
+  color: var(--text-primary);
+}
