@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satellite Bus Emulator - Tristan Alderson</title>
+  <meta name="description" content="From-scratch flight computer platform — Yocto Linux + F Prime on Zynq UltraScale+." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Figtree:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/favicon.png" />
+</head>
+
+<body>
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <nav aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-name">Tristan Alderson</a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a href="../index.html#gallery">Gallery</a></li>
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true" aria-expanded="false">Resume <svg width="10" height="10" viewBox="0 0 10 10" stroke="currentColor" fill="none"><path d="M2 3l3 3 3-3"/></svg></a>
+          <ul class="dropdown-content">
+            <li><a href="../assets/TristanAlderson_HardwareResume_Latest.pdf" target="_blank" rel="noopener">Hardware</a></li>
+            <li><a href="../assets/TristanAlderson_SoftwareResume_Latest.pdf" target="_blank" rel="noopener">Software</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button class="nav-menu-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 5h14M3 10h14M3 15h14" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="content">
+    <section class="project-hero">
+      <div class="container">
+        <p class="project-label">Project</p>
+        <h1 class="project-title">Satellite Bus Emulator</h1>
+        <p class="project-subtitle">
+          A from-scratch flight computer platform for the AMD Kria KV260 — custom Yocto Linux running JPL's F Prime, boot to telemetry from source.
+        </p>
+        <div class="project-meta">
+          <div>
+            <p class="meta-label">Role</p>
+            <p class="meta-value">Platform architect, embedded Linux</p>
+          </div>
+          <div>
+            <p class="meta-label">Stack</p>
+            <p class="meta-value">Yocto, F Prime, Zynq UltraScale+, ARM Cortex-A53</p>
+          </div>
+          <div>
+            <p class="meta-label">Repo</p>
+            <p class="meta-value"><a href="https://github.com/tristanalderson/satellite-bus-emulator" target="_blank" rel="noopener">satellite-bus-emulator</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-page-body">
+      <div class="container">
+        <div class="project-grid">
+          <div>
+            <h2 class="section-title">Why I Built This</h2>
+            <p class="body-text">
+              I wanted to learn what actually sits between "bare silicon" and "spacecraft sends telemetry." Turns out the answer is mostly BitBake errors.
+            </p>
+            <p class="body-text">
+              I have an AMD Kria KV260 dev board and wanted to follow a signal from a physical pin through programmable logic, software, telemetry, and a ground station. Eventually I'd like to design a custom PCB and maybe launch a CubeSat. For now this is where I'm learning.
+            </p>
+
+            <h2 class="section-title">What It Is</h2>
+            <p class="body-text">
+              A flight computer stack built entirely from source for the KV260: custom embedded Linux (Yocto rel-v2024.2), JPL's F Prime flight software running on ARM Cortex-A53, telemetry and commanding over TCP to a ground station (fprime-gds), and boot chain from factory QSPI to SD card image.
+            </p>
+            <p class="body-text">
+              The flight side connects as a TCP client. The ground station must be listening first.
+            </p>
+
+            <h3 class="subsection-title">Yocto SDK Approach</h3>
+            <p class="body-text">
+              Cross-compilation uses the Yocto-generated SDK instead of a distro cross-compiler, so the toolchain and target rootfs share the same libc by construction. That one decision eliminates the "works on my toolchain, segfaults on the board" class of bug.
+            </p>
+
+            <h3 class="subsection-title">Factory QSPI Preservation</h3>
+            <p class="body-text">
+              The 2024.2 setup uses the KV260's factory boot firmware before loading the SD image. I could have built my own from source, but there's nothing to gain and a bricked SOM to lose. I kept a recovery path.
+            </p>
+
+            <h2 class="section-title">Current State</h2>
+            <p class="body-text">
+              The 2024.2 platform boots, runs the F Prime deployment, and exchanges telemetry/commands with the ground station over TCP. <a
+                href="https://github.com/tristanalderson/satellite-bus-emulator/commit/b63a5e5894ac9607c2cfde10c227abe6eda36b0b"
+                target="_blank" rel="noopener">Deployment verified (July 2026)</a>
+            </p>
+            <p class="body-text">
+              I'm migrating to AMD's EDF (Embedded Development Flow) — a reproducible, manifest-driven release. Migration plan is written, scaffolding is in place, but I haven't tested on hardware yet. <a
+                href="https://github.com/tristanalderson/satellite-bus-emulator/tree/feature/edf-migration" target="_blank" rel="noopener">EDF migration branch</a>
+            </p>
+
+            <h2 class="section-title">What I'm Learning</h2>
+            <ul class="project-list">
+              <li>Follow a signal from physical pin through PL → software → telemetry → ground station</li>
+              <li>Design and verify RTL, understand timing and clock boundaries</li>
+              <li>Explore the division of work between Linux (A53), real-time software (R5), and FPGA logic</li>
+            </ul>
+
+            <div class="project-links">
+              <a href="https://github.com/tristanalderson/satellite-bus-emulator" target="_blank" rel="noopener"
+                class="btn btn-primary">View repo</a>
+              <a href="../index.html#work" class="btn btn-ghost">Back to work</a>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-title">Technical Stack</h2>
+            <ul class="project-list">
+              <li><strong>Hardware:</strong> AMD Kria KV260 (Zynq UltraScale+ K26 SOM)</li>
+              <li><strong>Boot:</strong> Factory QSPI → SD (kernel + dtb + rootfs)</li>
+              <li><strong>OS:</strong> Custom Yocto Linux (rel-v2024.2)</li>
+              <li><strong>Machine:</strong> k26-smk-kv-sdt (SDT firmware flow)</li>
+              <li><strong>Flight SW:</strong> F Prime v4.2.x (NASA JPL)</li>
+              <li><strong>Cross-toolchain:</strong> Yocto-generated SDK</li>
+              <li><strong>Ground Station:</strong> fprime-gds (TCP :50000)</li>
+            </ul>
+
+            <h2 class="section-title">Repository Structure</h2>
+            <ul class="project-list">
+              <li><code>satellite-bus/</code> — F Prime project, topology, toolchain</li>
+              <li><code>build-k26/conf/</code> — Yocto build config</li>
+              <li><code>scripts/</code> — Container, environment scripts</li>
+              <li><code>Dockerfile</code> — Build container</li>
+              <li><code>PROJECT_VISION.md</code> — Learning goals</li>
+              <li><code>AGENTS.md</code> — Working principles</li>
+            </ul>
+
+            <h2 class="section-title">Timeline</h2>
+            <ul class="project-list">
+              <li><strong>July 5, 2026:</strong> Initial Yocto 2024.2 + F Prime deployment verified on hardware</li>
+              <li><strong>Nov 2, 2026:</strong> Established project working principles</li>
+              <li><strong>Nov 2, 2026:</strong> Started EDF migration (feature branch)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-copy">(c) <span id="year"></span> Tristan Alderson</p>
+      <p class="footer-copy"><a href="../assets/TristanAlderson_HardwareResume_Latest.pdf" target="_blank"
+          rel="noopener">Hardware Resume</a> &middot; <a href="../assets/TristanAlderson_SoftwareResume_Latest.pdf"
+          target="_blank" rel="noopener">Software Resume</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/site.js" defer></script>
+</body>
+
+</html>

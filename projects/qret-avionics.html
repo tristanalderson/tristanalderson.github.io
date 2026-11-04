@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRET Avionics - Tristan Alderson</title>
+  <meta name="description" content="Distributed avionics firmware for a hybrid rocket — CAN protocol, shared libraries, and subsystem integration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Figtree:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/favicon.png" />
+</head>
+
+<body>
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <nav aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-name">Tristan Alderson</a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a href="../index.html#gallery">Gallery</a></li>
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true" aria-expanded="false">Resume <svg width="10" height="10" viewBox="0 0 10 10" stroke="currentColor" fill="none"><path d="M2 3l3 3 3-3"/></svg></a>
+          <ul class="dropdown-content">
+            <li><a href="../assets/TristanAlderson_HardwareResume_Latest.pdf" target="_blank" rel="noopener">Hardware</a></li>
+            <li><a href="../assets/TristanAlderson_SoftwareResume_Latest.pdf" target="_blank" rel="noopener">Software</a></li>
+          </ul>
+        </li>
+      </ul>
+      <button class="nav-menu-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 5h14M3 10h14M3 15h14" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <main id="content">
+    <section class="project-hero">
+      <div class="container">
+        <p class="project-label">Project</p>
+        <h1 class="project-title">QRET Avionics</h1>
+        <p class="project-subtitle">
+          Distributed firmware for a hybrid rocket — CAN protocol, shared libraries, and five flight computer nodes. Two years, 152 commits, three protocol versions.
+        </p>
+        <div class="project-meta">
+          <div>
+            <p class="meta-label">Role</p>
+            <p class="meta-value">Avionics lead, firmware architect</p>
+          </div>
+          <div>
+            <p class="meta-label">Stack</p>
+            <p class="meta-value">C/C++, STM32 HAL, ESP-IDF, CAN, LoRa</p>
+          </div>
+          <div>
+            <p class="meta-label">Timeline</p>
+            <p class="meta-value">Nov 2022 - Aug 2026</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-page-body">
+      <div class="container">
+        <div class="project-grid">
+          <div>
+            <h2 class="section-title">The Problem</h2>
+            <p class="body-text">
+              You have STM32 nodes spread around a rocket and an ESP32 handling comms. They need to share data, log events, and save telemetry to flash. If every developer writes their own CAN implementation from scratch, you end up with incompatible packet formats, timing bugs, and dropped messages.
+            </p>
+
+            <h2 class="section-title">What I built</h2>
+            <p class="body-text">
+              I designed the CAN protocol and firmware architecture that five subsystem teams built on over two years. AimNetwork is the core abstraction — locked-down packet structure with 3-bit addressing, 4-bit packet types, and 64-bit payloads. The STM32 CAN core uses no dynamic memory and drives the HAL directly for precise control over hardware mailboxes. <a
+                href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/00b5fd1b99877ac09ca747f2b30b727a8dfc8077"
+                target="_blank" rel="noopener">v0.7.0 protocol migration (July 2026)</a>
+            </p>
+            <p class="body-text">
+              av-libraries is the shared foundation. Telemetry storage to SPI NOR flash via LittleFS, RDES3 compression for telemetry, dynamic rate switching for LaunchDetect and LowPower modes, heartbeat health monitoring. <a
+                href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/994617c5b00629fe93597fd9af920a95a3aef13b"
+                target="_blank" rel="noopener">RDES3 compression (Aug 2026)</a>
+            </p>
+            <p class="body-text">
+              The day before pad build, I made hard calls: reverted ISR logging that could stall the CAN driver, locked down rate switching to fixed jobs, added 10-second watchdog timers. <a
+                href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/07ef3faac6b463f1921d944d6ab03157b44f020f"
+                target="_blank" rel="noopener">Pre-launch hardening (Aug 18, 2026)</a>
+            </p>
+
+            <h2 class="section-title">The subsystems</h2>
+            <p class="body-text">
+              Five repositories, each a flight computer node:
+            </p>
+            <ul class="project-list">
+              <li><strong>GPS Recovery</strong> — SAM-M10Q receiver, 3D flight logging, I2C stream bug fix. <a href="gps-module-antenna.html">Details</a></li>
+              <li><strong>Power Module</strong> — ORed 24V input, DC-DC buck, zener shunt bug during bring-up</li>
+              <li><strong>Propulsion Control</strong> — ESP32 upper / STM32 lower control for valve actuation, pressure monitoring</li>
+              <li><strong>Telemetry</strong> — LoRa downlink at 904.5 MHz, binary 13B/5B wire format</li>
+              <li><strong>Altimeter</strong> — KX134 high-G accelerometer, launch detection</li>
+            </ul>
+
+            <h2 class="section-title">Protocol evolution</h2>
+            <p class="body-text">
+              v0.4.x (2024) → v0.6.x (June 2026) → v0.7.x (July-Aug 2026). Each migration touched all five subsystem repos. The v0.7.x series alone had five release candidates as we discovered real constraints during integration testing.
+            </p>
+
+            <div class="project-links">
+              <a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener"
+                class="btn btn-primary">View av-libraries</a>
+              <a href="../index.html#work" class="btn btn-ghost">Back to work</a>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-title">Stats</h2>
+            <ul class="project-list">
+              <li><strong>152 commits</strong> to av-libraries</li>
+              <li><strong>5 subsystem repos</strong> coordinated</li>
+              <li><strong>3 major protocol versions</strong> (v0.4.x → v0.6.x → v0.7.x)</li>
+              <li><strong>2 years</strong> development (Nov 2022 - Aug 2026)</li>
+            </ul>
+
+            <h2 class="section-title">Repository Links</h2>
+            <ul class="project-list">
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener">av-libraries</a></li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-recovery" target="_blank" rel="noopener">av-recovery</a></li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-power" target="_blank" rel="noopener">av-power</a></li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-prop" target="_blank" rel="noopener">av-prop</a></li>
+              <li><a href="https://github.com/Queens-Rocket-Engineering-Team/av-telemetry" target="_blank" rel="noopener">av-telemetry</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-copy">(c) <span id="year"></span> Tristan Alderson</p>
+      <p class="footer-copy"><a href="../assets/TristanAlderson_HardwareResume_Latest.pdf" target="_blank"
+          rel="noopener">Hardware Resume</a> &middot; <a href="../assets/TristanAlderson_SoftwareResume_Latest.pdf"
+          target="_blank" rel="noopener">Software Resume</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/site.js" defer></script>
+</body>
+
+</html>
