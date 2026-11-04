@@ -1,8 +1,8 @@
-# ELEC 498 Capstone — LiteLM
+# ELEC 498 Capstone - LiteLM
 
 ## Project Overview
 
-**LiteLM** is an FPGA-based hardware accelerator designed to run inference for Transformer-based Large Language Models (LLMs) on edge devices. The project offloads compute-intensive matrix multiplication and attention operations to the FPGA programmable logic (PL), while precision-sensitive operations (layer norm, softmax, requantization) are handled by the ARM processor (PS) in firmware. This split was a key architectural decision — earlier all-hardware approaches suffered severe data loss from performing requantization entirely in fixed-point logic.
+**LiteLM** is an FPGA-based hardware accelerator designed to run inference for Transformer-based Large Language Models (LLMs) on edge devices. The project offloads compute-intensive matrix multiplication and attention operations to the FPGA programmable logic (PL), while precision-sensitive operations (layer norm, softmax, requantization) are handled by the ARM processor (PS) in firmware. This split was a key architectural decision - earlier all-hardware approaches suffered severe data loss from performing requantization entirely in fixed-point logic.
 
 **Target board:** Kria KV260 Vision AI Starter Kit
 **Part number (Vitis/Vivado):** `xck26-sfvc784-2lv`
@@ -24,20 +24,20 @@ The image below is the block design from the Vivado software, showing the full P
 
 ```
 ELEC_498-Capstone-LiteLM/
-├── Model-architectures/
-│   ├── gpt2-MatMulMode/       — Active design: GPT-2 INT8 MatMul-mode accelerator
-│   └── legacy-architecture/   — Abandoned prior architectures (see note below)
-├── hardware_overlay/          — FPGA bitstream, device trees, and IP drivers
-├── firmware/                  — ARM PS-side inference engine (Linux, C++)
-├── Helper_Scripts/            — Utility scripts for quantization, overlay generation, and tooling
-├── fpga_Kria_260_Board_specs.md  — KV260 board reference notes
-├── TCL_commands.md            — Useful Vivado/Vitis TCL command reference
-└── Vitis_and_Vivado_Commands.md  — HLS/synthesis workflow command reference
++-- Model-architectures/
+|   +-- gpt2-MatMulMode/       - Active design: GPT-2 INT8 MatMul-mode accelerator
+|   \-- legacy-architecture/   - Abandoned prior architectures (see note below)
++-- hardware_overlay/          - FPGA bitstream, device trees, and IP drivers
++-- firmware/                  - ARM PS-side inference engine (Linux, C++)
++-- Helper_Scripts/            - Utility scripts for quantization, overlay generation, and tooling
++-- fpga_Kria_260_Board_specs.md  - KV260 board reference notes
++-- TCL_commands.md            - Useful Vivado/Vitis TCL command reference
+\-- Vitis_and_Vivado_Commands.md  - HLS/synthesis workflow command reference
 ```
 
 ---
 
-## `./Model-architectures/gpt2-MatMulMode/` — Active Design
+## `./Model-architectures/gpt2-MatMulMode/` - Active Design
 
 The current working accelerator targeting GPT-2 small (124M parameters) with INT8 per-tensor quantization. See [`Model-architectures/gpt2-MatMulMode/README.md`](Model-architectures/gpt2-MatMulMode/README.md) for full detail on every file and subdirectory.
 
@@ -47,13 +47,13 @@ The current working accelerator targeting GPT-2 small (124M parameters) with INT
 | `logs/` | Captured C-simulation and synthesis run logs |
 | `model/` | Quantized GPT-2 weights, embeddings, DDR memory map, and tokenizer data |
 
-**Firmware** for this design lives at [`/firmware/`](firmware/) — see below.
+**Firmware** for this design lives at [`/firmware/`](firmware/) - see below.
 
 ### Vivado Address Map
 
 Address segments from the Vivado block design (`design_1`). Only active (non-excluded) assignments are shown. Source: [`vivado_simulations/edge_gpt/AddressSegments.csv`](vivado_simulations/edge_gpt/AddressSegments.csv).
 
-**PS (`zynq_ultra_ps_e_0/Data`) → PL peripherals** — AXI-Lite control register windows the ARM uses to start/stop the DMA and accelerator:
+**PS (`zynq_ultra_ps_e_0/Data`) -> PL peripherals** - AXI-Lite control register windows the ARM uses to start/stop the DMA and accelerator:
 
 | Slave Interface | Base Address | Range | Description |
 |----------------|-------------|-------|-------------|
@@ -61,14 +61,14 @@ Address segments from the Vivado block design (`design_1`). Only active (non-exc
 | `transformer_top_0/s_axi_control/Reg` | `0xA0010000` | 64K | HLS accelerator control/status registers |
 | `transformer_top_0/s_axi_control_r/Reg` | `0xA0020000` | 64K | HLS accelerator secondary control registers |
 
-**DMA (`axi_dma_0`) → DDR** — both channels mapped to the lower 2 GB DDR:
+**DMA (`axi_dma_0`) -> DDR** - both channels mapped to the lower 2 GB DDR:
 
 | Channel | Base Address | Range | Description |
 |---------|-------------|-------|-------------|
-| `Data_MM2S` | `0x00000000` | 2G | Reads token embeddings from DDR → streams to accelerator |
+| `Data_MM2S` | `0x00000000` | 2G | Reads token embeddings from DDR -> streams to accelerator |
 | `Data_S2MM` | `0x00000000` | 2G | Writes accelerator output token back to DDR |
 
-**Accelerator (`transformer_top_0`) → DDR** — two AXI master ports for direct DDR access:
+**Accelerator (`transformer_top_0`) -> DDR** - two AXI master ports for direct DDR access:
 
 | Master Port | Base Address | Range | Description |
 |-------------|-------------|-------|-------------|
@@ -77,11 +77,11 @@ Address segments from the Vivado block design (`design_1`). Only active (non-exc
 
 ---
 
-## `./Model-architectures/legacy-architecture/` — Abandoned Architectures
+## `./Model-architectures/legacy-architecture/` - Abandoned Architectures
 
 These directories contain earlier hardware designs that were **not viable on the board**.
 
-> **Why they did not work:** The architectures themselves were functionally correct in simulation, but the requantization method used to rescale activations between layers caused an enormous amount of precision loss when implemented entirely in fixed-point hardware. Layer norm, softmax, and requantization are numerically sensitive operations — running them in the PL with INT8/INT16 arithmetic accumulated errors that made model outputs unusable. The solution adopted in the active design was to move these operations to the firmware (ARM PS), keeping only the bulk matrix multiplications in the PL.
+> **Why they did not work:** The architectures themselves were functionally correct in simulation, but the requantization method used to rescale activations between layers caused an enormous amount of precision loss when implemented entirely in fixed-point hardware. Layer norm, softmax, and requantization are numerically sensitive operations - running them in the PL with INT8/INT16 arithmetic accumulated errors that made model outputs unusable. The solution adopted in the active design was to move these operations to the firmware (ARM PS), keeping only the bulk matrix multiplications in the PL.
 
 | Directory | Description |
 |-----------|-------------|

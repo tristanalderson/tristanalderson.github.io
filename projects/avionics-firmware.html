@@ -45,7 +45,7 @@
       <p class="project-label">Project</p>
       <h1 class="project-title">Avionics Firmware and Protocols</h1>
       <p class="project-subtitle">
-        Shared firmware libraries for QRET's avionics stack — CAN protocol, logging, flash storage, and telemetry forwarding.
+        Shared firmware libraries for QRET's avionics stack - CAN protocol, logging, flash storage, and telemetry forwarding.
       </p>
       <div class="project-meta">
         <div>
@@ -75,18 +75,18 @@
 
           <h2 class="section-title">What I built</h2>
           <p class="body-text">
-            The team built a shared foundation called <code>av-libraries</code>. It handles the messy infrastructure so developers can focus on their application logic — a logger (<code>AimLogger</code>) that tags messages with timestamps and severity, a flash table manager (<code>AimFlashTable</code>) for dumping flight data to serial memory, and at the core, <code>AimNetwork</code>.
+            The team built a shared foundation called <code>av-libraries</code>. It handles the messy infrastructure so developers can focus on their application logic - a logger (<code>AimLogger</code>) that tags messages with timestamps and severity, a flash table manager (<code>AimFlashTable</code>) for dumping flight data to serial memory, and at the core, <code>AimNetwork</code>.
           </p>
           <p class="body-text">
-            <code>AimNetwork</code> handles CAN bus communication and abstracts the hardware — whether you're on the STM32 HAL or ESP32 TWAI — behind a single interface. The packet structure is entirely locked down: 3 bits for origin, 3 bits for destination, 4 bits for packet type. Payload is always 64 bits, either raw data or a timed format that packs a 27-bit timestamp with a 32-bit payload. Everyone agrees on exactly what a packet looks like.
+            <code>AimNetwork</code> handles CAN bus communication and abstracts the hardware - whether you're on the STM32 HAL or ESP32 TWAI - behind a single interface. The packet structure is entirely locked down: 3 bits for origin, 3 bits for destination, 4 bits for packet type. Payload is always 64 bits, either raw data or a timed format that packs a 27-bit timestamp with a 32-bit payload. Everyone agrees on exactly what a packet looks like.
           </p>
 
           <h2 class="section-title">Highlights</h2>
           <ul class="project-list">
-            <li>STM32 CAN core uses no dynamic memory — fixed 16-frame TX and RX queues, with a max of 8 iterations per poll cycle to prevent infinite loops if the bus gets flooded.</li>
+            <li>STM32 CAN core uses no dynamic memory - fixed 16-frame TX and RX queues, with a max of 8 iterations per poll cycle to prevent infinite loops if the bus gets flooded.</li>
             <li>Heartbeat health table tracks which nodes are alive and when they last checked in.</li>
             <li>Automatic time synchronization across the bus so events on different boards share a common clock.</li>
-            <li>STM32 driver skips Arduino libraries and talks directly to the HAL — gives precise control over hardware mailboxes and pulls detailed error telemetry like dropped queues and bus-off events.</li>
+            <li>STM32 driver skips Arduino libraries and talks directly to the HAL - gives precise control over hardware mailboxes and pulls detailed error telemetry like dropped queues and bus-off events.</li>
             <li>WiFi and LoRa telemetry forwarding for ground station visibility.</li>
           </ul>
 

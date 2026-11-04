@@ -85,7 +85,7 @@
             <p class="body-text">
               The power module ORs two 24V sources: one from an external ground supply (used during oxidizer fill) and
               one from a boost converter off the 18650 battery pack. Since our total wattage is low, I kept the design
-              simple — just two buck converters with a single 24V input producing 3.3V and 5V rails. No battery charger
+              simple - just two buck converters with a single 24V input producing 3.3V and 5V rails. No battery charger
               on board; we rely on pre-charged cells and ground power to get us through the fill phase.
             </p>
             <p class="body-text">
@@ -96,11 +96,11 @@
             <h2 class="section-title">Highlights</h2>
             <ul class="project-list">
               <li>ORed 24V input from ground power and battery boost converter.</li>
-              <li>Inductor/capacitor sizing for Lcrit — CCM maintained under regular operating current.</li>
+              <li>Inductor/capacitor sizing for Lcrit - CCM maintained under regular operating current.</li>
               <li>PMOSFET reverse polarity protection on the ground power input with zener shunt for Vgs clamping.</li>
               <li>Found a bug during bring-up: no current limiting resistor in the zener shunt path. Above 12V the shunt
                 was sinking too much current and overheating. Added the resistor in rework, fixed it.</li>
-              <li>Systematic board bring-up — probed all rails for continuity, checked resistance to ground,
+              <li>Systematic board bring-up - probed all rails for continuity, checked resistance to ground,
                 current-limited power supply for first power-on.</li>
             </ul>
 

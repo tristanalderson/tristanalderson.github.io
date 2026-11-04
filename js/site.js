@@ -97,7 +97,7 @@
         const entries = Array.isArray(data) ? data : data.images || [];
         gallery.innerHTML = "";
 
-        // Per-image observer — fires when each image scrolls into view
+        // Per-image observer - fires when each image scrolls into view
         const imgObserver = new IntersectionObserver((observed, obs) => {
           observed.forEach((entry) => {
             if (!entry.isIntersecting) return;
@@ -111,7 +111,7 @@
         }, { rootMargin: "300px" });
 
         // Insert ALL figure shells immediately so the masonry layout is computed
-        // correctly — images load in real viewport order as the user scrolls
+        // correctly - images load in real viewport order as the user scrolls
         entries.forEach((entry) => {
           const file = typeof entry === "string" ? entry : entry.file;
           if (!file) return;

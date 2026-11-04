@@ -1118,7 +1118,7 @@ footer {
     transition: none !important;
   }
 
-  /* Loading spinners are "essential" motion (WCAG) — they communicate
+  /* Loading spinners are "essential" motion (WCAG) - they communicate
      system status, so keep them spinning even with reduced-motion on. */
   .vrml-spinner {
     animation: vrml-spin 0.7s linear infinite !important;
@@ -1134,19 +1134,23 @@ footer {
 
 .timeline-item {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: 90px 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
   position: relative;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
 }
 
 .timeline-item::before {
   content: '';
   position: absolute;
   left: -2.5rem;
-  top: 0.25rem;
-  width: 10px;
-  height: 10px;
+  top: 0.3rem;
+  width: 8px;
+  height: 8px;
   background: var(--accent);
   border-radius: 50%;
   border: 2px solid var(--surface);
@@ -1178,9 +1182,6 @@ footer {
   height: auto;
   border-radius: 8px;
   border: 1px solid var(--border);
-}
-  border-radius: 50%;
-  border: 2px solid var(--surface);
 }
 
 .timeline-year {

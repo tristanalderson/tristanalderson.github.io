@@ -81,7 +81,7 @@
 
             <h2 class="section-title">What I built</h2>
             <p class="body-text">
-              The SAM-M10Q is a GPS-on-module from u-blox that we soldered onto a custom 2-layer daughter board. The board exposes I2C through a connector and keeps the GPS on its own PCB, physically separated from the comms module on the avionics stack. That separation is the point — by moving the GPS microcontroller and its RF antenna away from the CAN transceiver and WiFi radio, we cut down on the interference that kills signal quality.
+              The SAM-M10Q is a GPS-on-module from u-blox that we soldered onto a custom 2-layer daughter board. The board exposes I2C through a connector and keeps the GPS on its own PCB, physically separated from the comms module on the avionics stack. That separation is the point - by moving the GPS microcontroller and its RF antenna away from the CAN transceiver and WiFi radio, we cut down on the interference that kills signal quality.
             </p>
             <p class="body-text">
               One thing that actually helped was just making the daughter board a bit larger than the module strictly needs. The SAM-M10Q receives signals through the ground plane it's connected to, so a bigger board means a bigger ground plane and better reception. It's a simple trick but it made a measurable difference.

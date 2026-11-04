@@ -39,7 +39,7 @@
     return overlay;
   }
 
-  // ── Lazy-load strategy ──────────────────────────────────────────────────────
+  // -- Lazy-load strategy ------------------------------------------------------
   // VRMLLoader.parse() is a heavy synchronous operation that blocks the main
   // thread. If it runs while the user hasn't scrolled to the viewer yet, any
   // pending navigation click (e.g. a navbar link) gets queued behind the parse
@@ -52,7 +52,7 @@
   //
   // Additionally, we use an AbortController so that if the user navigates away
   // mid-fetch, the download is cancelled and we never enter the parse step.
-  // ───────────────────────────────────────────────────────────────────────────
+  // ---------------------------------------------------------------------------
 
   function initViewer(container, modelUrl) {
     const overlay = addOverlay(container, "Loading 3D model\u2026");

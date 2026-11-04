@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>First CubeSat Platform - Tristan Alderson</title>
-  <meta name="description" content="From-scratch flight computer for a 1U CubeSat — Yocto Linux + F Prime on Zynq UltraScale+." />
+  <meta name="description" content="From-scratch flight computer for a 1U CubeSat - Yocto Linux + F Prime on Zynq UltraScale+." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -49,7 +49,7 @@
         <p class="project-label">Project</p>
         <h1 class="project-title">First CubeSat Platform</h1>
         <p class="project-subtitle">
-          From-scratch flight computer for a 1U CubeSat — custom Yocto Linux running JPL's F Prime. Boot to telemetry from source.
+          From-scratch flight computer for a 1U CubeSat - custom Yocto Linux running JPL's F Prime. Boot to telemetry from source.
         </p>
         <div class="project-meta">
           <div>
@@ -74,7 +74,7 @@
           <div>
             <h2 class="section-title">The Problem</h2>
             <p class="body-text">
-              CubeSats need flight software. Most teams either use commercial off-the-shelf systems or write everything from scratch. I wanted to build a flight computer using JPL's F Prime — the same framework NASA uses on Mars helicopters — on hardware I could actually afford and learn on.
+              CubeSats need flight software. Most teams either use commercial off-the-shelf systems or write everything from scratch. I wanted to build a flight computer using JPL's F Prime - the same framework NASA uses on Mars helicopters - on hardware I could actually afford and learn on.
             </p>
 
             <h2 class="section-title">What I built</h2>
@@ -92,14 +92,14 @@
 
             <h2 class="section-title">What I'd do differently</h2>
             <p class="body-text">
-              I jumped straight into the 2024.2 hand-assembled Yocto config before understanding AMD's release structure. Now I'm migrating to EDF (Embedded Development Flow) — a reproducible, manifest-driven release that replaces bespoke layer assembly with vendor-maintained provenance. The migration plan is written and scaffolding is in place, but I haven't tested on hardware yet. I should have started with EDF. <a
+              I jumped straight into the 2024.2 hand-assembled Yocto config before understanding AMD's release structure. Now I'm migrating to EDF (Embedded Development Flow) - a reproducible, manifest-driven release that replaces bespoke layer assembly with vendor-maintained provenance. The migration plan is written and scaffolding is in place, but I haven't tested on hardware yet. I should have started with EDF. <a
                 href="https://github.com/tristanalderson/satellite-bus-emulator/tree/feature/edf-migration" target="_blank" rel="noopener">EDF migration branch</a>
             </p>
 
             <h2 class="section-title">Highlights</h2>
             <ul class="project-list">
               <li>Custom Yocto Linux platform built from source, F Prime v4.2.x running on ARM Cortex-A53</li>
-              <li>Boot to telemetry from source — factory QSPI → SD card → F Prime deployment → ground station</li>
+              <li>Boot to telemetry from source - factory QSPI &gt; SD card &gt; F Prime deployment &gt; ground station</li>
               <li>Yocto SDK approach eliminates toolchain/target libc mismatches</li>
               <li>Factory QSPI preservation keeps a recovery path</li>
               <li>Migration to AMD's EDF in progress for reproducible builds</li>
@@ -116,7 +116,7 @@
             <h2 class="section-title">Technical Stack</h2>
             <ul class="project-list">
               <li><strong>Hardware:</strong> AMD Kria KV260 (Zynq UltraScale+ K26 SOM)</li>
-              <li><strong>Boot:</strong> Factory QSPI → SD (kernel + dtb + rootfs)</li>
+              <li><strong>Boot:</strong> Factory QSPI &gt; SD (kernel + dtb + rootfs)</li>
               <li><strong>OS:</strong> Custom Yocto Linux (rel-v2024.2)</li>
               <li><strong>Machine:</strong> k26-smk-kv-sdt (SDT firmware flow)</li>
               <li><strong>Flight SW:</strong> F Prime v4.2.x (NASA JPL)</li>
@@ -126,12 +126,12 @@
 
             <h2 class="section-title">Repository Structure</h2>
             <ul class="project-list">
-              <li><code>satellite-bus/</code> — F Prime project, topology, toolchain</li>
-              <li><code>build-k26/conf/</code> — Yocto build config</li>
-              <li><code>scripts/</code> — Container, environment scripts</li>
-              <li><code>Dockerfile</code> — Build container</li>
-              <li><code>PROJECT_VISION.md</code> — Learning goals</li>
-              <li><code>AGENTS.md</code> — Working principles</li>
+              <li><code>satellite-bus/</code> - F Prime project, topology, toolchain</li>
+              <li><code>build-k26/conf/</code> - Yocto build config</li>
+              <li><code>scripts/</code> - Container, environment scripts</li>
+              <li><code>Dockerfile</code> - Build container</li>
+              <li><code>PROJECT_VISION.md</code> - Learning goals</li>
+              <li><code>AGENTS.md</code> - Working principles</li>
             </ul>
 
             <h2 class="section-title">Timeline</h2>
