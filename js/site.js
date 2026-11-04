@@ -74,7 +74,7 @@
   }
 
   const lightboxImages = document.querySelectorAll(
-    ".project-gallery img, .gallery-grid img, .project-thumb img"
+    ".project-gallery img, .gallery-grid img"
   );
   lightboxImages.forEach((img) => {
     img.classList.add("lightboxable");

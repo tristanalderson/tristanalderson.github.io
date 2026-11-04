@@ -117,9 +117,7 @@
                 target="_blank" rel="noopener">RDES3 compression (Aug 2026)</a>
             </p>
             <p class="body-text">
-              The day before pad build, I made hard calls: reverted ISR logging that could stall the CAN driver, locked down rate switching to fixed jobs, added 10-second watchdog timers. ISR logging worked fine in testing, but on the pad you can't afford a CAN TX interrupt that blocks because it's trying to format a log message. <a
-                href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries/commit/07ef3faac6b463f1921d944d6ab03157b44f020f"
-                target="_blank" rel="noopener">Pre-launch hardening (Aug 18, 2026)</a>
+              The day before pad build, I made hard calls: reverted ISR logging that could stall the CAN driver, locked down rate switching to fixed jobs, added 10-second watchdog timers. ISR logging worked fine in testing, but on the pad you can't afford a CAN TX interrupt that blocks because it's trying to format a log message.
             </p>
 
             <h2 class="section-title">What I'd do differently</h2>
@@ -131,14 +129,18 @@
             </p>
 
             <h2 class="section-title">The subsystems</h2>
+            <div class="project-gallery" style="margin-bottom: 1.5rem;">
+              <img src="../assets/images/qret/slide05_img01.jpg" alt="System architecture dataflow chart" loading="lazy" />
+              <img src="../assets/images/qret/slide07_img01.jpg" alt="Propulsion system block diagram" loading="lazy" />
+            </div>
             <p class="body-text">
               Five repositories, each a flight computer node with its own hardware and firmware, all speaking the same protocol:
             </p>
             <ul class="project-list">
               <li><strong>GPS Recovery</strong> — SAM-M10Q receiver, 3D flight logging, I2C stream bug fix three weeks before launch. <a href="gps-module-antenna.html">Details</a></li>
-              <li><strong>Power Module</strong> — ORed 24V input, DC-DC buck to 3.3V/5V rails, zener shunt bug found during bench bring-up</li>
-              <li><strong>Propulsion Control</strong> — ESP32 upper / STM32 lower control for valve actuation and pressure monitoring, 5-minute server timeout for test safety</li>
-              <li><strong>Telemetry</strong> — LoRa downlink at 904.5 MHz, 500kHz/SF10, binary 13B Fast / 5B Slow wire format, QLCP uplink to ground station</li>
+              <li><strong>Power Module</strong> — ORed 24V input, DC-DC buck to 3.3V/5V rails, zener shunt bug found during bench bring-up. <a href="power-module.html">Details</a></li>
+              <li><strong>Propulsion Control</strong> — ESP32 upper / STM32 lower control for valve actuation and pressure monitoring, 5-minute server timeout for test safety. <a href="control-sensor-modules.html">Details</a></li>
+              <li><strong>Telemetry</strong> — LoRa downlink at 904.5 MHz, 500kHz/SF10, binary 13B Fast / 5B Slow wire format, QLCP uplink to ground station. <a href="ground-station.html">Details</a></li>
               <li><strong>Altimeter</strong> — KX134 high-G accelerometer, Kalman filter fusing baro + accel for altitude estimate, launch detection algorithm</li>
             </ul>
 
@@ -156,6 +158,14 @@
               <li>RDES3 compression, LittleFS telemetry storage, heartbeat health monitoring, time synchronization</li>
             </ul>
 
+            <h2 class="section-title">Launch pad triage</h2>
+            <div class="project-gallery" style="margin-bottom: 1.5rem;">
+              <img src="../assets/images/qret/slide08_img02.jpg" alt="Rocket on pad through telescope view" loading="lazy" />
+            </div>
+            <p class="body-text">
+              Day 4 at Spaceport America. Fill valve stopped responding. Last-minute firmware commit broke the command handler. Two launch opportunities left. Drilled through the airframe, reflashed the node, verified the fix in under an hour. Owning the mistake kept the mission alive.
+            </p>
+
             <div class="project-links">
               <a href="https://github.com/Queens-Rocket-Engineering-Team/av-libraries" target="_blank" rel="noopener"
                 class="btn btn-primary">View av-libraries</a>
@@ -164,6 +174,14 @@
           </div>
 
           <div>
+            <h2 class="section-title">Media</h2>
+            <div class="project-gallery">
+              <img src="../assets/images/qret/slide06_img01.jpg" alt="Avionics stack system architecture" loading="lazy" />
+              <img src="../assets/images/qret/slide04_img01.png" alt="QRET avionics team" loading="lazy" />
+              <img src="../assets/images/qret/slide06_img06.jpg" alt="Avionics hardware detail" loading="lazy" />
+              <img src="../assets/images/qret/tristan-field-fix.jpg" alt="Field programming at Spaceport America" loading="lazy" />
+            </div>
+
             <h2 class="section-title">Stats</h2>
             <ul class="project-list">
               <li><strong>152 commits</strong> to av-libraries</li>
