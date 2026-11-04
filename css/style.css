@@ -1259,3 +1259,41 @@ footer {
   margin: 2rem 0 1rem 0;
   color: var(--text-primary);
 }
+
+/* Project image hero */
+.project-image-hero {
+  background: var(--surface);
+  padding: 0;
+  margin-bottom: 3rem;
+}
+
+.project-image-hero .container {
+  max-width: 1400px;
+  padding: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Project inline images */
+.project-image {
+  margin: 2rem 0;
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.project-image figcaption {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: 0.75rem;
+  text-align: center;
+}
